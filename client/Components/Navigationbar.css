@@ -1,0 +1,22 @@
+.navigation_bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-decoration: none;
+    text-transform: capitalize;
+    
+}
+
+.navigation_bar a{
+    color: black;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.5rem;
+    transition: all .9s ease-in-out;
+    
+}
+
+.navigation_bar a::after{
+    transform: scaleX(1); /* Show the underline on hover */
+    transform-origin: bottom left; 
+}
