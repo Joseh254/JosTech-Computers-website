@@ -1,8 +1,11 @@
 import React from 'react'
+import Navigation from './Navigation.jsx'
 
 function Header() {
   return (
-    <div>Header</div>
+    <>
+    <Navigation/>
+    </>
   )
 }
 
