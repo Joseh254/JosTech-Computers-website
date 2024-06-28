@@ -1,22 +1,105 @@
+.navigation{
+min-width: 100%;
+min-width: 100%;
+}
+.top_nav{
+    display: flex;
+    flex-direction: row;
+}
+
+.bottomnav{
+    
+    align-items: center;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    margin-top: .2rem;
+}
+
+
+.topleftbtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* width: 50%; */
+}
+
+.topleftbtn input{
+    width: 26rem;
+    padding: .6rem;
+}
+
+.topleftbtn button{
+    padding: .6rem;
+}
+.btnright{
+    width: 8rem;
+    background-color: #084eac;
+    color: white;
+
+}
+
+.btnleft{
+    width: 5rem;
+}
 .navigation_bar{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     text-decoration: none;
     text-transform: capitalize;
+    gap: 2rem;
     
+    
+}
+.buttonn{
+    float: left;
+    flex-direction: row;
+
+    align-items: center;
+    width: 20rem;
+    background-color: white;
+}
+
+.buttonn button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18rem;
+    background-color:#f7f8f9;
+    padding: .1rem;
+    gap: 5rem;
+    border: none;
+}
+
+.firstitems{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.p1{
+    font-size: 2rem;
+}
+.p2{
+    color: #0051b1;
+    font-size: 1.3rem;
+}
+.p3{
+    float: right;
 }
 
 .navigation_bar a{
     color: black;
     text-decoration: none;
-    font-weight: 800;
-    font-size: 1.5rem;
-    transition: all .9s ease-in-out;
+    font-weight: 500;
+    font-size: 1.3rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
     
 }
 
-.navigation_bar a::after{
-    transform: scaleX(1); /* Show the underline on hover */
-    transform-origin: bottom left; 
-}
+/* .navigation_bar a:hover{
+
+} */
