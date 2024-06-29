@@ -3,6 +3,7 @@ import "./Home.css"
 import { Link } from 'react-router-dom'
 import Homedatatestimony from '../../Data/Homedatatestimony';
 import { AiOutlineMenu } from "react-icons/ai";
+import Homeabout from '../../Data/Homeabout';
 
 function Home() {
   return (
@@ -61,6 +62,7 @@ function Home() {
     </section>
 
     <Homedatatestimony/>
+    <Homeabout/>
 
     </>
   )
