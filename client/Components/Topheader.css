@@ -1,0 +1,145 @@
+
+.top_nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8rem;
+    padding-right: 2rem;
+}
+
+@media screen and (max-width:65.375em){
+  .top_nav{
+    gap: 4rem;
+    
+  } 
+  
+  input{
+    width: 4rem;
+  }
+
+  .top_nav {
+    scale: .9;
+    justify-content: center;
+  }
+}
+
+button{
+    padding: 1rem;
+
+}
+
+.btnleft{
+    width: 7rem;
+}
+
+.btnright{
+    background-color: blue;
+    color: white;
+    width: 15rem;
+}
+
+
+@media screen and (max-width:61.125em){
+    input{
+        width: rem;
+    }
+}
+
+@media screen and (max-width:76.375em){
+    .btnright{
+        width: 12rem;
+    }
+
+ 
+    
+    }
+input{
+    padding: 1rem;
+    width: 40rem;
+}
+
+@media screen and (max-width:76.375em){
+input{
+    width: 35rem;
+}
+
+}
+
+@media screen and (max-width:75.75em){
+    input{
+        width: 30rem;
+    }
+
+    .btnright{
+        width: 10rem;
+    }
+
+    .topleftbtn{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+}
+
+.top_nav img{
+    scale: .5;
+}
+
+.signcart{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.sign{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+}
+
+.cart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-left: 4rem;
+}
+
+@media screen and (max-width:56.25em){
+    .top_nav{
+        scale: .8;
+        float: center;
+        font-size: 2rem;
+    }
+
+    input{
+        width: 20rem;
+    }
+
+    .btnright{
+        width: 7rem;
+    }
+}
+@media screen and (max-width:43.75em){
+   .top_nav img{
+        scale: .4;
+    }
+
+    .top_nav{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+@media screen and (max-width:39.1875em){
+    .top_nav{
+        margin-right: 2rem;
+    }
+}
