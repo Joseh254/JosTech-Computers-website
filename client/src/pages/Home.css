@@ -1,0 +1,92 @@
+.hero{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+}
+
+.heroimg{
+    background-image: url(../assets/hero1.jpeg);
+    width: 70%;
+    height: 80vh;
+    background-repeat: no-repeat;
+    background-size: cover;  
+    
+}
+
+.abouthero{
+    display: flex;
+    flex-direction: column;
+    color: #f2fefe;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color:grey;
+    margin-top: 15rem;
+    width: 100%;
+
+}
+
+.abouthero h1{
+    color:#fec16b;
+    font-weight: 600;
+    font-size: 3.5rem;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.abouthero h4{
+    color:#f2fefe;
+    font-weight: 600;
+    font-size: 2rem;   
+}
+.abouthero h2{
+    color:#fec16b;
+    font-weight: 600;
+    font-size: 3.5rem; 
+}
+
+
+.heroitems{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    width: 30%;
+    background-color: #f7f8f9;
+    padding: 2rem;
+}
+.heroitems a{
+    text-decoration: none;
+    text-transform: capitalize;
+    color:black;
+    display:flex ;
+}
+.products{
+    color:#f2fefe;
+    background-color: #084eac;
+    padding: 2rem;
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+.shop{
+    color: #ffffff;
+    background-color: #084eac;
+    width: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    margin-top: 3rem;
+    margin-left: 40rem;
+    font-size: 2rem;
+    border-radius: 25px;
+}
+
+.shop a{
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: capitalize;
+
+}
