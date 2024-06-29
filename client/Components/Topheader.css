@@ -141,5 +141,13 @@ input{
 @media screen and (max-width:39.1875em){
     .top_nav{
         margin-right: 2rem;
+        padding: 2rem;
+        gap: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .top_nav img{
+        display: none;
     }
 }
