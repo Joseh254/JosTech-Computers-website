@@ -1,0 +1,6 @@
+.itemsandproducts{
+    display: flex;
+    justify-content: center;
+    padding: 2rem 3rem;
+    gap: 8rem;
+}

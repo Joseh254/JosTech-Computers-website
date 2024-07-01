@@ -12,6 +12,7 @@
     height: 80vh;
     background-repeat: no-repeat;
     background-size: cover;  
+    filter: brightness(100%);
     
 }
 
@@ -25,6 +26,7 @@
     background-color:grey;
     margin-top: 15rem;
     width: 100%;
+   
 
 }
 
@@ -52,7 +54,7 @@
     flex-direction: column;
     color: white;
     width: 30%;
-    background-color: #f7f8f9;
+    background-color: #dedede;
     padding: 2rem;
 }
 .heroitems a{
@@ -89,4 +91,20 @@
     text-decoration: none;
     text-transform: capitalize;
 
+}
+
+.homesectionlinks{
+    display:flex;
+    flex-direction: column;
+    font-size: 2rem;
+    border-bottom: solid grey 1px;
+}
+
+.homesectionlinks a{
+    border-bottom: solid .1px grey;
+}
+
+.homesectionlinks a:hover{
+    background-color: #084eac;
+    color: #f2fefe;
 }

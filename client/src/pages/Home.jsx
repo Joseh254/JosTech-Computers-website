@@ -13,7 +13,7 @@ function Home() {
 
       <div className='heroitems'>
   
-<section>
+<section className='homesectionlinks'>
 <Link to="">
  <p className='products'>{<AiOutlineMenu/>}   All Products </p>
 </Link>
