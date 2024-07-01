@@ -10,7 +10,15 @@
     gap: 2rem;
     justify-content: center;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2rem; 
+}
+
+@media screen and (max-width: 39.75em){
+  .laptops{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+  }
 }
 .laptopcontainer{
     display: flex;
@@ -20,6 +28,32 @@
     width: 20rem;
     /* border: red solid; */
     background-color: #d9d9d9;
+}
+
+@media screen and (max-width: 54.75em){
+  .laptopcontainer{
+    width: 17rem;
+  }
+}
+
+@media screen and (max-width: 48em){
+  .laptopcontainer{
+    width: 14rem;
+  }
+}
+
+@media screen and (max-width: 39.75em){
+.laptopcontainer{
+  width: 180%;
+}
+
+.laptopcontainer img{
+  width: 100%;
+}
+
+h1,p,h3{
+  font-size: 3rem;
+}
 }
 .laptopcontainer img{
    max-width: 100%;
@@ -43,4 +77,12 @@ background-color:#f3be51;
 color: black;
 border-radius: 25px;
 
+  }
+
+  .productswarapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
   }

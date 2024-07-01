@@ -4,3 +4,30 @@
     padding: 2rem 3rem;
     gap: 8rem;
 }
+@media screen and (max-width: 79.25em){
+    .itemsandproducts{
+        gap: 4rem;
+        display: flex;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        justify-content: center;
+        
+        flex-direction: row;
+    } 
+}
+
+@media screen and (max-width: 76.5em){
+    .itemsandproducts{
+        gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 72em){
+    .itemsandproducts{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+

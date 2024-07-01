@@ -6,14 +6,30 @@
     width: 100%;
     justify-content: center;
     
-
-    
 }
 
+@media screen and (max-width: 38.25em){
+   .itemsqrapper, .fitems,.foitems,.sitems,.titems{
+    display: none;
+   } 
+}
+
+@media screen and (max-width: 76.5em){
+    .itemsqrapper{
+        padding: 2rem;
+    }
+}
+@media screen and (max-width: 72em){
+    .itemsqrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
+}
 .itemsqrapper a{
     text-decoration: none;
    color:black;
-   font-weight: 400;
    border: .01px solid grey;
    padding-left: 1rem;
    padding-right: 1rem;
@@ -22,6 +38,40 @@
    margin-bottom: 3rem;
    display: flex;
    justify-content: center;
+}
+
+@media screen and (max-width: 72em){
+    .itemsqrapper a{
+    width: 100%;
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .6s ease-out;
+    }
+
+    .itemsqrapper a:hover{
+ color: white;
+ background-color: #0b448f;
+        }
+}
+
+@media screen and (max-width: 76.5em){
+    .itemsqrapper a{
+padding: .5rem;
+gap: .8rem;
+    }
+
+    .sitems, .titems ,.fitems, .fitems{
+        font-size: 1.5rem;
+        gap: 2rem;
+        margin: 0;
+    }
+
+    .itemsqrapper a{
+        display: none;
+        background-color: white;
+    }
 }
 
 .itemsqrapper a:hover{
@@ -35,6 +85,12 @@ background-color: #0b448f;
     gap: 5rem;
     margin-bottom: 3rem;
 }
+
+@media screen and (max-width: 44em){
+    .fitems{
+       gap: 1rem;
+    }   
+   }
 
 .sitems{
     display: flex;
@@ -53,6 +109,12 @@ background-color: #0b448f;
     align-items: center;
     margin-bottom: 3rem;
     width: 100%;
+}
+
+@media screen and (max-width: 44em){
+ .titems{
+    gap: 1rem;
+ }   
 }
 
 .foitems{
