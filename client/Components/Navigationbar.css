@@ -14,4 +14,11 @@
     color: black;
     text-decoration: none;
     padding: .2rem;
+    transition: all .7s ease-out;
+}
+.navigation_bar a:hover{
+text-decoration: underline;
+background-color: blue;
+padding: 0;
+color: white;
 }

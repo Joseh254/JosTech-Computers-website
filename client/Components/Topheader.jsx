@@ -1,7 +1,7 @@
 import React from 'react'
 import { VscAccount } from "react-icons/vsc";
 import { FiShoppingCart } from "react-icons/fi";
-import logo from "../src/assets/logo.jpeg"
+import logo from "../src/assets/logo.png"
 import "./Topheader.css"
 
 function Topheader() {

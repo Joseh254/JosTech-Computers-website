@@ -1,0 +1,41 @@
+
+.motherboardswrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.motherboardtitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.motherboardcontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    width: 20rem;
+    /* border:2px solid red; */
+    margin-bottom: 2rem;
+    background-color: #d9d9d9;
+}
+
+.motherboardcontainer button{
+    background-color: #0b448f;
+    color: #ffffff;
+    transition: all .6s ease-out;
+}
+
+.motherboardcontainer button:hover{
+    color: #ffffff;
+    background-color: blue;
+}
+
+.motherboardcontainer img{
+    width: 100%;
+}
+

@@ -1,0 +1,35 @@
+.desktopswrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.desktopheading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .7rem;
+}
+.desktopcontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25rem;
+    background-color: #f2f3f5;
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+
+.desktopcontainer button{
+    background-color: #0b448f;
+    color: #ffffff;
+    transition: all .7s ease-out;
+}
+
+.desktopcontainer button:hover{
+    background-color: blue;
+    color: #ffffff;
+}
