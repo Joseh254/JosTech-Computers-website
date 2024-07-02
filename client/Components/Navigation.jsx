@@ -22,8 +22,9 @@ function Navigation(){
                 <Link to="/">Home</Link>
                 <Link to="/About">About Us</Link>
                 <Link to="/FeaturedProducts">Featured Products</Link>
-                <Link to="/Contact">Contact Us</Link>
-                <Link to="/Hotdeals">Hot Deals</Link>  
+                <Link to="/Help">Help Center</Link>
+                <Link to="/Hotdeals">Hot Deals</Link> 
+                <Link to ="/Contact">Contact Us</Link> 
         </nav>
 
 
