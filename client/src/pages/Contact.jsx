@@ -1,8 +1,12 @@
 import React from 'react'
+import Contactus from '../../Data/Contactus'
 
 function Contact() {
   return (
-    <div>Contact</div>
+    <div>
+
+      <Contactus/>
+    </div>
   )
 }
 

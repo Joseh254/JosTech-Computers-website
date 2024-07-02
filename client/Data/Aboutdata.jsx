@@ -36,7 +36,7 @@ Founded in 2005, JosTech Computers started as a small local business in the bust
     <div className="aboutusgoal">
             <div className="aboutgoalcontent">
             <img src={mission} alt="our mission" />
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates doloremque sapiente dolores impedit quaerat doloribus?</p>
+            <p>To be a global leader in providing cutting-edge technology solutions, driving the future of computing, and transforming lives through innovation.</p>
             </div>
     </div>
 
@@ -56,7 +56,7 @@ Founded in 2005, JosTech Computers started as a small local business in the bust
     <div className="aboutusgoal">
             <div className="aboutgoalcontent">
             <img src={vission} alt="our vision" />
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates doloremque sapiente dolores impedit quaerat doloribus?</p>
+            <p>To deliver innovative, high-quality, and reliable technology solutions that empower individuals and businesses to achieve their full potential.</p>
             </div>
     </div>
 
@@ -72,7 +72,7 @@ Founded in 2005, JosTech Computers started as a small local business in the bust
     <div className="aboutusgoal">
             <div className="aboutgoalcontent">
             <img src={objective } alt="our objective" />
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates doloremque sapiente dolores impedit quaerat doloribus?</p>
+            <p>Maintain the highest standards of quality in all products ,services and continuously enhance customer satisfaction by providing exceptional products and service</p>
             </div>
     </div>
 

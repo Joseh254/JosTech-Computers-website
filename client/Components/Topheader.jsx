@@ -18,7 +18,7 @@ function Topheader() {
     <button className="btnleft" >All</button>
 
     <IoSearchSharp  className="icon" />
-    <input type="text" className="searchinput" id="searchinput" placeholder="      Search..."/>
+    <input type="text" className="searchinput" id="searchinput" placeholder="Search..."/>
     <button className="btnright">Search</button>
 
 </div>
