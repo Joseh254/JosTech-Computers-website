@@ -1,6 +1,7 @@
 import React from 'react'
 import { VscAccount } from "react-icons/vsc";
 import { FiShoppingCart } from "react-icons/fi";
+import { IoSearchSharp } from "react-icons/io5";
 import logo from "../src/assets/logo.png"
 import "./Topheader.css"
 
@@ -15,7 +16,9 @@ function Topheader() {
 
 <div className="topleftbtn">
     <button className="btnleft" >All</button>
-    <input type="text" className="searchinput" id="searchinput" placeholder="Search"/>
+
+    <IoSearchSharp  className="icon" />
+    <input type="text" className="searchinput" id="searchinput" placeholder="      Search..."/>
     <button className="btnright">Search</button>
 
 </div>
