@@ -1,0 +1,79 @@
+.contactheader{
+    display: flex;
+    flex-direction: column;
+    background-color: #2b3a5b;
+    color: white;
+    position: relative;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    padding-left: 8rem;
+    padding-right: 29rem;
+}
+.contactuswrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8rem;
+    margin-top: 2rem;
+    
+    
+}
+.contactuswrapper img{
+    border-bottom-left-radius: 100px;
+    border-top-left-radius: 100px;
+   top: 13.8rem;
+   right: 16rem;
+    position: absolute;
+    
+}
+.talking{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin: 3rem 0;
+    /* margin-top: 3rem; */
+}
+.talktous{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30rem;
+    border: solid grey;
+    padding: 2.5rem;
+
+}
+
+.custommersurport{
+    position: relative;
+}
+
+.needhelp{
+    position: absolute;
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    width: 14rem;
+    border: solid grey 1px;
+    padding: .5rem;
+    right: 25rem;
+    top: 32rem;
+    margin-top: .9rem;
+}
+.needhelp img{
+    width: 4rem;
+}
+.close{
+    margin-left: 10rem;
+
+}
+
+.close button{
+    background-color: beige;
+    border-radius: 100%;
+border: none;
+
+}
