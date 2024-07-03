@@ -90,12 +90,12 @@ function Contact() {
     <div className='forminputss'>
     <div className='inputs1'>
     <label htmlFor=""> First Name</label>
-    <input type="text" placeholder='first name' />
+    <input type="text" placeholder='first name eg john' required />
     </div>
 
     <div className='inputs1'>
     <label htmlFor="">Last Name</label>
-    <input type="text"  placeholder='last name'/>
+    <input type="text"  placeholder='last name eg doe' required/>
     </div>
     </div>
 
@@ -105,12 +105,12 @@ function Contact() {
     <div className='forminputss'>
     <div className='inputs1'>
     <label htmlFor="">Email</label>
-    <input type="text"  placeholder='email adress'/>
+    <input type="text"  placeholder='email adress eg johndoe@gmail.com' required/>
     </div>
 
     <div className='inputs1'>
     <label htmlFor="">Location</label>
-    <input type="text" placeholder='your location' />
+    <input type="text" placeholder='your location eg Nairobi' required />
     </div>
     </div>
 
@@ -118,19 +118,19 @@ function Contact() {
     <div className='forminputss'>
     <div className='inputs1'>
     <label htmlFor="">Phone Number</label>
-    <input type="text" placeholder='phone number' />
+    <input type="text" placeholder='phone number eg 0712345678' required />
     </div>
 
     <div className='inputs1'>
     <label htmlFor="">Subject</label>
-    <input type="text"  placeholder='subject'/>
+    <input type="text"  placeholder='subject' required/>
     </div>
     </div>
    
 
 
     <div className='forminputs'>
-    <textarea name="" id="">
+    <textarea name="" id="" placeholder='insert your message here' required>
 
 </textarea>
 
