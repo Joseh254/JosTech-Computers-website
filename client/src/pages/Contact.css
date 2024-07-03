@@ -13,7 +13,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 8rem;
+    margin-bottom: 6rem;
     margin-top: 2rem;
     
     
@@ -55,13 +55,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 1rem;
-    width: 14rem;
+    font-size: 1.3rem;
+    width: 20rem;
     border: solid grey 1px;
-    padding: .5rem;
+    padding: .1rem;
     right: 25rem;
     top: 32rem;
     margin-top: .9rem;
+
 }
 .needhelp img{
     width: 4rem;
@@ -77,3 +78,90 @@
 border: none;
 
 }
+
+.contactsurport{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5rem;
+
+}
+.surppotcontactlinks{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem;
+}
+
+.surppotcontactlinks a{
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.surppotcontactlinks a:hover{
+color: blue;
+}
+
+.surppotcontactlinks button{
+    background-color: #2b3a5b;
+    color: white;
+    width: 16rem;
+    border-radius: 25px;
+    transition: all .3s ease-out;
+    
+}
+
+.surppotcontactlinks button:hover{
+    background-color: blue;
+    color: white;
+}
+
+.fillform{
+    border: 2px solid blue;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.forminputs{
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.forminputss{
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    padding: 1rem;
+   
+    margin-bottom: 1rem;
+}
+.inputs1{
+    display: flex;
+    flex-direction: column;
+}
+.inputs1 input{
+    width: 30rem;
+}
+
+.forminputs textarea{
+    width: 100%;
+    padding-bottom: 7rem;
+    margin-bottom: 3rem;
+ 
+}
+.forminputs button{
+    width: 20rem;
+    background-color: #2b3a5b;
+    color: white;
+    border-radius: 25px;
+    transition: all .5s ease-out;
+}
+
+.forminputs button:hover{
+    
+    background-color:blue;
+    color: white;
+    
+}
+

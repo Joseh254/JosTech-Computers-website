@@ -5,6 +5,7 @@ import { LuMessagesSquare } from "react-icons/lu";
 import help from "../assets/help.png"
 import { MdHelp } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 import "./Contact.css"
 
@@ -58,6 +59,85 @@ function Contact() {
     </div>
 
 
+</section>
+
+
+
+
+<section className='contactsurport'>
+
+  <div className='surppotcontactlinks'>
+    <h1>Contact surport</h1>
+    <p>Have an Account? Sign in and we will be able to help out</p>
+    <button>Sign in  &rarr;</button>
+    <Link to="/Help">Can't sign in or have a question?</Link>
+    <Link to="/Help">Forgot your password?</Link>
+    <Link to="/Help">Can't Access your Cart?</Link>
+    <Link to="/Help">Add a recovery Email Adress?</Link>
+    <Link to="/Help">Purchase Products</Link>
+    <Link to="/Help">Exchange Item?</Link>
+
+  </div>
+
+  <div className="fillform">
+    <form action="">
+
+      <h1>We'd love to hear from you!</h1>
+      <h1>Let's get in touch</h1>
+
+
+
+    <div className='forminputss'>
+    <div className='inputs1'>
+    <label htmlFor=""> First Name</label>
+    <input type="text" placeholder='first name' />
+    </div>
+
+    <div className='inputs1'>
+    <label htmlFor="">Last Name</label>
+    <input type="text"  placeholder='last name'/>
+    </div>
+    </div>
+
+
+
+
+    <div className='forminputss'>
+    <div className='inputs1'>
+    <label htmlFor="">Email</label>
+    <input type="text"  placeholder='email adress'/>
+    </div>
+
+    <div className='inputs1'>
+    <label htmlFor="">Location</label>
+    <input type="text" placeholder='your location' />
+    </div>
+    </div>
+
+
+    <div className='forminputss'>
+    <div className='inputs1'>
+    <label htmlFor="">Phone Number</label>
+    <input type="text" placeholder='phone number' />
+    </div>
+
+    <div className='inputs1'>
+    <label htmlFor="">Subject</label>
+    <input type="text"  placeholder='subject'/>
+    </div>
+    </div>
+   
+
+
+    <div className='forminputs'>
+    <textarea name="" id="">
+
+</textarea>
+
+<button>Send message</button>
+    </div>
+    </form>
+  </div>
 </section>
 
    </>
