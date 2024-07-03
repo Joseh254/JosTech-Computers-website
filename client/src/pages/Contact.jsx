@@ -75,7 +75,7 @@ function Contact() {
     <Link to="/Help">Can't Access your Cart?</Link>
     <Link to="/Help">Add a recovery Email Adress?</Link>
     <Link to="/Help">Purchase Products</Link>
-    <Link to="/Help">Exchange Item?</Link>
+    <Link to="/contactheader">Exchange Item?</Link>
 
   </div>
 
@@ -134,7 +134,7 @@ function Contact() {
 
 </textarea>
 
-<button>Send message</button>
+<button type='button'>Send message</button>
     </div>
     </form>
   </div>
