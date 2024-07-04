@@ -15,7 +15,7 @@ function FeaturedProductsDesktops() {
     <section className='desktopswrapper'>
 
 <div className="desktopcontainer">
-
+ 
   <img src={desktop1} alt="desktop" />
   <h1>Dell latitude 7440</h1>
   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus, voluptas?</p>
