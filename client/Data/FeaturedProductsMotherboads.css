@@ -7,6 +7,22 @@
     padding: 1rem;
 }
 
+@media screen and (max-width: 53.5625em){
+ .motherboardswrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+ } 
+ 
+
+}
+@media screen and (max-width: 50em){
+    .motherboardswrapper{
+     font-size: 2rem;
+    }  
+  }
 .motherboardtitle{
     display: flex;
     justify-content: center;
@@ -24,6 +40,40 @@
     background-color: #d9d9d9;
 }
 
+@media screen and (max-width: 68.75em){
+  .motherboardcontainer{
+    width: 15rem;
+  }  
+}
+@media screen and (max-width: 53.5625em){
+  .motherboardcontainer{
+    width: 60rem;
+    font-size: 3rem;
+  }  
+}
+@media screen and (max-width: 37.9375em){
+    .motherboardcontainer{
+        width: 50rem;
+    }
+}
+
+@media screen and (max-width: 312.5em){
+   .motherboardcontainer{
+    width: 40rem;
+   } 
+}
+
+@media screen and (max-width: 25.4375em){
+  .motherboardcontainer{
+    width: 30rem;
+  }  
+}
+
+@media screen and (max-width: 19em){
+  .motherboardcontainer{
+    width: 25rem;
+  }  
+}
 .motherboardcontainer button{
     background-color: #0b448f;
     color: #ffffff;

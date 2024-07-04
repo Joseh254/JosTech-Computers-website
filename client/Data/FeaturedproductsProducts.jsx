@@ -10,7 +10,6 @@ import "./FeaturedproductsProducts.css"
 
 function FeaturedproductsProducts() {
   return (
-
     <>
     <div className='productswarapper'>
 <div className="productstitle">
