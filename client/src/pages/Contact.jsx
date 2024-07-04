@@ -139,13 +139,13 @@ function Contact() {
     <div className='inputs1'>
     <label htmlFor=""> First Name</label>
     <input type="text" placeholder='first name eg john' name='firstname' value={formik.firstname} onChange={formik.handleChange} onBlur={formik.handleBlur}  required  />
-    {formik.errors.firstname && <p> {formik.errors.firstname} </p>}
+    {formik.touched.firstname && formik.errors.firstname && <p> {formik.errors.firstname} </p>}
     </div>
 
     <div className='inputs1'>
     <label htmlFor="">Last Name</label>
     <input type="text"  placeholder='last name eg doe' name='lastname' value={formik.lastname} onChange={formik.handleChange} onBlur={formik.handleBlur}  required  />
-    {formik.errors.lastname && <p>{formik.errors.lastname}</p>}
+    {formik.touched.lastname && formik.errors.lastname && <p>{formik.errors.lastname}</p>}
     </div>
     </div>
 
@@ -156,13 +156,13 @@ function Contact() {
     <div className='inputs1'>
     <label htmlFor="">Email</label>
     <input type="email"  placeholder='email adress eg johndoe@gmail.com' name='email' value={formik.email} onChange={formik.handleChange} onBlur={formik.handleBlur}   required />
-    {formik.errors.email && <p>{formik.errors.email}</p>}
+    {formik.touched.email && formik.errors.email && <p>{formik.errors.email}</p>}
     </div>
 
     <div className='inputs1'>
     <label htmlFor="">Location</label>
     <input type="text" placeholder='your location eg Nairobi' name='location' value={formik.location} onChange={formik.handleChange}  onBlur={formik.handleBlur}  required  />
-    {formik.errors.location && <p>{formik.errors.location}</p>}
+    {formik.touched.location && formik.errors.location && <p>{formik.errors.location}</p>}
     </div>
     </div>
 
@@ -171,13 +171,13 @@ function Contact() {
     <div className='inputs1'>
     <label htmlFor="">Phone Number</label>
     <input type="number" placeholder='phone number eg 0712345678' name="phone" value={formik.phone} onChange={formik.handleChange} onBlur={formik.handleBlur}    required />
-    {formik.errors.phone && <p>{formik.errors.phone}</p>}
+    {formik.touched.phone && formik.errors.phone && <p>{formik.errors.phone}</p>}
     </div>
 
     <div className='inputs1'>
     <label htmlFor="">Subject</label>
     <input type="text"  placeholder='subject' name='subject' value={formik.subject} onChange={formik.handleChange} onBlur={formik.handleBlur}   required />
-    {formik.errors.subject && <p>{formik.errors.subject}</p>}
+    {formik.touched.subject && formik.errors.subject && <p>{formik.errors.subject}</p>}
     </div>
     </div>
    
@@ -185,7 +185,7 @@ function Contact() {
 
     <div className='forminputs'>
     <textarea name="textarea" id="" placeholder='insert your message here'   onChange={formik.handleChange} onBlur={formik.handleBlur}   required>
-    {formik.errors.textarea && <p>{formik.errors.textarea}</p>}
+    {formik.touched.textarea && formik.errors.textarea && <p>{formik.errors.textarea}</p>}
 
 </textarea>
 
