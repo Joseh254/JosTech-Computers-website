@@ -6,6 +6,7 @@ import help from "../assets/help.png"
 import { MdHelp } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import { Link } from 'react-router-dom';
+import { useFormik } from 'formik';
 
 import "./Contact.css"
 
@@ -14,6 +15,22 @@ import "./Contact.css"
     close.style.display = "none";
   }
 function Contact() {
+
+  const formik = useFormik({
+    initialValues:{
+      fistname:null,
+      lastnme:null,
+      email:null,
+      location:null,
+      phone:null,
+      subject:null,
+      textarea:null
+    
+    }
+
+    
+  })
+  console.log(formik.values);
   return (
   <>
 <section className='contactuswrapper'>
@@ -90,12 +107,12 @@ function Contact() {
     <div className='forminputss'>
     <div className='inputs1'>
     <label htmlFor=""> First Name</label>
-    <input type="text" placeholder='first name eg john' required />
+    <input type="text" placeholder='first name eg john' name='lastname' value={formik.fistname} onChange={formik.handleChange} required />
     </div>
 
     <div className='inputs1'>
     <label htmlFor="">Last Name</label>
-    <input type="text"  placeholder='last name eg doe' required/>
+    <input type="text"  placeholder='last name eg doe' name='lastname' value={formik.lastnme} onChange={formik.handleChange}  required/>
     </div>
     </div>
 
@@ -105,12 +122,12 @@ function Contact() {
     <div className='forminputss'>
     <div className='inputs1'>
     <label htmlFor="">Email</label>
-    <input type="text"  placeholder='email adress eg johndoe@gmail.com' required/>
+    <input type="email"  placeholder='email adress eg johndoe@gmail.com' name='email' value={formik.email} onChange={formik.handleChange}  required/>
     </div>
 
     <div className='inputs1'>
     <label htmlFor="">Location</label>
-    <input type="text" placeholder='your location eg Nairobi' required />
+    <input type="text" placeholder='your location eg Nairobi' name='location' value={formik.location} onChange={formik.handleChange}  required />
     </div>
     </div>
 
@@ -118,19 +135,19 @@ function Contact() {
     <div className='forminputss'>
     <div className='inputs1'>
     <label htmlFor="">Phone Number</label>
-    <input type="text" placeholder='phone number eg 0712345678' required />
+    <input type="number" placeholder='phone number eg 0712345678' name="phone" value={formik.phone} onChange={formik.handleChange}  required />
     </div>
 
     <div className='inputs1'>
     <label htmlFor="">Subject</label>
-    <input type="text"  placeholder='subject' required/>
+    <input type="text"  placeholder='subject' name='subject' value={formik.subject} onChange={formik.handleChange} required />
     </div>
     </div>
    
 
 
     <div className='forminputs'>
-    <textarea name="" id="" placeholder='insert your message here' required>
+    <textarea name="textarea" id="" placeholder='insert your message here'   onChange={formik.handleChange} required>
 
 </textarea>
 

@@ -9,6 +9,16 @@
     padding-left: 8rem;
     padding-right: 29rem;
 }
+
+@media screen and (max-width:36.125em){
+  .contactheader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: .2rem;
+  }  
+}
 .contactuswrapper{
     display: flex;
     justify-content: center;
@@ -26,6 +36,52 @@
     position: absolute;
     
 }
+
+@media screen and (max-width: 75.9375em){
+    .contactuswrapper img{
+        position: absolute;
+        right: 14rem;
+    }
+}
+
+@media screen and (max-width: 72.8125em){
+   .contactuswrapper img{
+    right: 12rem;
+   } 
+}
+
+@media screen and (max-width:71.125em){
+ .contactuswrapper img{
+    right: 1rem;
+ }   
+}
+
+@media screen and (max-width: 56.75em){
+    .contactuswrapper img{
+        right: 0;
+    }
+
+    .contactuswrapper{
+       padding: 0;
+    }
+    .contactheader{
+        padding-left: 1rem;
+    }
+}
+
+@media screen and (max-width: 57.375em){
+   .contactheader{
+    padding-left: 1rem;
+   } 
+   
+
+}
+
+@media screen and (max-width: 51.375em){
+  .contactuswrapper img{
+    display: none;
+  }  
+}
 .talking{
     display: flex;
     justify-content: center;
@@ -33,6 +89,17 @@
     gap: 3rem;
     margin: 3rem 0;
     /* margin-top: 3rem; */
+}
+
+@media screen and (max-width: 40.125em){
+  .talking{
+    display: flex;
+    flex-direction: column;
+    
+  } 
+  .talktous{
+    display: none;
+  } 
 }
 .talktous{
     display: flex;
@@ -67,9 +134,16 @@
 .needhelp img{
     width: 4rem;
 }
+
+
 .close{
     margin-left: 10rem;
 
+}
+@media screen and (max-width: 71.375em) {
+    .needhelp{
+        display: none;
+    }
 }
 
 .close button{
@@ -86,6 +160,25 @@ border: none;
     gap: 5rem;
 
 }
+
+@media screen and (max-width: 74.6875em){
+    .contactsurport{
+     gap: 1rem;
+     justify-content: center;
+    } 
+ }
+
+ @media screen and (max-width: 52.1875em){
+    .contactsurport{
+        display: flex;
+        flex-direction: column;
+    }
+    .forminputss{
+        justify-content: center;
+        align-items: center;
+    }
+}
+
 .surppotcontactlinks{
     display: flex;
     flex-direction: column;
@@ -122,6 +215,18 @@ color: blue;
     margin-bottom: 2rem;
 }
 
+@media screen and (max-width: 52.125em){
+ .fillform{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+ }  
+ 
+}
+
+
 .forminputs{
     display: flex;
     flex-direction: column;
@@ -135,6 +240,18 @@ color: blue;
     padding: 1rem;
    
     margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 70.9375em){
+    .forminputss{
+    display: flex;
+    flex-direction: column;
+    width: 40rem;
+   } 
+   .forminputss input{
+    width: 100%;
+   }
+
 }
 .inputs1{
     display: flex;
