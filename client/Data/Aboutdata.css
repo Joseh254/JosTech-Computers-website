@@ -15,6 +15,12 @@
     
 }
 
+@media screen and (max-width: 60.8125em){
+    .aboutaboutus{
+        align-items: center;
+    }
+}
+
 .aboutaboutuscontent p{
     padding-bottom: 2rem;
 }
@@ -23,11 +29,30 @@
     width: 100%;
 }
 
+@media screen and (max-width: 51.5em){
+    .aboutaboutus img{
+        display: none;
+    }
+    .aboutaboutuscontent{
+        width: 100%;
+        line-height: 4rem;
+    }
+}
+
 .thegoals{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+@media screen and (max-width: 39.8125em){
+    .aboutusgoals{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 .aboutusgoals{
     display: flex;

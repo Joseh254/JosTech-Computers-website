@@ -65,7 +65,6 @@ Founded in 2005, JosTech Computers started as a small local business in the bust
 
 
 
-
 <section className='aboutusgoals'>
     <h1>Objective</h1>
 
