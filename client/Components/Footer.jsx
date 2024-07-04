@@ -14,8 +14,8 @@ function Footer() {
   <div>
     <h1>Sign Up For Newsletters</h1>
    <div className='newsletteroffer'>
-   <p className='p1'>Get E-mail updates about our latest news and </p>
-   <p className='p2'> special offers.</p>
+   <p className='p1'>Get E-mail updates about our latest news and   <p className='p2'> special offers.</p></p>
+  
    </div>
   </div>
 
@@ -43,7 +43,6 @@ function Footer() {
     <div className="info"><p>{<SiWhatsapp />}</p> +254768163608</div>
     </div>
 
-  
 
     <div className="quicklinks">
       <h1>Quick Links</h1>
