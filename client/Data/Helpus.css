@@ -19,6 +19,23 @@
     justify-content: center;
     gap: 2rem;
 }
+
+@media screen and (max-width: 41.9375em){
+    .helpitems{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .help{
+        width: 50rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+    }
+}
 .help{
     display: flex;
     flex-direction: column;
@@ -30,6 +47,17 @@
     border-bottom: 4px solid grey;
     margin-bottom: 2rem;
     
+}
+
+@media screen and (max-width: 33.1875em){
+    .help{
+        width: 35rem;
+        font-size: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .help p{
@@ -62,11 +90,30 @@
     justify-content: center;
     gap: 5rem;
 }
+
+@media screen and (max-width: 50.5em){
+  .bottomhelpwrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+   margin: 0 2rem 1rem 2rem;
+  } 
+
+  .bottomhelpwrapper select{
+    font-size: 2rem;
+ 
+  }
+  
+
+}
 .helptopics{
     display: flex;
     flex-direction: column;
     padding: 1rem;
 }
+
 .helptopics select{
     padding: 1rem;
     width: 25rem;
