@@ -1,3 +1,10 @@
+.signinpage{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8rem;
+}
 .signinform{
     display: flex;
     flex-direction: column;
@@ -9,6 +16,26 @@
 
 .googlesignin{
     width: 17rem;
-    padding: .1rem;
+   padding-top: 1rem;
+   padding-bottom: 1rem;
+   font-size: 1.5rem;
    
+}
+.alternativesignin{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.signinimg{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    background-image:url("../assets/signin.jpeg") ;
+    /* background-size: cover; */
+    backface-visibility: visible;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    
+
 }

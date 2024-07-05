@@ -1,0 +1,35 @@
+.loginpage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid blue;
+    margin: 2rem;
+}
+.login{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+    width: 80rem;
+
+}
+
+.logininputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  
+}
+.logininputs p{
+    display: flex;
+    flex-direction: row;
+    
+  
+}
+
+.logininputs button{
+width: 30rem;   
+margin-top: 2rem;
+  
+}
