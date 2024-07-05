@@ -1,0 +1,14 @@
+.signinform{
+    display: flex;
+    flex-direction: column;
+}
+.signininputs{
+    display: flex;
+    flex-direction: column;
+}
+
+.googlesignin{
+    width: 17rem;
+    padding: .1rem;
+   
+}

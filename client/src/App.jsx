@@ -6,6 +6,8 @@ import Help from "./pages/Help"
 import Footer from "../Components/Footer"
 import Hotdeals from "./pages/Hotdeals"
 import Contact from "./pages/Contact"
+import Signin from "./pages/Signin"
+import Login from "./pages/Login"
 
 
 import {BrowserRouter, Routes,Route} from 'react-router-dom'
@@ -22,6 +24,8 @@ function App() {
   <Route path="/Help" element={<Help/>}/>
   <Route path="/Hotdeals" element={<Hotdeals/>}/>
   <Route path="/Contact" element={<Contact/>}/>
+  <Route path="/Signin" element={<Signin/>}/>
+  <Route path="/Login" element={<Login/>}/>
   </Routes>
   <Footer/>
   </BrowserRouter>

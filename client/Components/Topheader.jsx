@@ -3,6 +3,7 @@ import { VscAccount } from "react-icons/vsc";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoSearchSharp } from "react-icons/io5";
 import logo from "../src/assets/logo.png"
+import { Link } from 'react-router-dom';
 import "./Topheader.css"
 
 function Topheader() {
@@ -28,11 +29,10 @@ function Topheader() {
             <div className="sign">
                 <div className="signinicon">
 
-                <p>{<VscAccount />}</p>
+                <p >{<VscAccount />}</p>
                 </div>
                 <div className="signin">
-                    <p>sign in</p>
-                    <h4>Account</h4>
+                <Link to="/Signin"><button>Sign in </button></Link>
                 </div>
                 
 
