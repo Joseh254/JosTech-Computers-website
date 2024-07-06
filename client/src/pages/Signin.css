@@ -14,6 +14,10 @@
     flex-direction: column;
 }
 
+.createaccountbtn :disabled{
+    color: blue;
+}
+
 .googlesignin{
     width: 17rem;
    padding-top: 1rem;
@@ -39,3 +43,5 @@
     
 
 }
+
+

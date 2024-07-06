@@ -5,8 +5,29 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebookMessenger } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { useFormik } from 'formik';
+import { useState } from 'react';
 
 function Signin() {
+
+  const [loading, setloading] = useState(false);
+  const [error, seterror] = useState(false)
+
+  async function handleSubmit(formstate){
+    try {
+      
+      const response = await fetch('http://localhost:4148/api/users/register',{
+        method: "POST",
+        headers : {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formstate)
+      })
+console.log(response);
+
+    } catch (error) {
+      seterror(error.message)
+    }
+  }
 
   const formik = useFormik({
     initialValues:{
@@ -16,9 +37,7 @@ function Signin() {
       password:"",
       confirm_password:""
     },
-    onSubmit:function(formstate){
-      console.log(formstate)
-    },
+    onSubmit:handleSubmit,
     validate:function(formvalues){
       let errors = {};
       if(formvalues.firstname === "")
@@ -118,7 +137,9 @@ function Signin() {
             {formik.touched.confirm_password && formik.errors.confirm_password && <p>{formik.errors.confirm_password}</p>}
           </div>
 
-          <button type='submit'>Create Account</button>
+          <button type='submit' className='createaccountbtn' disabled={loading}>
+          {loading? 'Please wait...': "Submit"}
+          </button>
 
           <div className='alternativesignin'>
             <p>Or sign in with</p>
