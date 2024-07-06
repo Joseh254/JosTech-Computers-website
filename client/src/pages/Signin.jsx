@@ -79,7 +79,7 @@ function Signin() {
           <div className='signininputs'>
             <label>Email Address</label>
             <input 
-              type="text" 
+              type="email" 
               placeholder='Your email' 
               name='email' 
               value={formik.values.email} 
