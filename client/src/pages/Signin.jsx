@@ -1,30 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import "./Signin.css";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookMessenger, FaGithub } from "react-icons/fa";
 import { useFormik } from 'formik';
-import { useState } from 'react';
 import axios from 'axios';
 
 function Signin() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (values) => {
     try {
       setLoading(true);
+      setError("");
       const response = await axios.post("http://localhost:3000/api/users/register", {
         firstName: values.firstName,
         lastName: values.lastName,
         email: values.email,
         password: values.password
       });
-      console.log(response);
-      setLoading(false);
+
+      
+      if (response.data && response.data.success === true) {
+        navigate("/Login");
+      } else {
+        setError(response.data.message); 
+      }
     } catch (error) {
       setError(error.message);
+    } finally {
       setLoading(false);
     }
   };
@@ -44,7 +51,7 @@ function Signin() {
       if (!values.lastName) errors.lastName = "Last name is required";
       if (!values.email) errors.email = "Email is required";
       if (!values.password) errors.password = "Password is required";
-      if (values.password !== values.confirmPassword) errors.confirmPassword = "Passwords must match";
+      if (values.password !== values.confirmPassword) errors.confirmPassword = "Passwords did not match";
 
       return errors;
     }

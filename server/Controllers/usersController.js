@@ -9,7 +9,7 @@ export async function createuser(request, response) {
 
    
         if (!firstName || !lastName || !email || !password) {
-            response.status(400).send("Please ensure all fields are included.");
+            response.status(400).json({success:false,message:"Fill in empty fields "});
             return;
         }
 
@@ -24,8 +24,9 @@ export async function createuser(request, response) {
             },
         });
 
-        response.json(newUser);
+        response.status(201).json({success:true, message:"Sign in was successfull"});
     } catch (error) {
-        response.status(500).json({ success: false, message: error.message });
+        response.status(500).json({ success: false, message: "An error occured in the server" });
+        
     }
 }
