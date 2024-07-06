@@ -17,15 +17,16 @@ function Signin() {
     try {
       setloading(true);
       const createUser = await axios.post("http://localhost:3000/api/users/register", {
-
-      firstname:values.firstname,
-      lastname:values.lastname,
-      email:values.email,
-      password:values.password
-       
-
-      });
-      console.log(response);
+          firstName: values.firstname,
+          lastName:values.lastname,
+          email:values.email,
+          password:values.password
+      }).then(res => {
+        console.log(res)
+      }).catch(error => {
+        console.log(error)
+      })
+      console.log(createUser);
       setloading(false);
     } catch (error) {
       seterror(error.message);
@@ -35,8 +36,8 @@ function Signin() {
 
   const formik = useFormik({
     initialValues: {
-      firstname: "",
-      lastname: "",
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
      
@@ -126,15 +127,7 @@ function Signin() {
             {formik.touched.password && formik.errors.password && <p>{formik.errors.password}</p>}
           </div>
 
-          <div className='signininputs'>
-            <label>Confirm Password</label>
-            <input 
-              type="password" 
-              placeholder='Confirm your password' 
-
-            />
-  
-          </div>
+        
 
           <button type='submit' className='createaccountbtn' disabled={loading}>
             {loading ? 'Please wait...' : "Submit"}
@@ -161,4 +154,4 @@ function Signin() {
   )
 }
 
-export default Signin;
+export default Signin;

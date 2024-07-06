@@ -15,10 +15,22 @@ datasource db {
 
 model jostech_users {
 id String @id @default(uuid())
-first_name String @map("first_name")
-last_name String @map("last_name")
-email_address String @map("email_aadress") @unique
+firstName String @map("first_name")
+lastName String @map("last_name")
+email String @map("email_address") @unique
 password String @map("password")
 
 @@map("jostech_users")
+}
+
+model user_messages{
+  id String @id @default(uuid())
+  first_name String @map("first_name")
+  last_name String @map("last_name")
+  email String @map("email") @unique
+  location String @map("location")
+  phone_number String @map("Phone_number")@unique
+  subject String  @map("subject")
+  message String @map("message")
+  @@map("user_messages")
 }

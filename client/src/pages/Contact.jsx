@@ -7,6 +7,7 @@ import { MdHelp } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
+import { useState } from 'react';
 
 import "./Contact.css"
 
@@ -16,6 +17,8 @@ import "./Contact.css"
   }
 
 function Contact() {
+
+  const [loading, setloading] =useState(false)
 
   const formik = useFormik({
     initialValues:{
@@ -54,6 +57,9 @@ function Contact() {
 
           if (formvalues.subject==="")
         errors.subject = "please include a subject"
+
+          if(formik.textarea==="")
+            errors.textarea="include a message"
         
       return errors;
     }
