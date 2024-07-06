@@ -6,39 +6,43 @@ import { FaFacebookMessenger } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { useFormik } from 'formik';
 import { useState } from 'react';
+import axios from 'axios'
 
 function Signin() {
 
   const [loading, setloading] = useState(false);
   const [error, seterror] = useState(false)
 
-  async function handleSubmit(formstate){
+  const handleSubmit = async (values)=>{
     try {
-      
-      const response = await fetch('http://localhost:4148/api/users/register',{
-        method: "POST",
-        headers : {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formstate)
-      })
-console.log(response);
+      setloading(true);
+      const createUser = await axios.post("http://localhost:3000/api/users/register", {
 
+      firstname:values.firstname,
+      lastname:values.lastname,
+      email:values.email,
+      password:values.password
+       
+
+      });
+      console.log(response);
+      setloading(false);
     } catch (error) {
-      seterror(error.message)
+      seterror(error.message);
+      setloading(false);
     }
   }
 
   const formik = useFormik({
-    initialValues:{
-      firstname:"",
-      lastname:"",
-      email:"",
-      password:"",
-      confirm_password:""
+    initialValues: {
+      firstname: "",
+      lastname: "",
+      email: "",
+      password: "",
+     
     },
-    onSubmit:handleSubmit,
-    validate:function(formvalues){
+    onSubmit: handleSubmit,
+    validate: function(formvalues){
       let errors = {};
       if(formvalues.firstname === "")
         errors.firstname = "First name is required";
@@ -59,7 +63,6 @@ console.log(response);
     }
   });
 
-  console.log(formik.values);
   return (
     <section className='signinpage'>
       <div className='signinform'>
@@ -128,17 +131,13 @@ console.log(response);
             <input 
               type="password" 
               placeholder='Confirm your password' 
-              name='confirm_password' 
-              value={formik.values.confirm_password} 
-              onChange={formik.handleChange} 
-              onBlur={formik.handleBlur} 
-              required
+
             />
-            {formik.touched.confirm_password && formik.errors.confirm_password && <p>{formik.errors.confirm_password}</p>}
+  
           </div>
 
           <button type='submit' className='createaccountbtn' disabled={loading}>
-          {loading? 'Please wait...': "Submit"}
+            {loading ? 'Please wait...' : "Submit"}
           </button>
 
           <div className='alternativesignin'>
@@ -162,4 +161,4 @@ console.log(response);
   )
 }
 
-export default Signin
+export default Signin;
