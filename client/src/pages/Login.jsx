@@ -24,6 +24,7 @@ function Login() {
     <input type="text" placeholder='your password' />
     <p>Forgot your password? <Link to="">Reset Passord</Link></p>
     <button>Log in</button>
+    <p><Link to="/Signin">Create Account</Link></p>
   </div>
 
   
