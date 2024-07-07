@@ -22,18 +22,14 @@ function Signin() {
         email: values.email,
         password: values.password,
       });
-      const data = await response.json();
+
       if (response.data.success) {
         navigate("/Login");
       } else {
         setError(response.data.message);
       }
     } catch (error) {
-      if (
-        error.response &&
-        error.response.data &&
-        error.response.data.message
-      ) {
+      if (error.response && error.response.data && error.response.data.message) {
         setError(error.response.data.message);
       } else {
         setError(error.message);

@@ -2,38 +2,68 @@ import React from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
+import { useState } from "react";
+import { api_url } from "../../utills/config";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(formState) {
+    try {
+      setLoading(true);
+      setError("");
+      const response = await fetch(`${api_url}/api/users/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
+        credentials: "include",
+      });
+
+      const data = await response.json();
+      if (data.success === true) {
+        navigate("/");
+      } else {
+        setError(data.message || "Login failed"); 
+      }
+      console.log(data);
+      console.log(response);
+    } catch (error) {
+      setError("An error occurred during login. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   const formik = useFormik({
     initialValues: {
       firstname: "",
       email: "",
       password: "",
     },
-
-    onSubmit: function (formstate) {
-      console.log(formstate);
-    },
-    validate: function (formvalues) {
+    onSubmit: handleSubmit,
+    validate: function (formValues) {
       let errors = {};
-      if (formvalues.firstname === "")
-        errors.firstname = "firstname is requred";
-      if (formvalues.email === "") errors.email = "Email is requred";
-
-      if (formvalues.password === "")
-        errors.password = "Please enter a password";
+      if (formValues.firstname === "") errors.firstname = "First name is required";
+      if (formValues.email === "") errors.email = "Email is required";
+      if (formValues.password === "") errors.password = "Please enter a password";
       return errors;
     },
   });
+
   return (
     <div className="loginpage">
       <form onSubmit={formik.handleSubmit}>
         <div className="login">
           <div className="logininputs">
-            <label htmlFor="">First Name</label>
+            <label htmlFor="firstname">First Name</label>
             <input
               type="text"
-              placeholder="first name"
+              placeholder="First name"
               name="firstname"
               value={formik.values.firstname}
               onChange={formik.handleChange}
@@ -46,10 +76,10 @@ function Login() {
           </div>
 
           <div className="logininputs">
-            <label htmlFor="">Email</label>
+            <label htmlFor="email">Email</label>
             <input
-              type="text"
-              placeholder="your email address"
+              type="email"
+              placeholder="Your email address"
               name="email"
               value={formik.values.email}
               onChange={formik.handleChange}
@@ -62,10 +92,10 @@ function Login() {
           </div>
 
           <div className="logininputs">
-            <label htmlFor="">Password</label>
+            <label htmlFor="password">Password</label>
             <input
-              type="text"
-              placeholder="your password"
+              type="password"
+              placeholder="Your password"
               name="password"
               value={formik.values.password}
               onChange={formik.handleChange}
@@ -77,9 +107,12 @@ function Login() {
             )}
 
             <p>
-              Forgot your password? <Link to="">Reset Passord</Link>
+              Forgot your password? <Link to="">Reset Password</Link>
             </p>
-            <button>Log in</button>
+            {error && <p className="error">{error}</p>}
+            <button type="submit" disabled={loading}>
+              {loading ? "Logging in..." : "Log in"}
+            </button>
             <p>
               <Link to="/Signin">Create Account</Link>
             </p>
