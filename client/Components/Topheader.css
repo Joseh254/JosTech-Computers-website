@@ -160,6 +160,17 @@ input {
   }
 }
 .signin button {
+  background-color: blue;
+  color: white;
+}
+.cartbtn{
   background-color: #ffbf53;
   color: black;
+
+  padding: 1rem;
+  width: 7rem;
+}
+.headericons{
+  font-size: 3rem;
+  color: blue;
 }

@@ -6,7 +6,7 @@ import logo from "../src/assets/logo.png";
 import { Link } from "react-router-dom";
 import "./Topheader.css";
 
-function Topheader() {
+function Topheader() { 
   return (
     <header className="topheader">
       <div className="top_nav">
@@ -25,7 +25,7 @@ function Topheader() {
         <section className="signcart">
           <div className="sign">
             <div className="signinicon">
-              <p>
+              <p className="headericons">
                 <VscAccount />
               </p>
             </div>
@@ -35,13 +35,14 @@ function Topheader() {
               </Link>
             </div>
           </div>
+
+
           <div className="cart">
-            <h1>
+            <h1 className="headericons">
               <FiShoppingCart />
             </h1>
             <div>
-              <p>My</p>
-              <h4>Cart</h4>
+              <button className="cartbtn">Cart</button>
             </div>
           </div>
         </section>

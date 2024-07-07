@@ -76,9 +76,9 @@
     width: 27rem;
   }
 }
-@media screen and (max-width: ) {
+@media screen and (max-width:20.125em ) {
   .logininputs{
-    width: 30;
+    width: 25rem;
   }
 }
 
