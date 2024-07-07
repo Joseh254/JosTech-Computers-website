@@ -9,7 +9,7 @@ function Homeabout() {
     <div className="homeabout">
       <div className="title">
         <h1>About us</h1>
-      </div>
+      </div> 
 
       <div className="aboutcards">
         <div className="card">

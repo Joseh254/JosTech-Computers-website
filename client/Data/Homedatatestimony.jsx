@@ -10,7 +10,7 @@ import logo from "../src/assets/logo.jpeg";
 
 function Homedatatestimony() {
   return (
-    <div>
+    <div> 
       <div className="otherssaying">
         <h1 className="actualsay">What Others Say About Us</h1>
       </div>

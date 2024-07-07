@@ -4,6 +4,13 @@
   justify-content: center;
   align-items: center;
   margin-top: 3rem;
+
+}
+
+@media screen and (max-width: 45.5625em){
+  .homeabout{
+    display: none;
+  }
 }
 .aboutcards {
   display: flex;
