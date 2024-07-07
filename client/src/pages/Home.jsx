@@ -14,7 +14,7 @@ function Home() {
             <Link to="">
               <p className="products">{<AiOutlineMenu />} All Products </p>
             </Link>
-
+ 
             <Link to="/FeaturedProducts">Laptops</Link>
             <Link to="/FeaturedProducts">Desktops</Link>
             <Link to="/FeaturedProducts"> Cooling Fans</Link>

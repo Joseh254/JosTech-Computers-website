@@ -1,7 +1,7 @@
 .hero {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   padding: 1rem 2rem;
   margin-top: 2rem;
 }
@@ -13,6 +13,13 @@
   background-repeat: no-repeat;
   background-size: cover;
   filter: brightness(100%);
+}
+
+@media screen and (max-width: 59.5em){
+  .heroimg{
+    width: 60%;
+  }
+ 
 }
 
 .abouthero {
@@ -64,6 +71,16 @@
   background-color: #dedede;
   padding: 2rem;
 }
+
+@media screen and (max-width: 42.625em){
+  .heroitems{
+    display: none;
+  }
+  .heroimg{
+    width: 100%;
+    height: 50vh;
+  }
+}
 .heroitems a {
   text-decoration: none;
   text-transform: capitalize;
@@ -91,6 +108,17 @@
   margin-left: 40rem;
   font-size: 2rem;
   border-radius: 25px;
+}
+
+@media screen and (max-width: 59.5em){
+  .shop{
+    margin-left: 10rem;
+  }
+}
+@media screen and (max-width: 40.125em){
+ .shop{
+  display: none;
+ } 
 }
 
 .shop a {
