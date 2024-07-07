@@ -187,6 +187,8 @@ function Signin() {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
           accusamus amet iste sunt minus ut.
         </p>
+
+        <h1>sign in with</h1>
         <button className="googlesignin">
           <FaFacebookMessenger /> Messenger
         </button>

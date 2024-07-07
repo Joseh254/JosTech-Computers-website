@@ -1,9 +1,26 @@
+.loginsection{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+ gap: 2rem;
+ background-color: #bfbfbf;
+  
+}
 .loginpage {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: solid blue;
+  background-image: url(../assets/bg.jpg);
+  background-size: cover;
   margin: 2rem;
+  color: white;
+  padding: 2rem;
+  font-weight: 400;
+}
+.loginpage a{
+  color: white;
+  
 }
 .login {
   display: flex;
@@ -14,10 +31,60 @@
   width: 80rem;
 }
 
+
 .logininputs {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 70rem;
+  gap: 2rem;
+  /* align-items: center; */
+}
+@media screen and (max-width: 46.625em){
+  .logininputs{
+    width: 60rem;
+    
+  }
+}
+
+@media screen and (max-width: 41.625em){
+  .logininputs{
+    width: 50rem;
+  }
+}
+
+@media screen and (max-width: 34.3125em){
+  .logininputs{
+    width: 45rem;
+  }
+}
+
+@media screen and (max-width: 30.5625em ){
+  .logininputs{
+    width: 35rem;
+  }
+}
+
+@media screen and (max-width:31.1875em ) {
+  .logininputs{
+    width: 30;
+  }
+}
+
+@media screen and (max-width:24.9375em ) {
+  .logininputs{
+    width: 27rem;
+  }
+}
+@media screen and (max-width: ) {
+  .logininputs{
+    width: 30;
+  }
+}
+
+.logininputs input{
+width: 80%;
+
 }
 .logininputs p {
   display: flex;

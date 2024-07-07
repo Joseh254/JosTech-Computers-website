@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { api_url } from "../../utills/config";
 import { useNavigate } from "react-router-dom";
+import bg from "../assets/laptopbg.jpg"
 
 function Login() {
   const navigate = useNavigate();
@@ -58,9 +59,13 @@ function Login() {
   });
 
   return (
+
+    <section className="loginsection">
     <div className="loginpage">
+      
       <form onSubmit={formik.handleSubmit}>
-        <div className="login">
+        <div className="">
+        <h1>Log in to your account</h1>
           <div className="logininputs">
             <label htmlFor="firstname">First Name</label>
             <input
@@ -102,7 +107,7 @@ function Login() {
               value={formik.values.password}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              required
+              required 
             />
             {formik.touched.password && formik.errors.password && (
               <p>{formik.errors.password}</p>
@@ -121,7 +126,11 @@ function Login() {
           </div>
         </div>
       </form>
+
+     
     </div>
+    {/* <img src={bg} alt="" /> */}
+    </section>
   );
 }
 
