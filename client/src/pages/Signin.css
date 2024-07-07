@@ -5,6 +5,27 @@
   align-items: center;
   gap: 8rem;
 }
+@media screen and (max-width: 65.25em){
+ .signinpage{
+  gap: 4rem;
+  justify-content: center;
+
+  padding-left: 3rem;
+  padding-right: 2rem;
+ } 
+
+ .signininputs input{
+  width: 100%;
+ }
+}
+@media screen and (max-width: 26.3125em){
+  .signinpage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
 .signinform {
   display: flex;
   flex-direction: column;

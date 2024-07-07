@@ -28,7 +28,7 @@ function Login() {
       if (data.success === true) {
         navigate("/");
       } else {
-        setError(data.message || "Login failed"); 
+        setError(data.message || "Login failed");
       }
       console.log(data);
       console.log(response);
@@ -48,9 +48,11 @@ function Login() {
     onSubmit: handleSubmit,
     validate: function (formValues) {
       let errors = {};
-      if (formValues.firstname === "") errors.firstname = "First name is required";
+      if (formValues.firstname === "")
+        errors.firstname = "First name is required";
       if (formValues.email === "") errors.email = "Email is required";
-      if (formValues.password === "") errors.password = "Please enter a password";
+      if (formValues.password === "")
+        errors.password = "Please enter a password";
       return errors;
     },
   });
