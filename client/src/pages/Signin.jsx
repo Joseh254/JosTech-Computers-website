@@ -5,9 +5,9 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebookMessenger, FaGithub } from "react-icons/fa";
 import { useFormik } from 'formik';
 import axios from 'axios';
+import { api_url } from '../../utills/config';
 
 function Signin() {
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -16,20 +16,24 @@ function Signin() {
     try {
       setLoading(true);
       setError("");
-      const response = await axios.post("http://localhost:3000/api/users/register", {
+      const response = await axios.post(`${api_url}/api/users/register`, {
         firstName: values.firstName,
         lastName: values.lastName,
         email: values.email,
         password: values.password
       });
-
-      if (response.data.success === true) {
+const data = await response.json()
+      if (response.data.success) {
         navigate("/Login");
       } else {
-        setError(response.data.message); 
+        setError(response.data.message);
       }
     } catch (error) {
-      setError(error.message);
+      if (error.response && error.response.data && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError(error.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -62,7 +66,7 @@ function Signin() {
         <h1>Create An Account</h1>
         <p>Already have an Account? <Link to="/Login">Log in to your account</Link></p>
 
-        {error && <p className="error">{error}</p>}
+        {error && <h1 className="error">{error}</h1>}
 
         <form onSubmit={formik.handleSubmit}>
           <div className='signininputs'>
