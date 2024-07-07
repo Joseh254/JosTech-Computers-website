@@ -23,8 +23,7 @@ function Signin() {
         password: values.password
       });
 
-      
-      if (response.data && response.data.success === true) {
+      if (response.data.success === true) {
         navigate("/Login");
       } else {
         setError(response.data.message); 

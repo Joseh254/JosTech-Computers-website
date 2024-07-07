@@ -1,17 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from 'bcrypt';
 
+
 const prisma = new PrismaClient();
 
 export async function createuser(request, response) {
     try {
         const { firstName, lastName, email, password } = request.body;
-
-   
-        if (!firstName || !lastName || !email || !password) {
-            response.status(400).json({success:false,message:"Fill in empty fields "});
-            return;
-        }
 
         const hashedPassword = bcrypt.hashSync(password, 10);
 
