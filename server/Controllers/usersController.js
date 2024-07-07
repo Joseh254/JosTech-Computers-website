@@ -19,30 +19,33 @@ export async function createuser(request, response) {
             },
         });
 
-        response.status(201).json({ success: true, message: "Sign in was successful" });
+        response.status(201).json({ success: true, message: "Sign up was successful" });
     } catch (error) {
         response.status(500).json({ success: false, message: "An error occurred in the server" });
     }
 }
 
 export async function loginUser(request, response) {
-    const { email, password } = request.body;
+    const { email, password, firstName } = request.body;
     try {
         const user = await prisma.jostech_users.findFirst({
-            where: { email }
+            where: { email, firstName:firstName }
         });
 
         if (user) {
             const passwordMatch = bcrypt.compareSync(password, user.password);
-            const payload = {
-                firstName: jostech_users.firstName,
-                lastName:jostech_users.lastName,
-                email:jostech_users.email
-            }
-            if (passwordMatch) {
-                const token = jwt.sign(payload , process.env.JWT_SECRET, { expiresIn: "100h" });
 
-                response.cookie("access_token",token); 
+            if (passwordMatch) {
+                const payload = {
+                    id: user.id,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email
+                };
+
+                const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "100h" });
+
+                response.cookie("access_token", token);
 
                 response.status(200).json({ success: true, message: "Logged in successfully" });
             } else {

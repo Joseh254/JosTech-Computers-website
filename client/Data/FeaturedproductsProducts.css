@@ -1,112 +1,112 @@
-.productswarapperr{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.productswarapperr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.laptops{
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 2rem; 
+.laptops {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
-@media screen and (max-width: 39.75em){
-  .laptops{
+@media screen and (max-width: 39.75em) {
+  .laptops {
     display: flex;
     flex-direction: column;
     padding: 2rem;
   }
 }
-.laptopcontainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 20rem;
-    /* border: red solid; */
-    background-color: #d9d9d9;
+.laptopcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20rem;
+  /* border: red solid; */
+  background-color: #d9d9d9;
 }
 
-@media screen and (max-width: 54.75em){
-  .laptopcontainer{
+@media screen and (max-width: 54.75em) {
+  .laptopcontainer {
     width: 17rem;
   }
 }
 
-@media screen and (max-width: 48em){
-  .laptopcontainer{
+@media screen and (max-width: 48em) {
+  .laptopcontainer {
     width: 14rem;
   }
 }
 
-@media screen and (max-width: 39.75em){
-.laptopcontainer{
-  width: 180%;
+@media screen and (max-width: 39.75em) {
+  .laptopcontainer {
+    width: 180%;
+  }
+
+  .laptopcontainer img {
+    width: 100%;
+  }
+
+  h1,
+  p,
+  h3 {
+    font-size: 3rem;
+  }
 }
 
-.laptopcontainer img{
-  width: 100%;
-}
-
-h1,p,h3{
-  font-size: 3rem;
-}
-}
-
-@media screen and (max-width: 35.0625em){
-  .laptopcontainer{
+@media screen and (max-width: 35.0625em) {
+  .laptopcontainer {
     width: 45rem;
   }
 }
 
-@media screen and (max-width: 29em){
-  .laptopcontainer{
+@media screen and (max-width: 29em) {
+  .laptopcontainer {
     width: 38rem;
   }
 }
 
-@media screen and (max-width: 24.4375em){
-  .laptopcontainer{
+@media screen and (max-width: 24.4375em) {
+  .laptopcontainer {
     width: 34rem;
   }
 }
 
-@media screen and (max-width: 21.75em){
-  .laptopcontainer{
+@media screen and (max-width: 21.75em) {
+  .laptopcontainer {
     width: 30rem;
   }
 }
-.laptopcontainer img{
-   max-width: 100%;
+.laptopcontainer img {
+  max-width: 100%;
 }
 
-.laptopcontainer button{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   background-color: #0b448f;
-   color: #ffffff;
-   font-weight: 700;
-   gap: 1rem;
-   margin-bottom: .8rem;
-   transition: all .7s ease-out;
- }
+.laptopcontainer button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0b448f;
+  color: #ffffff;
+  font-weight: 700;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+  transition: all 0.7s ease-out;
+}
 
+.laptopcontainer button:hover {
+  background-color: blue;
+  color: white;
+  border-radius: 25px;
+}
 
- .laptopcontainer button:hover{
-background-color:blue;
-color: white;
-border-radius: 25px;
-
-  }
-
-  .productswarapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
+.productswarapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}

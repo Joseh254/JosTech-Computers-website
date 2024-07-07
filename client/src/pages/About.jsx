@@ -1,10 +1,8 @@
-import React from 'react'
-import Aboutdata from '../../Data/Aboutdata'
+import React from "react";
+import Aboutdata from "../../Data/Aboutdata";
 
 function About() {
-  return (
-    <Aboutdata/>
-  )
+  return <Aboutdata />;
 }
 
-export default About
+export default About;

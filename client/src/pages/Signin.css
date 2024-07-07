@@ -1,58 +1,53 @@
-.signinpage{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 8rem;
+.signinpage {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8rem;
 }
-.signinform{
-    display: flex;
-    flex-direction: column;
+.signinform {
+  display: flex;
+  flex-direction: column;
 }
-.signininputs{
-    display: flex;
-    flex-direction: column;
+.signininputs {
+  display: flex;
+  flex-direction: column;
 }
-.createaccountbtn{
-    background-color: blue;
-    color: white;
-    padding: 1rem;
-    margin-top: 2rem;
-    width: 20rem;
-    border-radius: 25px;
-}
-
-.createaccountbtn button{
-    padding: 1rem;
-}
-.createaccountbtn :disabled{
-    display: none;
+.createaccountbtn {
+  background-color: blue;
+  color: white;
+  padding: 1rem;
+  margin-top: 2rem;
+  width: 20rem;
+  border-radius: 25px;
 }
 
-.googlesignin{
-    width: 17rem;
-   padding-top: 1rem;
-   padding-bottom: 1rem;
-   font-size: 1.5rem;
-   
+.createaccountbtn button {
+  padding: 1rem;
 }
-.alternativesignin{
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.createaccountbtn :disabled {
+  display: none;
 }
 
-.signinimg{
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    background-image:url("../assets/signin.jpeg") ;
-    /* background-size: cover; */
-    backface-visibility: visible;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    
-
+.googlesignin {
+  width: 17rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 1.5rem;
+}
+.alternativesignin {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-
+.signinimg {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  background-image: url("../assets/signin.jpeg");
+  /* background-size: cover; */
+  backface-visibility: visible;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}

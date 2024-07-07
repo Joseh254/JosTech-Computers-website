@@ -1,89 +1,84 @@
-.aboutaboutus{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 3rem;
-    gap: 3rem;
-
+.aboutaboutus {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 3rem;
+  gap: 3rem;
 }
 
-.aboutaboutuscontent{
-    width: 50%;
-    border: 1px solid  #949494;
-    padding: 1rem;
-    box-shadow: 1px 2px 6px 1px #000000;
-    
+.aboutaboutuscontent {
+  width: 50%;
+  border: 1px solid #949494;
+  padding: 1rem;
+  box-shadow: 1px 2px 6px 1px #000000;
 }
 
-@media screen and (max-width: 60.8125em){
-    .aboutaboutus{
-        align-items: center;
-    }
+@media screen and (max-width: 60.8125em) {
+  .aboutaboutus {
+    align-items: center;
+  }
 }
 
-.aboutaboutuscontent p{
-    padding-bottom: 2rem;
+.aboutaboutuscontent p {
+  padding-bottom: 2rem;
 }
 
-.aboutaboutus img{
+.aboutaboutus img {
+  width: 100%;
+}
+
+@media screen and (max-width: 51.5em) {
+  .aboutaboutus img {
+    display: none;
+  }
+  .aboutaboutuscontent {
     width: 100%;
+    line-height: 4rem;
+  }
 }
 
-@media screen and (max-width: 51.5em){
-    .aboutaboutus img{
-        display: none;
-    }
-    .aboutaboutuscontent{
-        width: 100%;
-        line-height: 4rem;
-    }
+.thegoals {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.thegoals{
+@media screen and (max-width: 39.8125em) {
+  .aboutusgoals {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+}
+.aboutusgoals {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  border: 2px solid grey;
+  margin: 1rem;
+  border-radius: 55px;
+  padding-left: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  width: 70%;
+  transition: all 0.6s ease-out;
 }
 
-@media screen and (max-width: 39.8125em){
-    .aboutusgoals{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-}
-.aboutusgoals{
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    border: 2px solid grey;
-    margin: 1rem;
-    border-radius: 55px;
-    padding-left: 2rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    width: 70%;
-    transition: all .6s ease-out;
-
+.aboutusgoals:hover {
+  background-color: #949494;
+  font-weight: 400;
 }
 
-.aboutusgoals:hover{
-    background-color: #949494;
-    font-weight: 400;
+.aboutgoalcontent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3rem;
 }
 
-.aboutgoalcontent{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 3rem;
-    
-}
-
-.aboutusgoals img{
-    
-    border-radius: 100%;
-    width: 5%;
+.aboutusgoals img {
+  border-radius: 100%;
+  width: 5%;
 }

@@ -1,95 +1,93 @@
-.desktopswrapper{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
+.desktopswrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
 }
 
-@media screen and (max-width: 69.875em){
-   .desktopswrapper{
+@media screen and (max-width: 69.875em) {
+  .desktopswrapper {
     gap: 1rem;
     font-size: 1.5rem;
-   } 
+  }
 }
 
-@media screen and (max-width: 45.6875em){
- .desktopswrapper{
+@media screen and (max-width: 45.6875em) {
+  .desktopswrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 3rem;
- } 
-  
+  }
 }
 
-.desktopheading{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: .7rem;
+.desktopheading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.7rem;
 }
-.desktopcontainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 25rem;
-    background-color: #f2f3f5;
-    margin-bottom: 2rem;
-    padding: 1rem;
+.desktopcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25rem;
+  background-color: #f2f3f5;
+  margin-bottom: 2rem;
+  padding: 1rem;
 }
 
-@media screen and (max-width: 65.0625em){
- .desktopcontainer{
+@media screen and (max-width: 65.0625em) {
+  .desktopcontainer {
     width: 20rem;
- }   
+  }
 }
 
-@media screen and (max-width: 51.9375em){
-   .desktopcontainer{
+@media screen and (max-width: 51.9375em) {
+  .desktopcontainer {
     width: 15rem;
     gap: 1rem;
-   } 
+  }
 }
 
-@media screen and (max-width: 45.6875em){
-    .desktopcontainer{
-        width: 50rem;
-    }
-    .desktopcontainer img{
-        width: 100%;
-        
-    }
+@media screen and (max-width: 45.6875em) {
+  .desktopcontainer {
+    width: 50rem;
+  }
+  .desktopcontainer img {
+    width: 100%;
+  }
 }
 
-@media screen and (max-width: 30.875em){
- .desktopcontainer{
+@media screen and (max-width: 30.875em) {
+  .desktopcontainer {
     width: 40rem;
- }   
+  }
 }
 
-@media screen and (max-width: 25.4375em){
-   .desktopcontainer{
+@media screen and (max-width: 25.4375em) {
+  .desktopcontainer {
     width: 35rem;
     padding: 2rem;
-   } 
+  }
 }
 
-@media screen and (max-width: 20.4375em){
-   .desktopcontainer{
+@media screen and (max-width: 20.4375em) {
+  .desktopcontainer {
     width: 30rem;
-   } 
+  }
 }
 
-.desktopcontainer button{
-    background-color: #0b448f;
-    color: #ffffff;
-    transition: all .7s ease-out;
+.desktopcontainer button {
+  background-color: #0b448f;
+  color: #ffffff;
+  transition: all 0.7s ease-out;
 }
 
-.desktopcontainer button:hover{
-    background-color: blue;
-    color: #ffffff;
+.desktopcontainer button:hover {
+  background-color: blue;
+  color: #ffffff;
 }

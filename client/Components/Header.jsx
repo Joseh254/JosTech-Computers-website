@@ -1,12 +1,12 @@
-import React from 'react'
-import Navigation from './Navigation.jsx'
+import React from "react";
+import Navigation from "./Navigation.jsx";
 
 function Header() {
   return (
     <>
-    <Navigation/>
+      <Navigation />
     </>
-  )
+  );
 }
 
-export default Header
+export default Header;

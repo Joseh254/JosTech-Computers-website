@@ -1,179 +1,165 @@
-
-.top_nav{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 8rem;
-    padding-right: 2rem;
+.top_nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8rem;
+  padding-right: 2rem;
 }
 
-.top_nav img{
-    border-radius: 100%;
-    width: 10rem;
-    
+.top_nav img {
+  border-radius: 100%;
+  width: 10rem;
 }
 
-
-@media screen and (max-width:65.375em){
-  .top_nav{
+@media screen and (max-width: 65.375em) {
+  .top_nav {
     gap: 4rem;
-    
-  } 
-  
-  input{
+  }
+
+  input {
     width: 4rem;
     position: relative;
   }
 
   .top_nav {
-    scale: .9;
+    scale: 0.9;
     justify-content: center;
   }
 }
 
-button{
-    padding: 1rem;
-
+button {
+  padding: 1rem;
 }
 
-.btnleft{
-    width: 7rem;
+.btnleft {
+  width: 7rem;
 }
 
-.btnright{
-    background-color: blue;
-    color: white;
-    width: 15rem;
+.btnright {
+  background-color: blue;
+  color: white;
+  width: 15rem;
 }
 
-
-@media screen and (max-width:61.125em){
-    input{
-        width: rem;
-    }
+@media screen and (max-width: 61.125em) {
+  input {
+    width: rem;
+  }
 }
 
-@media screen and (max-width:76.375em){
-    .btnright{
-        width: 12rem;
-    }
-
- 
-    
-    }
-    .icon{
-        position: absolute;
-        justify-content: center;
-        align-items: center;
-        scale: 1.3;
-        width: 4rem;
-        transform: translateY(60%);
-
-    }
-   
-input{
-    padding: 1rem;
-    padding-left: 4rem;
-    width: 40rem;
-
+@media screen and (max-width: 76.375em) {
+  .btnright {
+    width: 12rem;
+  }
+}
+.icon {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  scale: 1.3;
+  width: 4rem;
+  transform: translateY(60%);
 }
 
+input {
+  padding: 1rem;
+  padding-left: 4rem;
+  width: 40rem;
+}
 
-
-@media screen and (max-width:76.375em){
-input{
+@media screen and (max-width: 76.375em) {
+  input {
     width: 35rem;
+  }
 }
 
-}
+@media screen and (max-width: 75.75em) {
+  input {
+    width: 30rem;
+  }
 
-@media screen and (max-width:75.75em){
-    input{
-        width: 30rem;
-    }
+  .btnright {
+    width: 10rem;
+  }
 
-    .btnright{
-        width: 10rem;
-    }
-
-    .topleftbtn{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: nowrap;
-    }
+  .topleftbtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
 }
 /* 
 .top_nav img{
     scale: .5;
 } */
 
-.signcart{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.signcart {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-.sign{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 2rem;
+.sign {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
 }
 
-.cart{
+.cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-left: 4rem;
+}
+
+@media screen and (max-width: 56.25em) {
+  .top_nav {
+    scale: 0.8;
+    float: center;
+    font-size: 2rem;
+  }
+
+  input {
+    width: 20rem;
+  }
+
+  .btnright {
+    width: 7rem;
+  }
+}
+@media screen and (max-width: 43.75em) {
+  .top_nav img {
+    scale: 0.4;
+  }
+
+  .top_nav {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: 1rem;
-    margin-left: 4rem;
+    margin-right: 1rem;
+  }
 }
 
-@media screen and (max-width:56.25em){
-    .top_nav{
-        scale: .8;
-        float: center;
-        font-size: 2rem;
-    }
-
-    input{
-        width: 20rem;
-    }
-
-    .btnright{
-        width: 7rem;
-    }
+@media screen and (max-width: 39.1875em) {
+  .top_nav {
+    margin-right: 2rem;
+    padding: 2rem;
+    gap: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .top_nav img {
+    display: none;
+  }
 }
-@media screen and (max-width:43.75em){
-   .top_nav img{
-        scale: .4;
-    }
-
-    .top_nav{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        margin-right: 1rem;
-    }
-}
-
-@media screen and (max-width:39.1875em){
-    .top_nav{
-        margin-right: 2rem;
-        padding: 2rem;
-        gap: 2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .top_nav img{
-        display: none;
-    }
-}
-.signin button{
-background-color:#ffbf53 ;
-color: black;
+.signin button {
+  background-color: #ffbf53;
+  color: black;
 }

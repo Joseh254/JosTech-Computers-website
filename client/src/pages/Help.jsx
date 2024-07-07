@@ -1,13 +1,12 @@
-import React from 'react'
-import Helpus from '../../Data/Helpus'
+import React from "react";
+import Helpus from "../../Data/Helpus";
 
 function Help() {
   return (
     <div>
-
-      <Helpus/>
+      <Helpus />
     </div>
-  )
+  );
 }
 
 export default Help;

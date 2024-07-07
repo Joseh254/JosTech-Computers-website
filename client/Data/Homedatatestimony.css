@@ -1,57 +1,55 @@
-.testimonies{
-display: flex;
-flex-direction: row;
+.testimonies {
+  display: flex;
+  flex-direction: row;
 }
-.jostech{
-    display: flex;
-    flex-direction: column;
-    width: 25rem;
-    padding: 1rem;
-
-}
-
-
-.jostechh{
-    display: flex;
-    flex-direction: column;
-    width: 25rem;
-    padding: 1rem;
+.jostech {
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  padding: 1rem;
 }
 
-.jostechh img{
-    border-radius: 100%;
-    width: 6rem;
-    height: 6rem;
-}
-.otherssaying{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    padding: 2rem;
+.jostechh {
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  padding: 1rem;
 }
 
-.actualsay{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.jostechh img {
+  border-radius: 100%;
+  width: 6rem;
+  height: 6rem;
 }
-.p11{
-    color: #fb904a;
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-.p22{
-    color: grey;
+.otherssaying {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  padding: 2rem;
 }
 
-.p33{
-    display: flex;
-    align-items: center;
-    gap: .9rem;
+.actualsay {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-.p44{
-    color: white;
-    background-color: #2871f2;
-    border-radius: 25px;
-    width: 60%;
-    padding: .6rem;
-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.p11 {
+  color: #fb904a;
+  font-size: 2rem;
+  font-weight: 600;
+}
 
+.p22 {
+  color: grey;
+}
+
+.p33 {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.p44 {
+  color: white;
+  background-color: #2871f2;
+  border-radius: 25px;
+  width: 60%;
+  padding: 0.6rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
