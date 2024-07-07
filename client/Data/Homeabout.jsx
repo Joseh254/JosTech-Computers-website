@@ -15,7 +15,7 @@ function Homeabout() {
         <div className="card">
           <img src={mission} alt="" />
           <h1>Mission</h1>
-
+ 
           <p>
             To deliver innovative, high-quality, and reliable technology
             solutions that empower individuals and businesses to achieve their

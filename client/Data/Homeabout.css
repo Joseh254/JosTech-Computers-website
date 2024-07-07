@@ -7,9 +7,12 @@
 
 }
 
-@media screen and (max-width: 45.5625em){
+
+
+@media screen and (max-width: 68.125em){
   .homeabout{
-    display: none;
+    gap: 1rem;
+    
   }
 }
 .aboutcards {
@@ -22,6 +25,25 @@
   margin-bottom: 2rem;
 }
 
+@media screen and (max-width:68.125em){
+  .aboutcards{
+    gap: 4rem;
+  }
+}
+
+@media screen and (max-width:62.3125em){
+  .aboutcards{
+    gap: 1rem;
+  }
+}
+@media screen and (max-width: 39.875em){
+  .aboutcards{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -32,6 +54,40 @@
   padding: 2rem;
   background-color: #dedede;
 }
+
+@media screen and (max-width: 58.5625em){
+  .card{
+    width: 25rem;
+  }
+}
+
+@media screen and (max-width: 50em){
+  .card{
+    width: 20rem;
+  }
+}
+@media screen and (max-width: 39.875em){
+  .card{
+    width: 50rem;
+  }
+}
+@media screen and (max-width:33.1875em){
+  .card{
+    width: 40rem;
+  }
+}
+
+@media screen and (max-width: 33.1875em){
+  .card{
+    width: 30rem;
+  }
+}
+@media screen and (max-width: 19.625em){
+  .card{
+    width: 20rem;
+  }
+}
+
 .card img {
   width: 7rem;
   height: 7rem;
