@@ -51,3 +51,10 @@ model motherboards {
   motherboarDescription String @map("motherboardDescription")
   @@map("motherboars")
    }
+model desktops {
+  id String @id @default(uuid())
+  desktopName String @map("desktopName")
+  desktopPrice String @map("desktopPrice")
+  desktopDescription String @map("desktopDescription")
+  @@map("desktops")
+   }

@@ -1,135 +1,60 @@
-import React from "react";
-import "./FeaturedProductsDesktops.css";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { FaShoppingCart } from "react-icons/fa";
+import "./FeaturedProductsDesktops.css";
 import desktop1 from "../src/assets/desktop1.webp";
-import desktop2 from "../src/assets/desktop2.webp";
-import desktop3 from "../src/assets/desktop3.webp";
 import offer from "../src/assets/OFFER.png";
-import { Link } from "react-router-dom";
+
 function FeaturedProductsDesktops() {
+  const [desktops, setDesktops] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function fetchDesktops() {
+      try {
+        const response = await axios.get("http://localhost:3000/api/products/getdesktop");
+        setDesktops(response.data.data);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    }
+
+    fetchDesktops();
+  }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error fetching desktops: {error.message}</p>;
+  }
+
   return (
     <>
       <div className="desktopheading">
         <h1>Desktops</h1>
       </div>
       <section className="desktopswrapper">
-        <div className="desktopcontainer">
-          <img src={desktop1} alt="desktop" />
-          <h1>Dell latitude 7440</h1>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus,
-            voluptas?
-          </p>
-          <p>
-            <strike>Ksh 5600</strike>
-          </p>
-          <p>Now Ksh 5300</p>
-          <button>
-            <FaShoppingCart /> Add to cart
-          </button>
-        </div>
-
-        <div className="desktopcontainer">
-          <img src={desktop2} alt="desktop" />
-          <h1>Dell latitude 7440</h1>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus,
-            voluptas?
-          </p>
-          <p>
-            <strike>Ksh 5600</strike>
-          </p>
-          <p>Now Ksh 5300</p>
-          <button>
-            <FaShoppingCart /> Add to cart
-          </button>
-        </div>
-
-        <div className="desktopcontainer">
-          <img src={desktop3} alt="desktop" />
-          <h1>Dell latitude 7440</h1>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus,
-            voluptas?
-          </p>
-          <p>
-            <strike>Ksh 5600</strike>
-          </p>
-          <p>Now Ksh 5300</p>
-          <button>
-            <FaShoppingCart /> Add to cart
-          </button>
-        </div>
-
+        {desktops.map((desktop) => (
+          <div className="desktopcontainer" key={desktop.id}>
+            <img src={desktop1} alt={desktop.desktopName} />
+            <h1>{desktop.desktopName}</h1>
+            <p>{desktop.desktopDescription}</p>
+            <p>
+              <strike>Ksh {desktop.desktopPrice -300}</strike>
+            </p>
+            <p className="price">Now Ksh {desktop.desktopPrice}</p>
+            <button>
+              <FaShoppingCart /> Add to cart
+            </button>
+          </div>
+        ))}
         <div className="desktopoffers">
           <img src={offer} alt="offer image" />
-        </div>
-      </section>
-      {/* ********************************************************************** */}
-
-      <section className="desktopswrapper">
-        <div className="desktopcontainer">
-          <img src={desktop1} alt="desktop" />
-          <h1>Dell latitude 7440</h1>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus,
-            voluptas?
-          </p>
-          <p>
-            <strike>Ksh 5600</strike>
-          </p>
-          <p>Now Ksh 5300</p>
-          <button>
-            <FaShoppingCart /> Add to cart
-          </button>
-        </div>
-
-        <div className="desktopcontainer">
-          <img src={desktop2} alt="desktop" />
-          <h1>Dell latitude 7440</h1>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus,
-            voluptas?
-          </p>
-          <p>
-            <strike>Ksh 5600</strike>
-          </p>
-          <p>Now Ksh 5300</p>
-          <button>
-            <FaShoppingCart /> Add to cart
-          </button>
-        </div>
-
-        <div className="desktopcontainer">
-          <img src={desktop3} alt="desktop" />
-          <h1>Dell latitude 7440</h1>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus,
-            voluptas?
-          </p>
-          <p>
-            <strike>Ksh 5600</strike>
-          </p>
-          <p>Now Ksh 5300</p>
-          <button>
-            <FaShoppingCart /> Add to cart
-          </button>
-        </div>
-
-        <div className="desktopcontainer">
-          <img src={desktop3} alt="desktop" />
-          <h1>Dell latitude 7440</h1>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus,
-            voluptas?
-          </p>
-          <p>
-            <strike>Ksh 5600</strike>
-          </p>
-          <p>Now Ksh 5300</p>
-          <button>
-            <FaShoppingCart /> Add to cart
-          </button>
         </div>
       </section>
     </>

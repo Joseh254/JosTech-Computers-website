@@ -1,93 +1,76 @@
-.desktopswrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-}
-
-@media screen and (max-width: 69.875em) {
-  .desktopswrapper {
-    gap: 1rem;
-    font-size: 1.5rem;
-  }
-}
-
-@media screen and (max-width: 45.6875em) {
-  .desktopswrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 3rem;
-  }
-}
-
 .desktopheading {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.7rem;
 }
+
+.desktopswrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
 .desktopcontainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 25rem;
   background-color: #f2f3f5;
-  margin-bottom: 2rem;
   padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-@media screen and (max-width: 65.0625em) {
-  .desktopcontainer {
-    width: 20rem;
-  }
+.desktopcontainer img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem;
+}
+.price{
+  font-size: 8rem;
+}
+.desktopcontainer h1 {
+  font-size: 1.5rem;
+  margin: 1rem 0 0.5rem;
 }
 
-@media screen and (max-width: 51.9375em) {
-  .desktopcontainer {
-    width: 15rem;
-    gap: 1rem;
-  }
-}
-
-@media screen and (max-width: 45.6875em) {
-  .desktopcontainer {
-    width: 50rem;
-  }
-  .desktopcontainer img {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 30.875em) {
-  .desktopcontainer {
-    width: 40rem;
-  }
-}
-
-@media screen and (max-width: 25.4375em) {
-  .desktopcontainer {
-    width: 35rem;
-    padding: 2rem;
-  }
-}
-
-@media screen and (max-width: 20.4375em) {
-  .desktopcontainer {
-    width: 30rem;
-  }
+.desktopcontainer p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .desktopcontainer button {
   background-color: #0b448f;
   color: #ffffff;
-  transition: all 0.7s ease-out;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .desktopcontainer button:hover {
   background-color: blue;
   color: #ffffff;
+}
+
+.desktopoffers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.desktopoffers img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
