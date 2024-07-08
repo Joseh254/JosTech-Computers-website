@@ -1,115 +1,71 @@
-.productswarapperr {
+/* Container styles */
+.productswrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.laptops {
+
+.productstitle {
   display: flex;
-  flex-direction: row;
-  gap: 2rem;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-top: 20px;
 }
 
-@media screen and (max-width: 39.75em) {
-  .laptops {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-  }
+.laptops {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
 }
+
+/* Product card styles */
 .laptopcontainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 20rem;
-  
   background-color: #d9d9d9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-@media screen and (max-width: 54.75em) {
-  .laptopcontainer {
-    width: 17rem;
-  }
-}
-
-@media screen and (max-width: 48em) {
-  .laptopcontainer {
-    width: 14rem;
-  }
-}
-
-@media screen and (max-width: 39.75em) {
-  .laptopcontainer {
-    width: 180%;
-  }
-
-  .laptopcontainer img {
-    width: 100%;
-  }
-
-  h1,
-  p,
-  h3 {
-    font-size: 3rem;
-  }
-}
-
-@media screen and (max-width: 35.0625em) {
-  .laptopcontainer {
-    width: 45rem;
-  }
-}
-
-@media screen and (max-width: 29em) {
-  .laptopcontainer {
-    width: 38rem;
-  }
-}
-
-@media screen and (max-width: 24.4375em) {
-  .laptopcontainer {
-    width: 34rem;
-  }
-}
-
-@media screen and (max-width: 21.75em) {
-  .laptopcontainer {
-    width: 30rem;
-  }
-}
 .laptopcontainer img {
-  max-width: 100%;
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.laptopcontainer h1 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.laptopcontainer p {
+  font-size: 14px;
+  color: #888;
+  text-align: center;
+}
+
+.laptopcontainer h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .laptopcontainer button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #0b448f;
   color: #ffffff;
-  font-weight: 700;
-  gap: 1rem;
-  margin-bottom: 0.8rem;
-  transition: all 0.7s ease-out;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .laptopcontainer button:hover {
   background-color: blue;
-  color: white;
-  border-radius: 25px;
-}
-
-.productswarapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-} 
-.description{
-  color: red;
 }

@@ -18,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/products", producsRouter);
 app.use("/api/users", users);
 
+
 app.listen(3000, () => {
   console.log("server running");
 });

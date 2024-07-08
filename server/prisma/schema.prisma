@@ -43,3 +43,11 @@ model products{
   productDescription String @map("productDescription")
    @@map("products")
 }
+
+model motherboards {
+  id String @id @default(uuid())
+  motherboardName String @map("motherboardName")
+  motherboardPrice String @map("motherboardPrice")
+  motherboarDescription String @map("motherboardDescription")
+  @@map("motherboars")
+   }

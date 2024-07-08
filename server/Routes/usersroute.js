@@ -7,4 +7,6 @@ router.post("/register", validate, createuser);
 
 router.post("/login", loginUser);
 
+router.post("/motherboard")
+
 export default router;

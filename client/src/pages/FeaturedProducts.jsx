@@ -11,14 +11,15 @@ function FeaturedProducts() {
       <section className="featuredproducts">
         <div className="itemsandproducts">
           <div className="items">
-            <FeaturedProductsitems />
+            {/* <FeaturedProductsitems /> */}
           </div>
 
           <div className="featuredproductsproducts">
-            <FeaturedproductsProducts />
+            
           </div>
         </div>
       </section>
+      <FeaturedproductsProducts />
 
       <FeaturedProductsMotherboads />
       <FeaturedProductsDesktops />
