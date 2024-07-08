@@ -15,7 +15,7 @@ app.use(
 );
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", producsRouter);
+app.use("/api/products", producsRouter);
 app.use("/api/users", users);
 
 app.listen(3000, () => {

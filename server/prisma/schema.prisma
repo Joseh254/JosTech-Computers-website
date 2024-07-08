@@ -34,3 +34,12 @@ model user_messages{
   message String @map("message")
   @@map("user_messages")
 }
+
+
+model products{
+  id String @id @default(uuid())
+  productName String @map("productName")
+  productPrice String @map("productPrice")
+  productDescription String @map("productDescription")
+   @@map("products")
+}

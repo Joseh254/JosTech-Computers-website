@@ -27,7 +27,7 @@ function Login() {
 
       const data = await response.json();
       if (data.success === true) {
-        navigate("/");
+        navigate("/Account");
       } else {
         setError(data.message || "Login failed");
       }
@@ -110,13 +110,13 @@ function Login() {
               required 
             />
             {formik.touched.password && formik.errors.password && (
-              <p>{formik.errors.password}</p>
+              <p className="loginerror">{formik.errors.password}</p>
             )}
 
             <p>
-              Forgot your password? <Link to="">Reset Password</Link>
+              Forgot your password? <Link to="/">Reset Password</Link>
             </p>
-            {error && <p className="error">{error}</p>}
+            {error && <p className="loginerror">{error}</p>}
             <button type="submit" disabled={loading}>
               {loading ? "Logging in..." : "Log in"}
             </button>
