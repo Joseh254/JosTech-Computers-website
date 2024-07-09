@@ -1,16 +1,16 @@
 import React from "react";
-import { VscAccount } from "react-icons/vsc";
+import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoSearchSharp } from "react-icons/io5";
 import logo from "../src/assets/logo.png";
-import { Link } from "react-router-dom";
+
 import "./Topheader.css";
 
 function Topheader() { 
   return (
     <header className="topheader">
       <div className="top_nav">
-        <img src={logo} alt="logo" />
+        <img src="https://res.cloudinary.com/dukptptve/image/upload/v1720545743/tsfefecdldflhhwttjwx.png" alt="logo" />
         <div className="topleftbtn">
           <button className="btnleft">All</button>
           <IoSearchSharp className="icon" />
@@ -23,26 +23,13 @@ function Topheader() {
           <button className="btnright">Search</button>
         </div>
         <section className="signcart">
-          <div className="sign">
-            <div className="signinicon">
-              <p className="headericons">
-                <VscAccount />
-              </p>
-            </div>
-            <div className="signin">
-              <Link to="/Signin">
-                <button>Sign in</button>
-              </Link>
-            </div>
-          </div>
-
 
           <div className="cart">
             <h1 className="headericons">
               <FiShoppingCart />
             </h1>
             <div>
-              <button className="cartbtn">Cart</button>
+              <button className="cartbtn"><Link to ="/Signin">Cart</Link></button>
             </div>
           </div>
         </section>

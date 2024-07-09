@@ -3,6 +3,7 @@ import axios from "axios";
 import { FaShoppingCart } from "react-icons/fa";
 import "./FeaturedProductsMotherboads.css"; 
 import moth from "../src/assets/motth4.jpeg"
+import { api_url } from "../utills/config";
 
 function FeaturedProductsMotherboards() {
   const [motherboards, setMotherboards] = useState([]);
@@ -12,7 +13,7 @@ function FeaturedProductsMotherboards() {
   useEffect(() => {
     async function fetchMotherboards() {
       try {
-        const response = await axios.get("http://localhost:3000/api/products/getmotherboard");
+        const response = await axios.get(`${api_url}/api/products/getmotherboard`);
         setMotherboards(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -40,9 +41,9 @@ function FeaturedProductsMotherboards() {
       <div className="motherboardswrapper">
         {motherboards.map((motherboard) => (
           <div className="motherboardcontainer" key={motherboard.id}>
-            <img src={moth} alt={motherboard.motherboardName} />
+            <img src={motherboard.motherboardImage} alt={motherboard.motherboardName} />
             <h1>{motherboard.motherboardName}</h1>
-            <p>{motherboard.motherboarDescription}</p>
+            <p>{motherboard.motherboardDescription}</p>
             <h3>{motherboard.motherboardPrice}</h3>
             <button>
               <FaShoppingCart /> Add to Cart

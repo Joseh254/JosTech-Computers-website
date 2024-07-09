@@ -29,8 +29,31 @@ CREATE TABLE "products" (
     "productName" TEXT NOT NULL,
     "productPrice" TEXT NOT NULL,
     "productDescription" TEXT NOT NULL,
+    "productImage" TEXT NOT NULL,
 
     CONSTRAINT "products_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "motherboars" (
+    "id" TEXT NOT NULL,
+    "motherboardName" TEXT NOT NULL,
+    "motherboardPrice" TEXT NOT NULL,
+    "motherboardDescription" TEXT NOT NULL,
+    "motherboardImage" TEXT NOT NULL,
+
+    CONSTRAINT "motherboars_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "desktops" (
+    "id" TEXT NOT NULL,
+    "desktopName" TEXT NOT NULL,
+    "desktopPrice" TEXT NOT NULL,
+    "desktopDescription" TEXT NOT NULL,
+    "desktopImage" TEXT NOT NULL,
+
+    CONSTRAINT "desktops_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -41,3 +64,12 @@ CREATE UNIQUE INDEX "user_messages_email_key" ON "user_messages"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "user_messages_Phone_number_key" ON "user_messages"("Phone_number");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "products_productName_key" ON "products"("productName");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "motherboars_motherboardName_key" ON "motherboars"("motherboardName");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "desktops_desktopName_key" ON "desktops"("desktopName");

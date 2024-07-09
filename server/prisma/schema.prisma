@@ -38,23 +38,26 @@ model user_messages{
 
 model products{
   id String @id @default(uuid())
-  productName String @map("productName")
+  productName String @map("productName")@unique
   productPrice String @map("productPrice")
   productDescription String @map("productDescription")
+  productImage String @map("productImage")
    @@map("products")
 }
 
 model motherboards {
   id String @id @default(uuid())
-  motherboardName String @map("motherboardName")
+  motherboardName String @map("motherboardName")@unique
   motherboardPrice String @map("motherboardPrice")
-  motherboarDescription String @map("motherboardDescription")
+  motherboardDescription String @map("motherboardDescription")
+  motherboardImage String @map("motherboardImage")
   @@map("motherboars")
    }
 model desktops {
   id String @id @default(uuid())
-  desktopName String @map("desktopName")
+  desktopName String @map("desktopName")@unique
   desktopPrice String @map("desktopPrice")
   desktopDescription String @map("desktopDescription")
+  desktopImage String @map("desktopImage")
   @@map("desktops")
    }

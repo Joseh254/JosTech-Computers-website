@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaShoppingCart } from "react-icons/fa";
 import "./FeaturedProductsDesktops.css";
-import desktop1 from "../src/assets/desktop1.webp";
 import offer from "../src/assets/OFFER.png";
+import { api_url } from "../utills/config";
 
 function FeaturedProductsDesktops() {
   const [desktops, setDesktops] = useState([]);
@@ -13,7 +13,7 @@ function FeaturedProductsDesktops() {
   useEffect(() => {
     async function fetchDesktops() {
       try {
-        const response = await axios.get("http://localhost:3000/api/products/getdesktop");
+        const response = await axios.get(`${api_url}/api/products/getdesktop`);
         setDesktops(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -41,7 +41,7 @@ function FeaturedProductsDesktops() {
       <section className="desktopswrapper">
         {desktops.map((desktop) => (
           <div className="desktopcontainer" key={desktop.id}>
-            <img src={desktop1} alt={desktop.desktopName} />
+            <img src={desktop.desktopImage} alt={desktop.desktopName} />
             <h1>{desktop.desktopName}</h1>
             <p>{desktop.desktopDescription}</p>
             <p>

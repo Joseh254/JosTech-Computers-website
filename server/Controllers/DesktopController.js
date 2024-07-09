@@ -5,19 +5,29 @@ const prisma = new PrismaClient();
 export async function createdesktop(request, response) {
   console.log(request.body);
     try {
-      const {desktopName, desktopDescription, desktopPrice} = request.body;
+      const {desktopName, desktopDescription, desktopPrice,desktopImage} = request.body;
+      const existingdesktop = await prisma.desktops.findFirst({
+        where:{desktopName:desktopName}
+      })
+      if(existingdesktop){
+        return response.status(400).json({success:false, message:"product with the same name already exists"})
+      }
       const newProduct = await prisma.desktops.create({
        data: {
         desktopName: desktopName,
         desktopPrice: desktopPrice,
-        desktopDescription:desktopDescription
+        desktopDescription:desktopDescription,
+        desktopImage:desktopImage
        
 
         }
+        
       })
+
       response.status(201).json({success:true, message:"product created succesfuly"})
     } catch (error) {
-      response.status(500).json({success:false, message:error.message})
+      response.status(500).json({success:false, message:"An error has occured"})
+      console.log(error.message);
     }
   }
 //   ***********************************************************************************

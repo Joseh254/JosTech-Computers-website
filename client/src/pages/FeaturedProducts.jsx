@@ -5,9 +5,12 @@ import FeaturedproductsProducts from "../../Data/FeaturedproductsProducts";
 import FeaturedProductsMotherboads from "../../Data/FeaturedProductsMotherboads";
 import FeaturedProductsDesktops from "../../Data/FeaturedProductsDesktops";
 
+
+
 function FeaturedProducts() {
   return (
     <>
+    
       <section className="featuredproducts">
         <div className="itemsandproducts">
           <div className="items">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+
 const mockCartItems = [
   { id: 1, name: 'Product 1', price: 100 },
   { id: 2, name: 'Product 2', price: 200 },
@@ -36,6 +37,7 @@ function Account() {
 
   return (
     <div>
+      
       <h1>Your Cart</h1>
       {cart.length === 0 ? (
         <p>Your cart is empty</p>

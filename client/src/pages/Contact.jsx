@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { useState } from "react";
 
+
 import "./Contact.css";
 
 function handleClose() {
@@ -59,6 +60,7 @@ function Contact() {
   console.log(formik.values);
   return (
     <>
+   
       <section className="contactuswrapper">
         <div className="contactheader">
           <h1>Get In Tourch</h1>

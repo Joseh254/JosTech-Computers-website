@@ -170,6 +170,12 @@ input {
   padding: 1rem;
   width: 7rem;
 }
+
+.cartbtn a{
+  text-decoration: none;
+  color: black;
+  font-size: 1.8rem;
+}
 .headericons{
   font-size: 3rem;
   color: blue;
