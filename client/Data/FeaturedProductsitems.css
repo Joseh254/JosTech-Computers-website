@@ -1,35 +1,13 @@
 .itemsqrapper {
-  display: flex;
-  flex-direction: column;
-  padding: 4rem;
-  background-color: #d9d9d9;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
   justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  min-width: 100%;
 }
 
-@media screen and (max-width: 38.25em) {
-  .itemsqrapper,
-  .fitems,
-  .foitems,
-  .sitems,
-  .titems {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 76.5em) {
-  .itemsqrapper {
-    padding: 2rem;
-  }
-}
-@media screen and (max-width: 72em) {
-  .itemsqrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-  }
-}
 .itemsqrapper a {
   text-decoration: none;
   color: black;
@@ -43,92 +21,7 @@
   justify-content: center;
 }
 
-@media screen and (max-width: 72em) {
-  .itemsqrapper a {
-    width: 100%;
-    padding: 0.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.6s ease-out;
-  }
-
-  .itemsqrapper a:hover {
-    color: white;
-    background-color: #0b448f;
-  }
-}
-
-@media screen and (max-width: 76.5em) {
-  .itemsqrapper a {
-    padding: 0.5rem;
-    gap: 0.8rem;
-  }
-
-  .sitems,
-  .titems,
-  .fitems,
-  .fitems {
-    font-size: 1.5rem;
-    gap: 2rem;
-    margin: 0;
-  }
-
-  .itemsqrapper a {
-    display: none;
-    background-color: white;
-  }
-}
-
 .itemsqrapper a:hover {
   color: white;
   background-color: #0b448f;
-}
-.fitems {
-  display: flex;
-  flex-direction: row;
-  font-size: 2rem;
-  gap: 5rem;
-  margin-bottom: 3rem;
-}
-
-@media screen and (max-width: 44em) {
-  .fitems {
-    gap: 1rem;
-  }
-}
-
-.sitems {
-  display: flex;
-  justify-content: center;
-  font-size: 2rem;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 3rem;
-}
-.titems {
-  display: flex;
-  flex-direction: row;
-  font-size: 2rem;
-  gap: 5rem;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 3rem;
-  width: 100%;
-}
-
-@media screen and (max-width: 44em) {
-  .titems {
-    gap: 1rem;
-  }
-}
-
-.foitems {
-  display: flex;
-  justify-content: center;
-  font-size: 2rem;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 3rem;
 }

@@ -9,6 +9,10 @@ import Contact from "./pages/Contact";
 import Signin from "./pages/Signin";
 import Login from "./pages/Login";
 import Account from "./pages/Account";
+import AdminHome from "./pages/Admin/Home/AdminHome";
+import AdminOrders from "./pages/Admin/AdminOrders/AdminOrders";
+import AdminProducts from "./pages/Admin/AdminProducts/AdminProducts";
+import AdminUsers from "./pages/Admin/AdminUsers/AdminUsers";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -18,6 +22,10 @@ function App() {
       <BrowserRouter>
       <Header/>
         <Routes>
+        <Route path="/AdminOrders" element={<AdminOrders />} />
+        <Route path="/AdminProducts" element={<AdminProducts />} />
+        <Route path="/AdminUsers" element={< AdminUsers/>} />
+        <Route path="/AdminHome" element={<AdminHome />} />
           <Route path="/" element={<Home />} />
           <Route path="/About" element={<About />} />
           <Route path="/FeaturedProducts" element={<FeaturedProducts />} />

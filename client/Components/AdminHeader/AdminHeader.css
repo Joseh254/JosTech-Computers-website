@@ -1,0 +1,53 @@
+.active {
+    color: blue;
+    background-color: rgb(85, 214, 231);
+    width: 100%;
+  }
+  .nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    font-family: Arial, sans-serif;
+    background-color: rgb(157, 203, 221);
+    width: 20%;
+  }
+  
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    margin: 0 1rem;
+  }
+  
+  nav ul li a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 0.5rem;
+    font-weight: 600;
+  }
+  
+  nav .menu {
+    display: none;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.5rem;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 2.25rem;
+    height: 2rem;
+    cursor: pointer;
+  }
+  
+  nav .menu span {
+    height: 0.4rem;
+    width: 100%;
+    background-color: black;
+    border-radius: 0.2rem;
+  }
