@@ -14,5 +14,5 @@ describe("Topheader", () => {
     const topheader = screen.getByRole("banner");
     expect(topheader).toBeInTheDocument();
   });
-  it("renders a ")
+  it("renders a ");
 });

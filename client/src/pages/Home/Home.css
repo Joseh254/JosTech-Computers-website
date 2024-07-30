@@ -15,11 +15,10 @@
   filter: brightness(100%);
 }
 
-@media screen and (max-width: 59.5em){
-  .heroimg{
+@media screen and (max-width: 59.5em) {
+  .heroimg {
     width: 60%;
   }
- 
 }
 
 .abouthero {
@@ -72,11 +71,11 @@
   padding: 2rem;
 }
 
-@media screen and (max-width: 42.625em){
-  .heroitems{
+@media screen and (max-width: 42.625em) {
+  .heroitems {
     display: none;
   }
-  .heroimg{
+  .heroimg {
     width: 100%;
     height: 50vh;
   }
@@ -110,15 +109,15 @@
   border-radius: 25px;
 }
 
-@media screen and (max-width: 59.5em){
-  .shop{
+@media screen and (max-width: 59.5em) {
+  .shop {
     margin-left: 10rem;
   }
 }
-@media screen and (max-width: 40.125em){
- .shop{
-  display: none;
- } 
+@media screen and (max-width: 40.125em) {
+  .shop {
+    display: none;
+  }
 }
 
 .shop a {

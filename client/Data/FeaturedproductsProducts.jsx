@@ -16,7 +16,7 @@ function FeaturedproductsProducts() {
     async function fetchProducts() {
       try {
         const response = await axios.get(`${api_url}/api/products/get`);
-        setProducts(response.data.data); 
+        setProducts(response.data.data);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -37,38 +37,37 @@ function FeaturedproductsProducts() {
 
   return (
     <>
-              <div className="sign">
-            <div className="signinicon">
-              <p className="headericons">
-                <VscAccount />
-              </p>
-            </div>
-            <div className="signin">
-              <Link to="/Signin">
-                <button>Sign in</button>
-              </Link>
-            </div>
-          </div>
-    <div className="productswrapper">
-      
-      <div className="productstitle">
-        <h1>Laptops</h1>
+      <div className="sign">
+        <div className="signinicon">
+          <p className="headericons">
+            <VscAccount />
+          </p>
+        </div>
+        <div className="signin">
+          <Link to="/Signin">
+            <button>Sign in</button>
+          </Link>
+        </div>
       </div>
+      <div className="productswrapper">
+        <div className="productstitle">
+          <h1>Laptops</h1>
+        </div>
 
-      <section className="laptops">
-        {products.map((product) => (
-          <div className="laptopcontainer" key={product.productId}>
-            <img src={product.productImage} alt={product.productName} />
-            <h1>{product.productName}</h1>
-            <p className="description">{product.productDescription}</p>
-            <h3>Now {product.productPrice}</h3>
-            <button>
-              <FaShoppingCart /> Add to Cart
-            </button>
-          </div>
-        ))}
-      </section>
-    </div>
+        <section className="laptops">
+          {products.map((product) => (
+            <div className="laptopcontainer" key={product.productId}>
+              <img src={product.productImage} alt={product.productName} />
+              <h1>{product.productName}</h1>
+              <p className="description">{product.productDescription}</p>
+              <h3>Now {product.productPrice}</h3>
+              <button>
+                <FaShoppingCart /> Add to Cart
+              </button>
+            </div>
+          ))}
+        </section>
+      </div>
     </>
   );
 }

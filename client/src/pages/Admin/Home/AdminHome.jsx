@@ -1,13 +1,13 @@
-import React from 'react'
-import "./AdminHome.css"
-import AdminHeader from '../../../../Components/AdminHeader/AdminHeader'
+import React from "react";
+import "./AdminHome.css";
+import AdminHeader from "../../../../Components/AdminHeader/AdminHeader";
 
 function AdminHome() {
   return (
-  <>
-  <AdminHeader/>
-  </>
-  )
+    <>
+      <AdminHeader />
+    </>
+  );
 }
 
-export default AdminHome
+export default AdminHome;

@@ -2,70 +2,69 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  
+
   padding: 1rem;
 }
 
-@media screen and (max-width: 68.125em){
-  .testimonies{
+@media screen and (max-width: 68.125em) {
+  .testimonies {
     gap: 1rem;
   }
 }
 
-@media screen and (max-width:41.0625em){
-  .testimonies{
+@media screen and (max-width: 41.0625em) {
+  .testimonies {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
   }
-/* 
+  /* 
   .jostechh{
     width: 50rem;
   } */
 }
 
-.thetestimony{
+.thetestimony {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-@media screen and (max-width:41.0625em){
-  .thetestimony{
-width: 40rem;
-border: 1px solid grey;
-padding: 1rem;
-  }}
+@media screen and (max-width: 41.0625em) {
+  .thetestimony {
+    width: 40rem;
+    border: 1px solid grey;
+    padding: 1rem;
+  }
+}
 
-  @media screen and (max-width: 26.875em){
-    .thetestimony{
-      width: 34rem;
-    }
+@media screen and (max-width: 26.875em) {
+  .thetestimony {
+    width: 34rem;
   }
+}
 
-  @media screen and (max-width: 23.75em){
-    .thetestimony{
-      width: 30rem;
-    }
+@media screen and (max-width: 23.75em) {
+  .thetestimony {
+    width: 30rem;
   }
+}
 
-  @media screen and (max-width: 20em){
-    .thetestimony{
-      width: 25rem;
-    }
+@media screen and (max-width: 20em) {
+  .thetestimony {
+    width: 25rem;
   }
-  @media screen and (max-width: 18.3125em){
-    .thetestimony{
-      width: 20rem;
-    }
+}
+@media screen and (max-width: 18.3125em) {
+  .thetestimony {
+    width: 20rem;
   }
+}
 .jostech {
   display: flex;
   flex-direction: column;
   width: 25rem;
   padding: 1rem;
-  
 }
 
 .jostechh {
@@ -73,7 +72,6 @@ padding: 1rem;
   flex-direction: column;
   width: 25rem;
   padding: 1rem;
-  
 }
 
 .jostechh img {
@@ -85,12 +83,10 @@ padding: 1rem;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   padding: 2rem;
-  
 }
 
 .actualsay {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  
 }
 .p11 {
   color: #fb904a;

@@ -163,7 +163,7 @@ input {
   background-color: blue;
   color: white;
 }
-.cartbtn{
+.cartbtn {
   background-color: #ffbf53;
   color: black;
 
@@ -171,12 +171,12 @@ input {
   width: 7rem;
 }
 
-.cartbtn a{
+.cartbtn a {
   text-decoration: none;
   color: black;
   font-size: 1.8rem;
 }
-.headericons{
+.headericons {
   font-size: 3rem;
   color: blue;
 }

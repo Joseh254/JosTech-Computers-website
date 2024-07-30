@@ -1,9 +1,9 @@
 import React from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
-import Homedatatestimony from "../../Data/Homedatatestimony";
+import Homedatatestimony from "../../../Data/Homedatatestimony";
 import { AiOutlineMenu } from "react-icons/ai";
-import Homeabout from "../../Data/Homeabout";
+import Homeabout from "../../../Data/Homeabout";
 
 function Home() {
   return (
@@ -14,7 +14,7 @@ function Home() {
             <Link to="">
               <p className="products">{<AiOutlineMenu />} All Products </p>
             </Link>
- 
+
             <Link to="/FeaturedProducts">Laptops</Link>
             <Link to="/FeaturedProducts">Desktops</Link>
             <Link to="/FeaturedProducts"> Cooling Fans</Link>

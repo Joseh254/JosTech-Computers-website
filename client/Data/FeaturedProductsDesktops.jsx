@@ -45,7 +45,7 @@ function FeaturedProductsDesktops() {
             <h1>{desktop.desktopName}</h1>
             <p>{desktop.desktopDescription}</p>
             <p>
-              <strike>Ksh {desktop.desktopPrice -300}</strike>
+              <strike>Ksh {desktop.desktopPrice - 300}</strike>
             </p>
             <p className="price">Now Ksh {desktop.desktopPrice}</p>
             <button>

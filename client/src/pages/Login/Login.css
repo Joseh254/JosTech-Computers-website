@@ -1,11 +1,10 @@
-.loginsection{
+.loginsection {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
- gap: 2rem;
- background-color: #bfbfbf;
-  
+  gap: 2rem;
+  background-color: #bfbfbf;
 }
 .loginpage {
   display: flex;
@@ -18,9 +17,8 @@
   padding: 2rem;
   font-weight: 400;
 }
-.loginpage a{
+.loginpage a {
   color: white;
-  
 }
 .login {
   display: flex;
@@ -31,7 +29,6 @@
   width: 80rem;
 }
 
-
 .logininputs {
   display: flex;
   flex-direction: column;
@@ -40,51 +37,49 @@
   gap: 2rem;
   /* align-items: center; */
 }
-@media screen and (max-width: 46.625em){
-  .logininputs{
+@media screen and (max-width: 46.625em) {
+  .logininputs {
     width: 60rem;
-    
   }
 }
 
-@media screen and (max-width: 41.625em){
-  .logininputs{
+@media screen and (max-width: 41.625em) {
+  .logininputs {
     width: 50rem;
   }
 }
 
-@media screen and (max-width: 34.3125em){
-  .logininputs{
+@media screen and (max-width: 34.3125em) {
+  .logininputs {
     width: 45rem;
   }
 }
 
-@media screen and (max-width: 30.5625em ){
-  .logininputs{
+@media screen and (max-width: 30.5625em) {
+  .logininputs {
     width: 35rem;
   }
 }
 
-@media screen and (max-width:31.1875em ) {
-  .logininputs{
+@media screen and (max-width: 31.1875em) {
+  .logininputs {
     width: 30;
   }
 }
 
-@media screen and (max-width:24.9375em ) {
-  .logininputs{
+@media screen and (max-width: 24.9375em) {
+  .logininputs {
     width: 27rem;
   }
 }
-@media screen and (max-width:20.125em ) {
-  .logininputs{
+@media screen and (max-width: 20.125em) {
+  .logininputs {
     width: 25rem;
   }
 }
 
-.logininputs input{
-width: 80%;
-
+.logininputs input {
+  width: 80%;
 }
 .logininputs p {
   display: flex;
@@ -95,6 +90,6 @@ width: 80%;
   width: 30rem;
   margin-top: 2rem;
 }
-.loginerror{
+.loginerror {
   color: red;
 }

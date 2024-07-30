@@ -1,17 +1,14 @@
 import React from "react";
-import contact from "../assets/contactus.jpeg";
+import contact from "../../assets/contactus.jpeg";
 import { FaPhone } from "react-icons/fa6";
 import { LuMessagesSquare } from "react-icons/lu";
-import help from "../assets/help.png";
+import help from "../../assets/help.png";
 import { MdHelp } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { useState } from "react";
-
-
 import "./Contact.css";
-
 function handleClose() {
   const close = document.getElementById("needhelp");
   close.style.display = "none";
@@ -60,7 +57,6 @@ function Contact() {
   console.log(formik.values);
   return (
     <>
-   
       <section className="contactuswrapper">
         <div className="contactheader">
           <h1>Get In Tourch</h1>

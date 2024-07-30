@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebookMessenger, FaGithub } from "react-icons/fa";
 import { useFormik } from "formik";
 import axios from "axios";
-import { api_url } from "../../utills/config";
+import { api_url } from "../../../utills/config";
 
 function Signin() {
   const [loading, setLoading] = useState(false);
