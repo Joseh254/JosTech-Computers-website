@@ -34,7 +34,6 @@ export async function createProduct (request, response) {
 //   ***********************************************************************************
 
 export async function getall(request, response) {
-  // response.send('getting all products');
   try {
     const products = await prisma.products.findMany();
     response.status(200).json({success:true, data: products})
