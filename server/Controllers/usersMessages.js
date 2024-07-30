@@ -37,3 +37,16 @@ export async function writeMessage(request, response) {
        return response.status(404).json({success:false,message:"An error occured when getting messages"}) 
     }
   }
+
+  export async function deleteMessage(request, response){
+    try {
+      const {id} = request.params
+         await prisma.user_messages.delete({
+          where:{id:id}
+        })
+        response.status(201).json({success:true, message:"message deleted"})
+    } catch (error) {
+        console.log(error.message);
+        return response.status(400).json({success:false,message:"there was an error deleting message"})
+    }
+  }
