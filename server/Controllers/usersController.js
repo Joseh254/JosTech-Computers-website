@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 export async function createuser(request, response) {
   try {
-    const { firstName, lastName, email, password,role } = request.body;
+    const { firstName, lastName, email, password, role } = request.body;
 
     const hashedPassword = bcrypt.hashSync(password, 10);
 
@@ -16,13 +16,11 @@ export async function createuser(request, response) {
         lastName,
         email,
         password: hashedPassword,
-        role
+        role,
       },
     });
 
-    response
-      .status(201)
-      .json({ success: true,data:newUser });
+    response.status(201).json({ success: true, data: newUser });
   } catch (error) {
     console.log(error.message);
     response
@@ -39,13 +37,17 @@ export async function loginUser(request, response) {
     });
 
     if (!user) {
-      return response.status(404).json({ success: false, message: "User not found" });
+      return response
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
 
     const passwordMatch = bcrypt.compareSync(password, user.password);
 
     if (!passwordMatch) {
-      return response.status(401).json({ success: false, message: "Wrong email or password" });
+      return response
+        .status(401)
+        .json({ success: false, message: "Wrong email or password" });
     }
 
     const payload = {
@@ -65,6 +67,6 @@ export async function loginUser(request, response) {
     response.status(200).json({ success: true, data: payload });
   } catch (error) {
     console.log(error.message);
-    response.status(500).json({ success: false, message: 'user not found' });
+    response.status(500).json({ success: false, message: "user not found" });
   }
 }
