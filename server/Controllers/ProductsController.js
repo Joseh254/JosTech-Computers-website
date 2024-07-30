@@ -7,7 +7,7 @@ export async function createProduct (request, response) {
     try {
 
       
-      const {productName,productDescription,productPrice,productImage} = request.body;
+      const {productName,productDescription,productPrice,productImage,productsRemaining} = request.body;
       const productexists = await prisma.products.findFirst({
         where:{productName:productName}
       })
@@ -19,7 +19,8 @@ export async function createProduct (request, response) {
         productName: productName,
         productPrice: productPrice,
         productDescription:productDescription,
-        productImage:productImage
+        productImage:productImage,
+        productsRemaining:productsRemaining
        
 
         }

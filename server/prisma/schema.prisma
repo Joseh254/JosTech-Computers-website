@@ -14,50 +14,63 @@ datasource db {
 }
 
 model jostech_users {
-id String @id @default(uuid())
-firstName String @map("first_name")
-lastName String @map("last_name")
-email String @map("email_address") @unique
-password String @map("password")
-
-@@map("jostech_users")
+  id        String   @id @default(uuid())
+  firstName String
+  lastName  String
+  email     String   @unique
+  password  String
+  role      String?  @default("user")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  cart      cart[]
+  @@map("jostech_users")
 }
 
-model user_messages{
-  id String @id @default(uuid())
-  first_name String @map("first_name")
-  last_name String @map("last_name")
-  email String @map("email") @unique
-  location String @map("location")
-  phone_number String @map("Phone_number")@unique
-  subject String  @map("subject")
-  message String @map("message")
+model user_messages {
+  id           String @id @default(uuid())
+  first_name   String @map("first_name")
+  last_name    String @map("last_name")
+  email        String @unique @map("email")
+  location     String @map("location")
+  phone_number String @unique @map("Phone_number")
+  subject      String @map("subject")
+  message      String @map("message")
   @@map("user_messages")
 }
 
-
-model products{
-  id String @id @default(uuid())
-  productName String @map("productName")@unique
-  productPrice String @map("productPrice")
+model products {
+  id                 String @id @default(uuid())
+  productName        String @map("productName")
+  productPrice       Int @map("productPrice")
   productDescription String @map("productDescription")
-  productImage String @map("productImage")
-   @@map("products")
+  productImage       String @map("productImage")
+  productsRemaining Int?
+  cart               cart[]
+  @@map("products")
 }
 
 model motherboards {
-  id String @id @default(uuid())
-  motherboardName String @map("motherboardName")@unique
-  motherboardPrice String @map("motherboardPrice")
-  motherboardDescription String @map("motherboardDescription")
-  motherboardImage String @map("motherboardImage")
-  @@map("motherboars")
-   }
+  id                 String @id @default(uuid())
+  productName        String @map("productName")
+  productPrice       Int    @map("productPrice")
+  productDescription String @map("productDescription")
+  productImage       String @map("productImage")
+}
+
 model desktops {
-  id String @id @default(uuid())
-  desktopName String @map("desktopName")@unique
-  desktopPrice String @map("desktopPrice")
+  id                 String @id @default(uuid())
+  desktopName        String @unique @map("desktopName")
+  desktopPrice       Int @map("desktopPrice")
   desktopDescription String @map("desktopDescription")
-  desktopImage String @map("desktopImage")
+  desktopImage       String @map("desktopImage")
   @@map("desktops")
-   }
+}
+
+model cart {
+  id        String        @id @default(uuid())
+  userid    String
+  user      jostech_users @relation(fields: [userid], references: [id])
+  productid String
+  product   products      @relation(fields: [productid], references: [id])
+  creaeAt   DateTime      @default(now())
+}

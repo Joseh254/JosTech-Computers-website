@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 export async function createuser(request, response) {
   try {
-    const { firstName, lastName, email, password } = request.body;
+    const { firstName, lastName, email, password,role } = request.body;
 
     const hashedPassword = bcrypt.hashSync(password, 10);
 
@@ -16,6 +16,7 @@ export async function createuser(request, response) {
         lastName,
         email,
         password: hashedPassword,
+        role
       },
     });
 

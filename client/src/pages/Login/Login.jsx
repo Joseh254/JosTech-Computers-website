@@ -6,13 +6,13 @@ import { useState } from "react";
 import { api_url } from "../../../utills/config";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import useStore from "../../../store/userStore";
+import userStore from "../../../store/userStore.js"
 
 function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const user = useStore((state) => state.getUser);
+  const user = userStore((state) => state.changeUserInformation);
 
   async function handleSubmit(formState) {
     try {
@@ -25,6 +25,7 @@ function Login() {
 
       const data = response.data;
       if (data.success === true) {
+        user(data.data)
         navigate("/Account");
       } else {
         setError(data.message || "Login failed");

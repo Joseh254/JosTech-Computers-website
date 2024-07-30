@@ -1,16 +1,22 @@
-// userStore.js
-import create from "zustand";
+import { create } from 'zustand';
+import { devtools, persist } from 'zustand/middleware';
 
-const useStore = create((set) => ({
+const userStore = (set) => ({
   user: null,
-  greeting: "",
-  setUser: (userData) => set({ user: userData }),
-  clearUser: () => set({ user: null }),
-  setGreeting: (message) => set({ greeting: message }),
-  getUser: () => {
-    const { user } = set.getState();
-    return user;
+  changeUserInformation: (newUserObject) => {
+    set((state) => ({
+      user: newUserObject
+    }));
   },
-}));
+  clearUserInformation: () => {
+    set(() => ({
+      user: null
+    }));
+  }
+});
 
-export default useStore;
+const useUserStore = create(
+  devtools(persist(userStore, { name: "the-flashback-user" }))
+);
+
+export default useUserStore;
