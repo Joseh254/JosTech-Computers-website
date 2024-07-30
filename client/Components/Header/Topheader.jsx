@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoSearchSharp } from "react-icons/io5";
-import logo from "../src/assets/logo.png";
-
 import "./Topheader.css";
 
 function Topheader() { 

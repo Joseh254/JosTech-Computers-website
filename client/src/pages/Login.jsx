@@ -5,34 +5,28 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { api_url } from "../../utills/config";
 import { useNavigate } from "react-router-dom";
-import bg from "../assets/laptopbg.jpg"
+import bg from "../assets/laptopbg.jpg";
+import axios from "axios";
+import useStore from "../../store/userStore";
 
 function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const user = useStore((state) => state.getUser);
 
   async function handleSubmit(formState) {
     try {
       setLoading(true);
       setError("");
-      const response = await fetch(`${api_url}/api/users/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formState),
-        credentials: "include",
-      });
+      const response = await axios.post(`${api_url}/api/users/login`, formState);
 
-      const data = await response.json();
+      const data = response.data;
       if (data.success === true) {
         navigate("/Account");
       } else {
         setError(data.message || "Login failed");
       }
-      console.log(data);
-      console.log(response);
     } catch (error) {
       setError("An error occurred during login. Please try again.");
     } finally {
@@ -49,11 +43,9 @@ function Login() {
     onSubmit: handleSubmit,
     validate: function (formValues) {
       let errors = {};
-      if (formValues.firstname === "")
-        errors.firstname = "First name is required";
+      if (formValues.firstname === "") errors.firstname = "First name is required";
       if (formValues.email === "") errors.email = "Email is required";
-      if (formValues.password === "")
-        errors.password = "Please enter a password";
+      if (formValues.password === "") errors.password = "Please enter a password";
       return errors;
     },
   });
