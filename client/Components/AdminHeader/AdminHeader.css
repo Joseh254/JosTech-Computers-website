@@ -7,7 +7,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  position: relative;
+  position:fixed;
+  height: 100%;
   font-family: Arial, sans-serif;
   background-color: rgb(157, 203, 221);
   width: 20%;

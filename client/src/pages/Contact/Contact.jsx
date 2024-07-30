@@ -11,6 +11,8 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { api_url } from "../../../utills/config";
 import "./Contact.css";
+import toast, { toastConfig } from 'react-simple-toasts';
+import 'react-simple-toasts/dist/theme/success.css';
 
 function handleClose() {
   const close = document.getElementById("needhelp");
@@ -51,8 +53,9 @@ function Contact() {
     try {
       const response = await axios.post(`${api_url}/api/users/writeMessages`, values);
       console.log(response);
+      toast('message sent',{ theme: "success" })
     } catch (error) {
-      setError(error.message);
+      setError(toast(error.message,{theme:'failure'}));
     } finally {
       setLoading(false);
     }

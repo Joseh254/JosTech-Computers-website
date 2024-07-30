@@ -1,9 +1,25 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import useUserStore from "../../store/userStore";
 import "./AdminHeader.css";
+
 function AdminHeader() {
+  const user = useUserStore((state) => state.user);
+  const navigate = useNavigate(); // Corrected usage of useNavigate
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const changeUserInformation = useUserStore((state) => state.changeUserInformation);
+
+  useEffect(() => {
+    setIsLoggedIn(!!user); // Convert user to a boolean to set isLoggedIn
+  }, [user]);
+
+  const handleLogout = () => {
+    changeUserInformation(null); 
+    setIsLoggedIn(false); 
+    navigate('/Login'); // Correctly navigate to the Login page
+  };
+
   return (
     <>
       <div>
@@ -43,7 +59,16 @@ function AdminHeader() {
                 View Users
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/Messages"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Messages
+              </NavLink>
+            </li>
           </ul>
+          {isLoggedIn && <button onClick={handleLogout}>Log Out</button>}
         </nav>
       </div>
     </>
