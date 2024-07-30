@@ -65,12 +65,12 @@ function Topheader() {
         <section className="signcart">
           <div className="cart">
             <h1 className="headericons">
-              <FiShoppingCart />
+              
             </h1>
             <div>
               {signedIn && !isLoginPage && !isAdmin && (
                 <button className="">
-                  <Link to="/Cart">Cart</Link>
+                  <Link to="/Cart" className='cartlink'><FiShoppingCart /> Cart</Link>
                 </button>
               )}
               {!signedIn && !isLoginPage && (

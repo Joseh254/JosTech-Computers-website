@@ -95,7 +95,12 @@ input {
 .top_nav img{
     scale: .5;
 } */
-
+.cartlink{
+  text-decoration: none;
+  color: black;
+  align-items: center;
+  font-size: 1.5rem;
+}
 .signcart {
   display: flex;
   flex-direction: row;
