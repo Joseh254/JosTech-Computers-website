@@ -6,7 +6,7 @@ function AdminProducts() {
   return (
     <>
       <AdminHeader />
-      <div>AdminProducts</div>
+      <div className="adminproducts">AdminProducts</div>
     </>
   );
 }

@@ -5,7 +5,7 @@ function AdminOrders() {
   return (
     <>
       <AdminHeader />
-      <div>AdminOrders</div>
+      <div className="adminorders">AdminOrders</div>
     </>
   );
 }

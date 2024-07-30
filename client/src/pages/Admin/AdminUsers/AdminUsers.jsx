@@ -5,7 +5,7 @@ function AdminUsers() {
   return (
     <>
       <AdminHeader />
-      <div>AdminUsers</div>
+      <div className="adminusers">AdminUsers</div>
     </>
   );
 }

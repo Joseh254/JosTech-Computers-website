@@ -68,7 +68,7 @@ function AdminHeader() {
               </NavLink>
             </li>
           </ul>
-          {isLoggedIn && <button onClick={handleLogout}>Log Out</button>}
+          {isLoggedIn && <button onClick={handleLogout} className="adminlogout">Log Out</button>}
         </nav>
       </div>
     </>

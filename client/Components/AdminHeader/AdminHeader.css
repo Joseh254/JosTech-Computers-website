@@ -52,3 +52,9 @@ nav .menu span {
   background-color: black;
   border-radius: 0.2rem;
 }
+.adminlogout{
+  background-color: blue;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+}

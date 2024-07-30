@@ -3,9 +3,10 @@ import './Messages.css'
 import AdminHeader from '../../../../Components/AdminHeader/AdminHeader'
 function Messages() {
   return (
-   <>
+   <section>
    <AdminHeader/>
-   <div>Messages</div></>
+   <div className='messages'>Messages</div>
+   </section>
   )
 }
 
