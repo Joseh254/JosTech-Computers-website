@@ -1,32 +1,31 @@
-import React from "react";
-import "./Login.css";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { useState } from "react";
-import { api_url } from "../../../utills/config";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import userStore from "../../../store/userStore.js"
+import userStore from "../../../store/userStore.js";
+import { api_url } from "../../../utills/config";
+import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const user = userStore((state) => state.changeUserInformation);
+  const changeUserInformation = userStore((state) => state.changeUserInformation);
 
   async function handleSubmit(formState) {
     try {
       setLoading(true);
       setError("");
-      const response = await axios.post(
-        `${api_url}/api/users/login`,
-        formState,
-      );
-
+      const response = await axios.post(`${api_url}/api/users/login`, formState);
       const data = response.data;
-      if (data.success === true) {
-        user(data.data)
-        navigate("/Account");
+      console.log(data.data)
+      if (data.success) {
+        changeUserInformation(data.data);
+        if (data.data.role === 'admin') {
+          navigate("/AdminHome");
+        } else {
+          navigate("/");
+        }
       } else {
         setError(data.message || "Login failed");
       }
@@ -39,18 +38,14 @@ function Login() {
 
   const formik = useFormik({
     initialValues: {
-      firstname: "",
       email: "",
       password: "",
     },
     onSubmit: handleSubmit,
-    validate: function (formValues) {
-      let errors = {};
-      if (formValues.firstname === "")
-        errors.firstname = "First name is required";
-      if (formValues.email === "") errors.email = "Email is required";
-      if (formValues.password === "")
-        errors.password = "Please enter a password";
+    validate: (values) => {
+      const errors = {};
+      if (!values.email) errors.email = "Email is required";
+      if (!values.password) errors.password = "Please enter a password";
       return errors;
     },
   });
@@ -59,24 +54,8 @@ function Login() {
     <section className="loginsection">
       <div className="loginpage">
         <form onSubmit={formik.handleSubmit}>
-          <div className="">
+          <div>
             <h1>Log in to your account</h1>
-            <div className="logininputs">
-              <label htmlFor="firstname">First Name</label>
-              <input
-                type="text"
-                placeholder="First name"
-                name="firstname"
-                value={formik.values.firstname}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                required
-              />
-              {formik.touched.firstname && formik.errors.firstname && (
-                <p>{formik.errors.firstname}</p>
-              )}
-            </div>
-
             <div className="logininputs">
               <label htmlFor="email">Email</label>
               <input
@@ -122,7 +101,6 @@ function Login() {
           </div>
         </form>
       </div>
-      {/* <img src={bg} alt="" /> */}
     </section>
   );
 }

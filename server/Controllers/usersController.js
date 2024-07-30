@@ -22,49 +22,47 @@ export async function createuser(request, response) {
 
     response
       .status(201)
-      .json({ success: true, message: "Sign up was successful" });
+      .json({ success: true,data:newUser });
   } catch (error) {
+    console.log(error.message);
     response
       .status(500)
       .json({ success: false, message: "An error occurred in the server" });
   }
 }
-
 export async function loginUser(request, response) {
-  const { email, password, firstName } = request.body;
+  const { email, password } = request.body;
+
   try {
     const user = await prisma.jostech_users.findFirst({
-      where: { email, firstName: firstName },
+      where: { email },
     });
 
-    if (user) {
-      const passwordMatch = bcrypt.compareSync(password, user.password);
-
-      if (passwordMatch) {
-        const payload = {
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-        };
-
-        const token = jwt.sign(payload, process.env.JWT_SECRET, {
-          expiresIn: "100h",
-        });
-
-        response.cookie("access_token", token);
-
-        response
-          .status(200)
-          .json({ success: true, message: "Logged in successfully" });
-      } else {
-        response
-          .status(401)
-          .json({ success: false, message: "Wrong email or password" });
-      }
-    } else {
-      response.status(404).json({ success: false, message: "User not found" });
+    if (!user) {
+      return response.status(404).json({ success: false, message: "User not found" });
     }
+
+    const passwordMatch = bcrypt.compareSync(password, user.password);
+
+    if (!passwordMatch) {
+      return response.status(401).json({ success: false, message: "Wrong email or password" });
+    }
+
+    const payload = {
+      id: user.id,
+      role: user.role,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    };
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "100h",
+    });
+
+    response.cookie("access_token", token, { httpOnly: true });
+
+    response.status(200).json({ success: true, data: payload });
   } catch (error) {
     response.status(500).json({ success: false, message: error.message });
   }
