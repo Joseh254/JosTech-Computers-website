@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
-import userStore from "../../../store/userStore.js";
+import useUserStore from "../../../store/userStore";
 import { api_url } from "../../../utills/config";
 import "./Login.css";
 
@@ -10,7 +10,7 @@ function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const changeUserInformation = userStore((state) => state.changeUserInformation);
+  const changeUserInformation = useUserStore((state) => state.changeUserInformation);
 
   async function handleSubmit(formState) {
     try {
@@ -27,10 +27,11 @@ function Login() {
           navigate("/");
         }
       } else {
-        setError(data.message || "Login failed");
+        setError("Login failed");
       }
     } catch (error) {
-      setError("An error occurred during login. Please try again.");
+      console.log(error);
+      setError('user not found');
     } finally {
       setLoading(false);
     }

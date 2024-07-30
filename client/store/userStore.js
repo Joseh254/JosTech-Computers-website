@@ -6,7 +6,7 @@ const userStore = (set) => ({
   changeUserInformation: (newUserObject) => {
     set((state) => ({
       user: newUserObject
-    }));
+    })); 
   },
   clearUserInformation: () => {
     set(() => ({

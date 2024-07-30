@@ -1,10 +1,49 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoSearchSharp } from "react-icons/io5";
+import useUserStore from "../../store/userStore";
 import "./Topheader.css";
 
 function Topheader() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [signedIn, setSignedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const user = useUserStore((state) => state.user);
+  const changeUserInformation = useUserStore((state) => state.changeUserInformation);
+
+  useEffect(() => {
+    if (user) {
+      setSignedIn(true);
+      if (user.role === "admin") {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
+    } else {
+      setSignedIn(false);
+      setIsAdmin(false);
+    }
+  }, [user]);
+
+  const handleSignInToggle = () => {
+    navigate("/Signin");
+  };
+
+  const handleLoginToggle = () => {
+    navigate("/Login");
+  };
+
+  const handleLogout = () => {
+    changeUserInformation(null);
+    setSignedIn(false);
+    setIsAdmin(false);
+    navigate("/Login");
+  };
+
+  const isLoginPage = location.pathname === "/Login";
+
   return (
     <header className="topheader">
       <div className="top_nav">
@@ -29,9 +68,23 @@ function Topheader() {
               <FiShoppingCart />
             </h1>
             <div>
-              <button className="cartbtn">
-                <Link to="/Signin">Cart</Link>
-              </button>
+              {signedIn && !isLoginPage && !isAdmin && (
+                <button className="">
+                  <Link to="/Cart">Cart</Link>
+                </button>
+              )}
+              {!signedIn && !isLoginPage && (
+                <>
+                  <button onClick={handleLoginToggle}>Log In</button>
+                  <button onClick={handleSignInToggle}>Sign Up</button>
+                </>
+              )}
+              {signedIn && (
+                <>
+                  <button onClick={handleLogout}>Log Out</button>
+                  <p>Welcome {user.firstName}</p>
+                </>
+              )}
             </div>
           </div>
         </section>

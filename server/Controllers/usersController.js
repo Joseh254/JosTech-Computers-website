@@ -64,6 +64,7 @@ export async function loginUser(request, response) {
 
     response.status(200).json({ success: true, data: payload });
   } catch (error) {
-    response.status(500).json({ success: false, message: error.message });
+    console.log(error.message);
+    response.status(500).json({ success: false, message: 'user not found' });
   }
 }
