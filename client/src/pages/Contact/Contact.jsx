@@ -6,68 +6,70 @@ import help from "../../assets/help.png";
 import { MdHelp } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { useFormik } from "formik";
 import { useState } from "react";
+import { api_url } from "../../../utills/config";
 import "./Contact.css";
+
 function handleClose() {
   const close = document.getElementById("needhelp");
   close.style.display = "none";
 }
 
 function Contact() {
-  const [loading, setloading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const formik = useFormik({
     initialValues: {
-      firstname: "",
-      lastname: "",
+      first_name: "", 
+      last_name: "",
       email: "",
       location: "",
-      phone: "",
+      phone_number: "", 
       subject: "",
-      textarea: "",
+      message: "",
     },
-    onSubmit: function (formstate) {
-      console.log(formstate);
-    },
-    validate: function (formvalues) {
+    onSubmit: handleSubmit,
+    validate: function (values) {
       let errors = {};
-
-      if (formvalues.firstname === "")
-        errors.firstname = "first name is required";
-      else if (firstname.length < 3)
-        errors.fistname = "Firstname Must be Above Three Characters";
-
-      if (formvalues.lastname === "") errors.lastname = "last name is required";
-
-      if (formvalues.email === "") errors.email = "email is required";
-
-      if (formvalues.location === "") errors.location = "location is required";
-
-      if (formvalues.phone === "") errors.phone = "phone number is required";
-
-      if (formvalues.subject === "")
-        errors.subject = "please include a subject";
-
-      if (formik.textarea === "") errors.textarea = "include a message";
-
+  
+      if (values.first_name === "") errors.first_name = "First name is required";
+      if (values.last_name === "") errors.last_name = "Last name is required";
+      if (values.email === "") errors.email = "Email is required";
+      if (values.location === "") errors.location = "Location is required";
+      if (values.phone_number === "") errors.phone_number = "Phone number is required"; 
+      if (values.subject === "") errors.subject = "Please include a subject";
+      if (values.message === "") errors.message = "Include a message"; 
       return errors;
     },
   });
-  console.log(formik.values);
+
+  async function handleSubmit(values) {
+    setLoading(true);
+    try {
+      const response = await axios.post(`${api_url}/api/users/writeMessages`, values);
+      console.log(response);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+  
   return (
     <>
       <section className="contactuswrapper">
         <div className="contactheader">
-          <h1>Get In Tourch</h1>
+          <h1>Get In Touch</h1>
           <p>
-            Want to get in touch? We'd love to hear from you. Here's how you can
-            reach us...
+            Want to get in touch? We'd love to hear from you. Here's how you can reach us...
           </p>
         </div>
 
         <div className="contactimg">
-          <img src={contact} alt="" />
+          <img src={contact} alt={contact} />
         </div>
       </section>
 
@@ -89,10 +91,9 @@ function Contact() {
             <h1>
               <LuMessagesSquare />
             </h1>
-            <h3>Contact customer surpport</h3>
+            <h3>Contact customer support</h3>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit,
-              quo!
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit, quo!
             </p>
           </div>
         </div>
@@ -112,142 +113,144 @@ function Contact() {
 
       <section className="contactsurport">
         <div className="surppotcontactlinks">
-          <h1>Contact surport</h1>
+          <h1>Contact support</h1>
           <p>Have an Account? Sign in and we will be able to help out</p>
           <button>Sign in &rarr;</button>
           <Link to="/Help">Can't sign in or have a question?</Link>
           <Link to="/Help">Forgot your password?</Link>
           <Link to="/Help">Can't Access your Cart?</Link>
-          <Link to="/Help">Add a recovery Email Adress?</Link>
+          <Link to="/Help">Add a recovery Email Address?</Link>
           <Link to="/Help">Purchase Products</Link>
           <Link to="/contactheader">Exchange Item?</Link>
         </div>
 
         <div className="fillform">
-          <form onSubmit={formik.handleSubmit}>
-            <h1>We'd love to hear from you!</h1>
-            <h1>Let's get in touch</h1>
+  <form onSubmit={formik.handleSubmit}>
+    <h1>We'd love to hear from you!</h1>
+    <h1>Let's get in touch</h1>
 
-            <div className="forminputss">
-              <div className="inputs1">
-                <label htmlFor=""> First Name</label>
-                <input
-                  type="text"
-                  placeholder="first name eg john"
-                  name="firstname"
-                  value={formik.firstname}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  required
-                />
-                {formik.touched.firstname && formik.errors.firstname && (
-                  <p> {formik.errors.firstname} </p>
-                )}
-              </div>
+    <div className="forminputss">
+      <div className="inputs1">
+        <label htmlFor="first_name">First Name</label>
+        <input
+          type="text"
+          placeholder="First name e.g. John"
+          name="first_name"
+          value={formik.values.first_name}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          required
+        />
+        {formik.touched.first_name && formik.errors.first_name && (
+          <p>{formik.errors.first_name}</p>
+        )}
+      </div>
 
-              <div className="inputs1">
-                <label htmlFor="">Last Name</label>
-                <input
-                  type="text"
-                  placeholder="last name eg doe"
-                  name="lastname"
-                  value={formik.lastname}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  required
-                />
-                {formik.touched.lastname && formik.errors.lastname && (
-                  <p>{formik.errors.lastname}</p>
-                )}
-              </div>
-            </div>
+      <div className="inputs1">
+        <label htmlFor="last_name">Last Name</label>
+        <input
+          type="text"
+          placeholder="Last name e.g. Doe"
+          name="last_name"
+          value={formik.values.last_name}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          required
+        />
+        {formik.touched.last_name && formik.errors.last_name && (
+          <p>{formik.errors.last_name}</p>
+        )}
+      </div>
+    </div>
 
-            <div className="forminputss">
-              <div className="inputs1">
-                <label htmlFor="">Email</label>
-                <input
-                  type="email"
-                  placeholder="email adress eg johndoe@gmail.com"
-                  name="email"
-                  value={formik.email}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  required
-                />
-                {formik.touched.email && formik.errors.email && (
-                  <p>{formik.errors.email}</p>
-                )}
-              </div>
+    <div className="forminputss">
+      <div className="inputs1">
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          placeholder="Email address e.g. johndoe@gmail.com"
+          name="email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          required
+        />
+        {formik.touched.email && formik.errors.email && (
+          <p>{formik.errors.email}</p>
+        )}
+      </div>
 
-              <div className="inputs1">
-                <label htmlFor="">Location</label>
-                <input
-                  type="text"
-                  placeholder="your location eg Nairobi"
-                  name="location"
-                  value={formik.location}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  required
-                />
-                {formik.touched.location && formik.errors.location && (
-                  <p>{formik.errors.location}</p>
-                )}
-              </div>
-            </div>
+      <div className="inputs1">
+        <label htmlFor="location">Location</label>
+        <input
+          type="text"
+          placeholder="Your location e.g. Nairobi"
+          name="location"
+          value={formik.values.location}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          required
+        />
+        {formik.touched.location && formik.errors.location && (
+          <p>{formik.errors.location}</p>
+        )}
+      </div>
+    </div>
 
-            <div className="forminputss">
-              <div className="inputs1">
-                <label htmlFor="">Phone Number</label>
-                <input
-                  type="number"
-                  placeholder="phone number eg 0712345678"
-                  name="phone"
-                  value={formik.phone}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  required
-                />
-                {formik.touched.phone && formik.errors.phone && (
-                  <p>{formik.errors.phone}</p>
-                )}
-              </div>
+    <div className="forminputss">
+      <div className="inputs1">
+        <label htmlFor="phone_number">Phone Number</label>
+        <input
+          type="number"
+          placeholder="Phone number e.g. 0712345678"
+          name="phone_number"
+          value={formik.values.phone_number}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          required
+        />
+        {formik.touched.phone_number && formik.errors.phone_number && (
+          <p>{formik.errors.phone_number}</p>
+        )}
+      </div>
 
-              <div className="inputs1">
-                <label htmlFor="">Subject</label>
-                <input
-                  type="text"
-                  placeholder="subject"
-                  name="subject"
-                  value={formik.subject}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  required
-                />
-                {formik.touched.subject && formik.errors.subject && (
-                  <p>{formik.errors.subject}</p>
-                )}
-              </div>
-            </div>
+      <div className="inputs1">
+        <label htmlFor="subject">Subject</label>
+        <input
+          type="text"
+          placeholder="Subject"
+          name="subject"
+          value={formik.values.subject}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          required
+        />
+        {formik.touched.subject && formik.errors.subject && (
+          <p>{formik.errors.subject}</p>
+        )}
+      </div>
+    </div>
 
-            <div className="forminputs">
-              <textarea
-                name="textarea"
-                id=""
-                placeholder="insert your message here"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                required
-              >
-                {formik.touched.textarea && formik.errors.textarea && (
-                  <p>{formik.errors.textarea}</p>
-                )}
-              </textarea>
+    <div className="forminputs">
+      <textarea
+        name="message"
+        placeholder="Insert your message here"
+        value={formik.values.message}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        required
+      ></textarea>
+      {formik.touched.message && formik.errors.message && (
+        <p>{formik.errors.message}</p>
+      )}
 
-              <button type="submit">Send message</button>
-            </div>
-          </form>
-        </div>
+      <button type="submit" disabled={loading}>
+        {loading ? "Sending..." : "Send message"}
+      </button>
+      {error && <p className="error">{error}</p>}
+    </div>
+  </form>
+</div>
       </section>
     </>
   );

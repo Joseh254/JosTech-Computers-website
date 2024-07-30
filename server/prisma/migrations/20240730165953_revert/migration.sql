@@ -19,7 +19,7 @@ CREATE TABLE "user_messages" (
     "last_name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "location" TEXT NOT NULL,
-    "Phone_number" TEXT NOT NULL,
+    "Phone_number" INTEGER NOT NULL,
     "subject" TEXT NOT NULL,
     "message" TEXT NOT NULL,
 
@@ -72,12 +72,6 @@ CREATE TABLE "cart" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "jostech_users_email_key" ON "jostech_users"("email");
-
--- CreateIndex
-CREATE UNIQUE INDEX "user_messages_email_key" ON "user_messages"("email");
-
--- CreateIndex
-CREATE UNIQUE INDEX "user_messages_Phone_number_key" ON "user_messages"("Phone_number");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "desktops_desktopName_key" ON "desktops"("desktopName");

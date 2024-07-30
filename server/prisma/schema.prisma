@@ -32,7 +32,7 @@ model user_messages {
   last_name    String @map("last_name")
   email        String  @map("email")
   location     String @map("location")
-  phone_number String  @map("Phone_number")
+  phone_number Int  @map("Phone_number")
   subject      String @map("subject")
   message      String @map("message")
   @@map("user_messages")

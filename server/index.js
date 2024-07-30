@@ -7,7 +7,11 @@ import { config } from "dotenv";
 
 config();
 const app = express();
-app.use(express.json());
+app.use(express.json({
+  reviver: (key, value) => typeof value === 'bigint' ? value.toString() : value,
+  // Custom JSON replacer that converts BigInt values to strings
+  replacer: (key, value) => typeof value === 'bigint' ? value.toString() : value
+}));
 app.use(
   cors({
     origin: "http://localhost:5173",
