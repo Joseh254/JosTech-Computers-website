@@ -36,13 +36,15 @@ const [error, setError] = useState(null);
   return (
     <>
       <AdminHeader />
-      <div className="">      
+      <div className="">   
+      <h1 className="messagesheading">Products Available</h1>   
           <section className="adminproducts">
           {products.map((product) => (
             <div className="productscontainer" key={product.productId}>
               <img src={product.productImage} alt={product.productName} />
               <h1>{product.productName}</h1>
-              <p className="">{product.productDescription}</p>
+              {/* <p className="">{product.productDescription}</p> */}
+              <p> Products Remaining {product.productsRemaining}</p>
               <h3>price Ksh {product.productPrice}</h3>
               <div className="adminproductsactionbts">
                 <button>Edit</button>
@@ -50,7 +52,9 @@ const [error, setError] = useState(null);
               </div>
             </div>
           ))}
-        </section>
+          <button className="addproductsbtn">+</button>
+        </section> 
+        
         </div>
     </>
   );
