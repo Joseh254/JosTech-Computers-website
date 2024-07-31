@@ -13,13 +13,16 @@
   border: 1px solid blue;
   padding: 1rem;
 }
+
 .adminproductsactionbts {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  
 }
 .addproductsbtn {
   height: 30rem;
   font-size: 18rem;
+  width: 30rem;
 }

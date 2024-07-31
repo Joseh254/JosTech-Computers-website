@@ -4,13 +4,11 @@ import AdminHeader from "../../../../Components/AdminHeader/AdminHeader";
 import { api_url } from "../../../../utills/config";
 import axios from "axios";
 import toast from "react-simple-toasts";
-import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 function AdminProducts() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
   const [deletedProductId, setDeletedProductId] = useState(null);
   useEffect(() => {
     async function fetchProducts() {
@@ -45,6 +43,11 @@ function AdminProducts() {
       setLoading(false);
       setDeletedProductId(null);
     }
+
+    function handleGoToAddProduct(){
+      navigate("/AddProduct")
+    }
+    handleGoToAddProduct()
   }
   if (loading) {
     return <p>Loading...</p>;
@@ -77,7 +80,7 @@ function AdminProducts() {
               </div>
             </div>
           ))}
-          <button className="addproductsbtn">+</button>
+         <Link to={"/AddProduct"} className="AddProductLink"> <button className="addproductsbtn" >+</button></Link>
         </section>
       </div>
     </>

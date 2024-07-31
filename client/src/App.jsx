@@ -18,6 +18,7 @@ import useUserStore from "../store/userStore";
 import { useState, useEffect } from "react";
 import AddProduct from "./pages/Admin/AddProduct/AddProduct";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Page404 from "./pages/Admin/Page404/Page404";
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -41,6 +42,7 @@ function App() {
       <Routes>
         {isAdmin ? (
           <>
+          <Route path="/Page404" element={<Page404 />} />
             <Route path="/AdminOrders" element={<AdminOrders />} />
             <Route path="/AddProduct" element={<AddProduct />} />
             <Route path="/Messages" element={<Messages />} />

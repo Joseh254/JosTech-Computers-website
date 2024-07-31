@@ -16,7 +16,7 @@ const userStore = (set) => ({
 });
 
 const useUserStore = create(
-  devtools(persist(userStore, { name: "the-flashback-user" })),
+  devtools(persist(userStore, { name: "josTech-user" })),
 );
 
 export default useUserStore;
