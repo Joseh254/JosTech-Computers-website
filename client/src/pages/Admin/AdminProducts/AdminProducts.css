@@ -9,17 +9,17 @@
   min-width: 50%;
   background-color: azure;
 }
-.productscontainer{
+.productscontainer {
   border: 1px solid blue;
   padding: 1rem;
 }
-.adminproductsactionbts{
+.adminproductsactionbts {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 2rem;
 }
-.addproductsbtn{
+.addproductsbtn {
   height: 30rem;
-  font-size: 18rem
+  font-size: 18rem;
 }

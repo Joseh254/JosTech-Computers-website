@@ -3,14 +3,15 @@ import "./AdminProducts.css";
 import AdminHeader from "../../../../Components/AdminHeader/AdminHeader";
 import { api_url } from "../../../../utills/config";
 import axios from "axios";
-
-
-
+import toast from "react-simple-toasts";
+import { useNavigate } from "react-router-dom";
 
 function AdminProducts() {
   const [products, setProducts] = useState([]);
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const [deletedProductId, setDeletedProductId] = useState(null);
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -22,40 +23,63 @@ const [error, setError] = useState(null);
         setLoading(false);
       }
     }
-  
+
     fetchProducts();
   }, []);
-  
+
+  async function handleDeleteProduct(id) {
+    try {
+      setLoading(true);
+      const response = await axios.delete(
+        `${api_url}/api/products/delete/${id}`,
+      );
+      if (response.data.success === true) {
+        toast("Product deleted", { theme: "success" });
+      }
+      setProducts(products.filter((products) => products.id !== id));
+    } catch (error) {
+      setError(error.message);
+      toast("There was an error when deleting", { theme: "failure" });
+      setLoading(false);
+    } finally {
+      setLoading(false);
+      setDeletedProductId(null);
+    }
+  }
   if (loading) {
     return <p>Loading...</p>;
   }
-  
+
   if (error) {
     return <p>Error fetching products: {error.message}</p>;
   }
   return (
     <>
       <AdminHeader />
-      <div className="">   
-      <h1 className="messagesheading">Products Available</h1>   
-          <section className="adminproducts">
+      <div className="">
+        <h1 className="messagesheading">Products Available</h1>
+        <section className="adminproducts">
           {products.map((product) => (
             <div className="productscontainer" key={product.productId}>
               <img src={product.productImage} alt={product.productName} />
               <h1>{product.productName}</h1>
-              {/* <p className="">{product.productDescription}</p> */}
+
               <p> Products Remaining {product.productsRemaining}</p>
               <h3>price Ksh {product.productPrice}</h3>
               <div className="adminproductsactionbts">
                 <button>Edit</button>
-                <button>Delete</button>
+                <button
+                  onClick={() => handleDeleteProduct(product.id)}
+                  className="deleteproductsbtn"
+                >
+                  {deletedProductId === product.id ? "Deleting .." : "Delete"}
+                </button>
               </div>
             </div>
           ))}
           <button className="addproductsbtn">+</button>
-        </section> 
-        
-        </div>
+        </section>
+      </div>
     </>
   );
 }

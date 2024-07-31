@@ -16,6 +16,7 @@ import AdminUsers from "./pages/Admin/AdminUsers/AdminUsers";
 import Messages from "./pages/Admin/Messages/Messages";
 import useUserStore from "../store/userStore";
 import { useState, useEffect } from "react";
+import AddProduct from "./pages/Admin/AddProduct/AddProduct";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
         {isAdmin ? (
           <>
             <Route path="/AdminOrders" element={<AdminOrders />} />
+            <Route path="/AddProduct" element={<AddProduct />} />
             <Route path="/Messages" element={<Messages />} />
             <Route path="/AdminProducts" element={<AdminProducts />} />
             <Route path="/AdminUsers" element={<AdminUsers />} />

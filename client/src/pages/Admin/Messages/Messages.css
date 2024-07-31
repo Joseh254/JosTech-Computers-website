@@ -9,11 +9,12 @@
   min-width: 50%;
   background-color: azure;
 }
-.messagesheading{
-    margin-left: 26rem;
-    padding-left: 4rem;
-    font-family: Arial, sans-serif;
-    background-color: rgb(157, 203, 221); 
+.messagesheading {
+  margin-left: 26rem;
+  min-width: 100%;
+  padding-left: 4rem;
+  font-family: Arial, sans-serif;
+  background-color: rgb(157, 203, 221);
 }
 .messagesContainers {
   display: flex;
@@ -26,16 +27,16 @@
   border-bottom: solid 1px rgb(187, 183, 183);
   margin-bottom: 2px;
 }
-.messageactionbtns{
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    align-items:center;
+.messageactionbtns {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
 }
-.deletecustomermessages{
-    color: white;
-    background-color: brown;
+.deletecustomermessages {
+  color: white;
+  background-color: brown;
 }
-.replycustomermessages{
-    background-color: greenyellow;
+.replycustomermessages {
+  background-color: greenyellow;
 }

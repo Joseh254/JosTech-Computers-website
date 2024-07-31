@@ -6,16 +6,16 @@ import axios from "axios";
 
 function Messages() {
   const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [deletingMessageId, setDeletingMessageId] = useState(null); 
+  const [deletingMessageId, setDeletingMessageId] = useState(null);
 
   useEffect(() => {
     async function fetchMessages() {
       setLoading(true);
       try {
         const response = await axios.get(`${api_url}/api/users/readMessages`);
-        setMessages(response.data.data); 
+        setMessages(response.data.data);
       } catch (error) {
         setError("There was an error getting messages");
       } finally {
@@ -29,9 +29,9 @@ function Messages() {
   const handleDeleteMessage = async (id) => {
     setDeletingMessageId(id);
     try {
- await axios.delete(`${api_url}/api/users/deleteMessage/${id}`);
+      await axios.delete(`${api_url}/api/users/deleteMessage/${id}`);
 
-      setMessages(messages.filter(message => message.id !== id));
+      setMessages(messages.filter((message) => message.id !== id));
     } catch (error) {
       setError("There was an error deleting the message");
     } finally {
@@ -65,7 +65,10 @@ function Messages() {
             <div className="messageactionbtns">
               <button className="replycustomermessages">Reply</button>
               <button>Mark as read</button>
-              <button onClick={() => handleDeleteMessage(message.id)} className="deletecustomermessages">
+              <button
+                onClick={() => handleDeleteMessage(message.id)}
+                className="deletecustomermessages"
+              >
                 {deletingMessageId === message.id ? "Deleting..." : "Delete"}
               </button>
             </div>

@@ -52,3 +52,32 @@ export async function getall(request, response) {
 }
 
 //   ***************************************
+export async function deleteProduct(request, response) {
+  try {
+    const { id } = request.params;
+    const product = await prisma.products.findFirst({
+      where: { id: id },
+    });
+
+    if (!product) {
+      return response.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+    const deletedProduct = await prisma.products.delete({
+      where: { id: id },
+    });
+    return response.status(200).json({
+      success: true,
+      message: "Product deleted",
+      data: deletedProduct,
+    });
+  } catch (error) {
+    console.log(error.message);
+    return response.status(400).json({
+      success: false,
+      message: "Something went wrong when deleting the product",
+    });
+  }
+}
