@@ -10,18 +10,23 @@ function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const changeUserInformation = useUserStore((state) => state.changeUserInformation);
+  const changeUserInformation = useUserStore(
+    (state) => state.changeUserInformation,
+  );
 
   async function handleSubmit(formState) {
     try {
       setLoading(true);
       setError("");
-      const response = await axios.post(`${api_url}/api/users/login`, formState);
+      const response = await axios.post(
+        `${api_url}/api/users/login`,
+        formState,
+      );
       const data = response.data;
-      console.log(data.data)
+      console.log(data.data);
       if (data.success) {
         changeUserInformation(data.data);
-        if (data.data.role === 'admin') {
+        if (data.data.role === "admin") {
           navigate("/AdminHome");
         } else {
           navigate("/");
@@ -31,7 +36,7 @@ function Login() {
       }
     } catch (error) {
       console.log(error);
-      setError('user not found');
+      setError("user not found");
     } finally {
       setLoading(false);
     }

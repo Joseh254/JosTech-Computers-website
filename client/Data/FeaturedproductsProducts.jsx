@@ -38,9 +38,7 @@ function FeaturedproductsProducts() {
   return (
     <>
       <div className="sign">
-        <div className="signinicon">
-        </div>
-
+        <div className="signinicon"></div>
       </div>
       <div className="productswrapper">
         <div className="productstitle">
@@ -53,7 +51,9 @@ function FeaturedproductsProducts() {
               <img src={product.productImage} alt={product.productName} />
               <h1>{product.productName}</h1>
               <p className="description">{product.productDescription}</p>
-              <p><strike>was Ksh {product.productPrice+300}</strike></p>
+              <p>
+                <strike>was Ksh {product.productPrice + 300}</strike>
+              </p>
               <h3>Now Ksh {product.productPrice}</h3>
               <button>
                 <FaShoppingCart /> Add to Cart

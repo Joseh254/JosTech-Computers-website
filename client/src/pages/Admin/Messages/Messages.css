@@ -1,17 +1,28 @@
-.messages{
- margin-left: 30rem;
- display: grid;
- grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
- gap: 2rem;
- justify-content: center;
- align-items: center;
- padding: 1rem;
- min-width: 60%;
+.messages {
+  margin-left: 30rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  min-width: 60%;
+  background-color: azure;
 }
-.messagesContainers{
-    display: flex;
-    flex-direction: column;    
-    background-color: #f2f3f5;
-    padding: 1rem;
-    border-radius: 8px;
+.messagesheading{
+    margin-left: 26rem;
+    padding-left: 4rem;
+    font-family: Arial, sans-serif;
+    background-color: rgb(157, 203, 221); 
+}
+.messagesContainers {
+  display: flex;
+  flex-direction: column;
+  background-color: antiquewhite;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.userdetails {
+  border-bottom: solid 1px rgb(187, 183, 183);
+  margin-bottom: 2px;
 }

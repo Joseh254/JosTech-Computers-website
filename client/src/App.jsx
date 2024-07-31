@@ -24,7 +24,7 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      if (user.role === 'admin') {
+      if (user.role === "admin") {
         setIsAdmin(true);
       } else {
         setIsAdmin(false);
@@ -45,7 +45,7 @@ function App() {
             <Route path="/AdminProducts" element={<AdminProducts />} />
             <Route path="/AdminUsers" element={<AdminUsers />} />
             <Route path="/AdminHome" element={<AdminHome />} />
-            <Route path="*" element={<AdminHome />} /> 
+            <Route path="*" element={<AdminHome />} />
           </>
         ) : (
           <>
@@ -58,7 +58,7 @@ function App() {
             <Route path="/Signin" element={<Signin />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Account" element={<Account />} />
-            <Route path="*" element={<Home />} /> 
+            <Route path="*" element={<Home />} />
           </>
         )}
       </Routes>

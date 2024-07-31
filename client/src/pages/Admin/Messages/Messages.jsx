@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import './Messages.css';
-import AdminHeader from '../../../../Components/AdminHeader/AdminHeader';
-import { api_url } from '../../../../utills/config';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import "./Messages.css";
+import AdminHeader from "../../../../Components/AdminHeader/AdminHeader";
+import { api_url } from "../../../../utills/config";
+import axios from "axios";
 
 function Messages() {
   const [messages, setMessages] = useState([]);
@@ -15,8 +15,8 @@ function Messages() {
         const response = await axios.get(`${api_url}/api/users/readMessages`);
         setMessages(response.data.data); // Update state with fetched messages
       } catch (error) {
-        console.error('Error fetching messages:', error);
-        setError('There was an error getting messages');
+        console.error("Error fetching messages:", error);
+        setError("There was an error getting messages");
       } finally {
         setLoading(false);
       }
@@ -36,12 +36,18 @@ function Messages() {
   return (
     <section>
       <AdminHeader />
-      <div className='messages'>
+      <h1 className="messagesheading">Welcome to customer Messages</h1>
+      <div className="messages">
+        
         {messages.map((message) => (
           <div className="messagesContainers" key={message.id}>
-            <p> Name : {message.first_name}</p>
+            <div className="userdetails">
+              {" "}
+              <p> Name : {message.first_name}</p>
+              <p>Phone : {message.phone_number}</p>
+              <p>Email: {message.email}</p>
+            </div>
             <p>Subject : {message.subject}</p>
-            {/* <p>Phone : {message.phone_number}</p> */}
             <p>Message : {message.message}</p>
           </div>
         ))}
