@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaShoppingCart } from "react-icons/fa";
 import "./FeaturedproductsProducts.css";
-import lp from "../src/assets/laptop5.jpeg";
-import { Link } from "react-router-dom";
-import { VscAccount } from "react-icons/vsc";
+
 import { api_url } from "../utills/config";
 
 function FeaturedproductsProducts() {

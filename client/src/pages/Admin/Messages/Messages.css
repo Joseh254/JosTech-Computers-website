@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  min-width: 60%;
+  min-width: 50%;
   background-color: azure;
 }
 .messagesheading{
@@ -31,4 +31,11 @@
     gap: 2rem;
     justify-content: center;
     align-items:center;
+}
+.deletecustomermessages{
+    color: white;
+    background-color: brown;
+}
+.replycustomermessages{
+    background-color: greenyellow;
 }
