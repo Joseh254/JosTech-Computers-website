@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Messages.css";
-import AdminHeader from "../../../../Components/AdminHeader/AdminHeader";
 import { api_url } from "../../../../utills/config";
 import axios from "axios";
 
@@ -49,7 +48,6 @@ function Messages() {
 
   return (
     <section>
-      <AdminHeader />
       <h1 className="messagesheading">Welcome to customer Messages</h1>
       <div className="messages">
         {messages.map((message) => (

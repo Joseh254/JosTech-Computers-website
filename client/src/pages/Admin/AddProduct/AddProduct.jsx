@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import axios from "axios";
-import AdminHeader from "../../../../Components/AdminHeader/AdminHeader";
 import "./AddProduct.css";
 import useUserStore from "../../../../store/userStore";
 import { useNavigate } from "react-router-dom";
@@ -104,7 +103,6 @@ function AddProduct() {
 
   return (
     <>
-      <AdminHeader />
       <h1 className="messagesheading">Add Products To Database</h1>
       <div className="addproductswrapper">
         <div className="addProductContainer">

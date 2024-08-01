@@ -14,11 +14,13 @@ import AdminOrders from "./pages/Admin/AdminOrders/AdminOrders";
 import AdminProducts from "./pages/Admin/AdminProducts/AdminProducts";
 import AdminUsers from "./pages/Admin/AdminUsers/AdminUsers";
 import Messages from "./pages/Admin/Messages/Messages";
+import AdminHeader from "../Components/AdminHeader/AdminHeader";
 import useUserStore from "../store/userStore";
 import { useState, useEffect } from "react";
 import AddProduct from "./pages/Admin/AddProduct/AddProduct";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Page404 from "./pages/Admin/Page404/Page404";
+import AddUser from './pages/Admin/AddUser/AddUser';
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -39,6 +41,7 @@ function App() {
   return (
     <BrowserRouter>
       {!isAdmin && <Header />}
+      {isAdmin && <AdminHeader/>}
       <Routes>
         {isAdmin ? (
           <>
@@ -50,6 +53,7 @@ function App() {
             <Route path="/AdminUsers" element={<AdminUsers />} />
             <Route path="/AdminHome" element={<AdminHome />} />
             <Route path="*" element={<AdminHome />} />
+            <Route path="/AddUser" element={<AddUser />} />
           </>
         ) : (
           <>

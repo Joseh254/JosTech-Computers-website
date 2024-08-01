@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./AdminProducts.css";
-import AdminHeader from "../../../../Components/AdminHeader/AdminHeader";
 import { api_url } from "../../../../utills/config";
 import axios from "axios";
 import toast from "react-simple-toasts";
@@ -58,7 +57,6 @@ function AdminProducts() {
   }
   return (
     <>
-      <AdminHeader />
       <div className="">
         <h1 className="messagesheading">Products Available</h1>
         <section className="adminproducts">

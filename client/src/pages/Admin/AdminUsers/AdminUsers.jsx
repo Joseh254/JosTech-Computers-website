@@ -3,6 +3,7 @@ import "./AdminUsers.css";
 import { api_url } from "../../../../utills/config";
 import axios from "axios";
 import toast from "react-simple-toasts";
+import { Link } from "react-router-dom";
 import useUserStore from "../../../../store/userStore";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -48,7 +49,10 @@ if(!users){
   return (
     <>
       <AdminHeader />
-      <h1 className="messagesheading">Jostech Users</h1>
+      <div className="messagesheadingg">
+      <h1>Jostech Users</h1>
+    <Link to={"/AddUser"}><button>addusers</button></Link>
+      </div>
       <div className="adminusers">
         {users.map((user) => (
           <div className="userscontainer" key={user.id}>
