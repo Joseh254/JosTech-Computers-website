@@ -70,3 +70,25 @@ export async function loginUser(request, response) {
     response.status(500).json({ success: false, message: "user not found" });
   }
 }
+
+export async function getusers(request, response){
+try {
+  const users= await prisma.jostech_users.findMany({
+    select:{
+      firstName:true,
+      lastName:true,
+      email:true,
+      role:true,
+      createdAt:true,
+      
+    }
+  })
+  if(!users){
+return response.status(404).json({success:false, message:"Users Not Found"})
+  }
+  return response.status(200).json({success:true, data:users})
+} catch (error) {
+  console.log(error.message);
+  return response.status(404).json({success:false, message:"There was an error getting users"})
+}
+}

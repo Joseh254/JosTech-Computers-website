@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { createProduct, getall,deleteProduct } from "../Controllers/ProductsController.js";
+import {
+  createProduct,
+  getall,
+  deleteProduct,
+} from "../Controllers/ProductsController.js";
 
 import {
   createMotherboard,
@@ -9,7 +13,7 @@ import { createdesktop, getdesktop } from "../Controllers/DesktopController.js";
 const router = Router();
 
 router.post("/create", createProduct);
-router.delete("/delete/:id",deleteProduct)
+router.delete("/delete/:id", deleteProduct);
 router.get("/get", getall);
 router.post("/motherboard", createMotherboard);
 router.get("/getmotherboard", getmotherboard);

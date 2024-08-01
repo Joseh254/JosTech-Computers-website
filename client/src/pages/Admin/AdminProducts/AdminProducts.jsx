@@ -44,10 +44,10 @@ function AdminProducts() {
       setDeletedProductId(null);
     }
 
-    function handleGoToAddProduct(){
-      navigate("/AddProduct")
+    function handleGoToAddProduct() {
+      navigate("/AddProduct");
     }
-    handleGoToAddProduct()
+    handleGoToAddProduct();
   }
   if (loading) {
     return <p>Loading...</p>;
@@ -80,7 +80,10 @@ function AdminProducts() {
               </div>
             </div>
           ))}
-         <Link to={"/AddProduct"} className="AddProductLink"> <button className="addproductsbtn" >+</button></Link>
+          <Link to={"/AddProduct"} className="AddProductLink">
+            {" "}
+            <button className="addproductsbtn">+</button>
+          </Link>
         </section>
       </div>
     </>

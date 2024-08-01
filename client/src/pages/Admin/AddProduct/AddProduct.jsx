@@ -1,27 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import axios from "axios";
 import AdminHeader from "../../../../Components/AdminHeader/AdminHeader";
 import "./AddProduct.css";
-import useUserStore from '../../../../store/userStore';
-import { useNavigate } from 'react-router-dom';
-import { api_url } from '../../../../utills/config';
-import toast from 'react-simple-toasts';
+import useUserStore from "../../../../store/userStore";
+import { useNavigate } from "react-router-dom";
+import { api_url } from "../../../../utills/config";
+import toast from "react-simple-toasts";
 
 function AddProduct() {
   const [loading, setLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState("");
   const [image, setImage] = useState(null);
   const user = useUserStore((state) => state.user);
   const navigate = useNavigate();
   const cloudname = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
   const preset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
-  
-
-
 
   const handleSubmit = async (values) => {
     if (user) {
@@ -32,24 +29,28 @@ function AddProduct() {
           const response = await axios.post(
             `${api_url}/api/products/create`,
             { ...values, productImage: imageUrl },
-            { withCredentials: true }
+            { withCredentials: true },
           );
 
           if (response.data.success === true) {
-            setMessage("Product Added to Database");
+            toast("Product Added to Database", { theme: "success" });
             formik.resetForm();
-            setImageUrl('');
+            setImageUrl("");
           } else {
-            toast("Failed to add product. Please try again.", { theme: "failure" });
+            toast("Failed to add product. Please try again.", {
+              theme: "failure",
+            });
           }
         } catch (error) {
           setError(error.message);
-          toast("Failed to add product. Please try again.", { theme: "failure" });
+          toast("Failed to add product. Please try again.", {
+            theme: "failure",
+          });
         } finally {
           setLoading(false);
         }
       } else {
-        window.open(window.location.href, '_blank');
+        window.open(window.location.href, "_blank");
         navigate("/Page404");
       }
     } else {
@@ -59,14 +60,14 @@ function AddProduct() {
 
   async function handleImageUpload() {
     const payload = new FormData();
-    payload.append('file', image);
-    payload.append('upload_preset', preset);
-  
+    payload.append("file", image);
+    payload.append("upload_preset", preset);
+
     try {
       setImageLoading(true);
       const response = await axios.post(
         `https://api.cloudinary.com/v1_1/${cloudname}/upload`,
-        payload
+        payload,
       );
       setImageUrl(response.data.secure_url);
     } catch (error) {
@@ -92,8 +93,10 @@ function AddProduct() {
     validate: (values) => {
       let errors = {};
       if (!values.productName) errors.productName = "Product name is required";
-      if (!values.productPrice) errors.productPrice = "Product price is required";
-      if (!values.productDescription) errors.productDescription = "Product description is required";
+      if (!values.productPrice)
+        errors.productPrice = "Product price is required";
+      if (!values.productDescription)
+        errors.productDescription = "Product description is required";
       if (!imageUrl) errors.productImage = "Product image is required";
       return errors;
     },
@@ -104,7 +107,7 @@ function AddProduct() {
       <AdminHeader />
       <h1 className="messagesheading">Add Products To Database</h1>
       <div className="addproductswrapper">
-        <div className='addProductContainer'>
+        <div className="addProductContainer">
           <form onSubmit={formik.handleSubmit}>
             <div className="AddProducts">
               <label>Product Name</label>
@@ -149,30 +152,44 @@ function AddProduct() {
                 onBlur={formik.handleBlur}
                 required
               />
-              {formik.touched.productDescription && formik.errors.productDescription && (
-                <p>{formik.errors.productDescription}</p>
+              {formik.touched.productDescription &&
+                formik.errors.productDescription && (
+                  <p>{formik.errors.productDescription}</p>
+                )}
+            </div>
+
+            <div className="uploadimagewrapper">
+              <input type="file" className="file" onChange={handleChange} />
+
+              <button
+                type="button"
+                onClick={handleImageUpload}
+                disabled={imageLoading || !image}
+                className="uploadbtn"
+              >
+                {imageLoading ? "Uploading..." : "Upload Image"}
+              </button>
+              {imageUrl && (
+                <div className="AddProducts">
+                  <img
+                    src={imageUrl}
+                    alt="Uploaded"
+                    className="uploadedImage"
+                  />
+                </div>
               )}
             </div>
 
-            <div className="AddProducts">
-              <input type="file" className="file" onChange={handleChange} />
-              <button type="button" onClick={handleImageUpload} disabled={imageLoading || !image}>
-                {imageLoading ? "Uploading..." : "Upload Image"}
-              </button>
-            </div>
-
-            {imageUrl && (
-              <div className="AddProducts">
-                <img src={imageUrl} alt="Uploaded" className="uploadedImage" />
-              </div>
-            )}
-
             {error && <p className="error">{error}</p>}
 
-            <button type="submit" className="AddProductbtn" disabled={loading || imageLoading}>
+            <button
+              type="submit"
+              className="AddProductbtn"
+              disabled={loading || imageLoading}
+            >
               {loading ? "Please wait..." : "Add product"}
             </button>
-            <p className='addedToDbMessage'>{message}</p>
+            <p className="addedToDbMessage">{message}</p>
           </form>
         </div>
       </div>
