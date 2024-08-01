@@ -21,6 +21,7 @@ import AddProduct from "./pages/Admin/AddProduct/AddProduct";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Page404 from "./pages/Admin/Page404/Page404";
 import AddUser from "./pages/Admin/AddUser/AddUser";
+import AdminProfile from "./pages/Admin/AdminProfile/AdminProfile";
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -45,6 +46,7 @@ function App() {
       <Routes>
         {isAdmin ? (
           <>
+          <Route path="/AdminProfile" element={< AdminProfile/>} />
             <Route path="/Page404" element={<Page404 />} />
             <Route path="/AdminOrders" element={<AdminOrders />} />
             <Route path="/AddProduct" element={<AddProduct />} />

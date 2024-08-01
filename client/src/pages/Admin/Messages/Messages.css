@@ -10,9 +10,12 @@
   background-color: azure;
 }
 .messagesheading {
-  margin-left: 26rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-width: 100%;
   padding-left: 4rem;
+  text-transform: capitalize;
   font-family: Arial, sans-serif;
   background-color: rgb(157, 203, 221);
 }

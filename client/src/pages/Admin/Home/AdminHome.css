@@ -1,0 +1,9 @@
+.adminHome{
+    margin-left: 26rem;
+}
+.adminwelcomemessage{
+   display: flex;
+   justify-content: center;
+   text-transform: capitalize; 
+   background-color: #9ecbdd;
+}

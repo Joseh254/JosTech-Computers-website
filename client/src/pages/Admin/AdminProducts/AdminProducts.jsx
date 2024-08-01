@@ -58,7 +58,7 @@ function AdminProducts() {
   return (
     <>
       <div className="">
-        <h1 className="messagesheading">Products Available</h1>
+        <h1 className="messagesheading">Products Available In store</h1>
         <section className="adminproducts">
           {products.map((product) => (
             <div className="productscontainer" key={product.productId}>

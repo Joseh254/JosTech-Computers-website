@@ -16,9 +16,8 @@
 }
 .messagesheadingg {
   display: flex;
-  justify-content: space-between;
-  margin-left: 26rem;
-  padding-left: 3rem;
-  background-color: #9ecbdd;
-  padding-right: 3rem;
+  justify-content:center;
+  align-items: center;
+  gap: 20rem;
+
 }

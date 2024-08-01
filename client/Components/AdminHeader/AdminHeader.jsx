@@ -40,7 +40,7 @@ function AdminHeader() {
                 end
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
-                Products
+                View All Products
               </NavLink>
             </li>
 
@@ -81,11 +81,18 @@ function AdminHeader() {
                 to="/Messages"
                 className={({ isActive }) => (isActive ? "active" : "")}
               > 
-                Messages
+                View Messages
               </NavLink>
             </li>
 
-
+            <li>
+              <NavLink
+                to="/AdminProfile"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              > 
+                Profile
+              </NavLink>
+            </li>
           </ul>
           {isLoggedIn && <button onClick={handleLogout} className="adminlogout">Log Out</button>}
         </nav>

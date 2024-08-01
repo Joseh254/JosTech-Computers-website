@@ -48,12 +48,14 @@ function AdminUsers() {
   return (
     <>
       <AdminHeader />
-      <div className="messagesheadingg">
+<div className="messagesheading">
+<div className="messagesheadingg">
         <h1>Jostech Users</h1>
         <Link to={"/AddUser"}>
           <button>Add An Admin</button>
         </Link>
       </div>
+</div>
       <div className="adminusers">
         {users.map((user) => (
           <div className="userscontainer" key={user.id}>
