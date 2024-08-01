@@ -1,3 +1,17 @@
 .addusers {
   margin-left: 30rem;
+  background-color: beige;
+}
+.addusers form{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgb(217, 217, 230);
+}
+.addAdminInputs{
+  display: flex;
+  flex-direction: column;
+  
 }

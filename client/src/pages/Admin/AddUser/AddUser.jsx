@@ -69,24 +69,20 @@ function AddUser() {
   });
   return (
     <>
+     <h1 className="messagesheading">Add A New Admin</h1>
       <div className="addusers">
 
-      <section className="signinpage">
-      <div className="signinform">
-        <h1>Create An Account</h1>
-        <p>
-          Already have an Account?{" "}
-          <Link to="/Login">Log in to your account</Link>
-        </p>
+      <section className="">
+      <div className="">
 
         {error && <h1 className="error">{error}</h1>}
 
         <form onSubmit={formik.handleSubmit}>
-          <div className="signininputs">
+          <div className="addAdminInputs">
             <label>First Name</label>
             <input
               type="text"
-              placeholder="Your first name"
+              placeholder=" First Name"
               name="firstName"
               value={formik.values.firstName}
               onChange={formik.handleChange}
@@ -98,11 +94,11 @@ function AddUser() {
             )}
           </div>
 
-          <div className="signininputs">
+          <div className="addAdminInputs">
             <label>Last Name</label>
             <input
               type="text"
-              placeholder="Your last name"
+              placeholder="Last Name"
               name="lastName"
               value={formik.values.lastName}
               onChange={formik.handleChange}
@@ -114,11 +110,11 @@ function AddUser() {
             )}
           </div>
 
-          <div className="signininputs">
+          <div className="addAdminInputs">
             <label>Email Address</label>
             <input
               type="email"
-              placeholder="Your email"
+              placeholder="Email"
               name="email"
               value={formik.values.email}
               onChange={formik.handleChange}
@@ -130,7 +126,7 @@ function AddUser() {
             )}
           </div>
 
-          <div className="signininputs">
+          <div className="addAdminInputs">
             <label>Password</label>
             <input
               type="password"

@@ -22,7 +22,6 @@ function AdminUsers() {
             withCredentials: true,
           });
           if (response.data.success === true) {
-            console.log(response.data.data);
             setUsers(response.data.data);
           }
         } catch (error) {

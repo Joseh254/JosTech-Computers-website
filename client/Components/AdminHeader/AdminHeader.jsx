@@ -43,6 +43,15 @@ function AdminHeader() {
                 Products
               </NavLink>
             </li>
+
+            <li>
+              <NavLink
+                to="/AddProduct"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              > 
+                Add A Product
+              </NavLink>
+            </li>
             <li>
               <NavLink
                 to="/AdminOrders"
@@ -61,12 +70,22 @@ function AdminHeader() {
             </li>
             <li>
               <NavLink
+                to="/AddUser"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              > 
+                Add An Admin
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
                 to="/Messages"
                 className={({ isActive }) => (isActive ? "active" : "")}
               > 
                 Messages
               </NavLink>
             </li>
+
+
           </ul>
           {isLoggedIn && <button onClick={handleLogout} className="adminlogout">Log Out</button>}
         </nav>
