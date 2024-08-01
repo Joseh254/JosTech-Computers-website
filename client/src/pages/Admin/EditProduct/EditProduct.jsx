@@ -18,7 +18,7 @@ function EditProduct() {
     const fetchProduct = async () => {
       if (user && user.role === 'admin') {
         try {
-          const response = await axios.get(`${api_url}/api/products/${productId}`, { withCredentials: true });
+          const response = await axios.get(`${api_url}/api/products/getOneProduct/${productId}`, { withCredentials: true });
           console.log("Product data:", response.data);
           if (response.data.success) {
             formik.setValues(response.data.data);
