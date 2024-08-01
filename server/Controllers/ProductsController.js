@@ -83,7 +83,7 @@ export async function deleteProduct(request, response) {
 }
 
 export async function UpdateProduct(request, response){
-  const {id} = request.params;
+  const { id } = request.params;
   const {productName, productPrice,productDescription,productImage,productsRemaining}= request.body;
   try {
     const data = {};
@@ -94,7 +94,7 @@ export async function UpdateProduct(request, response){
     if (productsRemaining !== undefined) data.productsRemaining = productsRemaining;
 
     const updatedProduct = await prisma.products.update({
-      where: { id: id },
+      where: { id },
       data: data
     });
 
@@ -102,5 +102,21 @@ export async function UpdateProduct(request, response){
   } catch (error) {
     console.log(error.message);
     return response.status(500).json({success:false, message:"There was an error updating product"})
+  }
+}
+export async function getOneProduct(request,response){
+  const {id} = request.params
+  try {
+    const product = await prisma.products.findFirst({
+      where:{id:id}
+    })
+    if(!product){
+      return response.status(404).json({success:false, message:"Product not found"})
+    }
+    return response.status(200).json({success:true, data:product})
+  } catch (error) {
+    console.log(error.message);
+    return response.status(500).json({success:false, message:"There was an error getting product"})
+    
   }
 }

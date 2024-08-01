@@ -5,19 +5,19 @@ import "./AdminHeader.css";
 
 function AdminHeader() {
   const user = useUserStore((state) => state.user);
-  const navigate = useNavigate(); // Corrected usage of useNavigate
+  const navigate = useNavigate(); 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const changeUserInformation = useUserStore((state) => state.changeUserInformation);
 
   useEffect(() => {
-    setIsLoggedIn(!!user); // Convert user to a boolean to set isLoggedIn
+    setIsLoggedIn(!!user); 
   }, [user]);
 
   const handleLogout = () => {
     changeUserInformation(null); 
     setIsLoggedIn(false); 
-    navigate('/Login'); // Correctly navigate to the Login page
+    navigate('/Login'); 
   };
 
   return (

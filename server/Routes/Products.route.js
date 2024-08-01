@@ -4,6 +4,7 @@ import {
   getall,
   deleteProduct,
   UpdateProduct,
+  getOneProduct,
 } from "../Controllers/ProductsController.js";
 
 import {
@@ -15,6 +16,7 @@ const router = Router();
 
 router.post("/create", createProduct);
 router.patch("/UpdateProduct/:id",UpdateProduct)
+router.get("/getOneProduct/:id",getOneProduct)
 router.delete("/delete/:id", deleteProduct);
 router.get("/get", getall);
 router.post("/motherboard", createMotherboard);
