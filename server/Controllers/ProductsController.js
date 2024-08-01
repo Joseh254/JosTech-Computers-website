@@ -83,5 +83,24 @@ export async function deleteProduct(request, response) {
 }
 
 export async function UpdateProduct(request, response){
-  response.send("updating product")
+  const {id} = request.params;
+  const {productName, productPrice,productDescription,productImage,productsRemaining}= request.body;
+  try {
+    const data = {};
+    if (productName !== undefined) data.productName = productName;
+    if (productPrice !== undefined) data.productPrice = productPrice;
+    if (productDescription !== undefined) data.productDescription = productDescription;
+    if (productImage !== undefined) data.productImage = productImage;
+    if (productsRemaining !== undefined) data.productsRemaining = productsRemaining;
+
+    const updatedProduct = await prisma.products.update({
+      where: { id: id },
+      data: data
+    });
+
+    return response.status(200).json({ success: true, data: updatedProduct });
+  } catch (error) {
+    console.log(error.message);
+    return response.status(500).json({success:false, message:"There was an error updating product"})
+  }
 }
