@@ -68,7 +68,9 @@ function AdminProducts() {
               <p> Products Remaining {product.productsRemaining}</p>
               <h3>price Ksh {product.productPrice}</h3>
               <div className="adminproductsactionbts">
-                <button>Edit</button>
+              <Link to={`/EditProduct/${product.id}`}>
+                <button className="editbtn">Edit</button>
+              </Link>
                 <button
                   onClick={() => handleDeleteProduct(product.id)}
                   className="deleteproductsbtn"

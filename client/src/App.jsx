@@ -22,7 +22,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Page404 from "./pages/Admin/Page404/Page404";
 import AddUser from "./pages/Admin/AddUser/AddUser";
 import AdminProfile from "./pages/Admin/AdminProfile/AdminProfile";
-
+import EditProduct from "./pages/Admin/EditProduct/EditProduct";
 function App() {
   const user = useUserStore((state) => state.user);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -45,7 +45,7 @@ function App() {
       {isAdmin && <AdminHeader />}
       <Routes>
         {isAdmin ? (
-          <>
+          <><Route path="/EditProduct/:productId" element={< EditProduct/>} />
           <Route path="/AdminProfile" element={< AdminProfile/>} />
             <Route path="/Page404" element={<Page404 />} />
             <Route path="/AdminOrders" element={<AdminOrders />} />

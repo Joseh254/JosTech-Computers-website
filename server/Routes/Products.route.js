@@ -3,6 +3,7 @@ import {
   createProduct,
   getall,
   deleteProduct,
+  UpdateProduct,
 } from "../Controllers/ProductsController.js";
 
 import {
@@ -13,6 +14,7 @@ import { createdesktop, getdesktop } from "../Controllers/DesktopController.js";
 const router = Router();
 
 router.post("/create", createProduct);
+router.patch("/UpdateProduct/:id",UpdateProduct)
 router.delete("/delete/:id", deleteProduct);
 router.get("/get", getall);
 router.post("/motherboard", createMotherboard);

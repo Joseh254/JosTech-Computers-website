@@ -81,3 +81,7 @@ export async function deleteProduct(request, response) {
     });
   }
 }
+
+export async function UpdateProduct(request, response){
+  response.send("updating product")
+}
