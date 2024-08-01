@@ -43,15 +43,17 @@ function AdminUsers() {
   if (loading) {
     return <p>Loading...</p>;
   }
-if(!users){
-  return <p>No users Found</p>
-}
+  if (!users) {
+    return <p>No users Found</p>;
+  }
   return (
     <>
       <AdminHeader />
       <div className="messagesheadingg">
-      <h1>Jostech Users</h1>
-    <Link to={"/AddUser"}><button>addusers</button></Link>
+        <h1>Jostech Users</h1>
+        <Link to={"/AddUser"}>
+          <button>Add An Admin</button>
+        </Link>
       </div>
       <div className="adminusers">
         {users.map((user) => (

@@ -3,7 +3,6 @@ import "./AdminOrders.css";
 function AdminOrders() {
   return (
     <>
-
       <div className="adminorders">AdminOrders</div>
     </>
   );

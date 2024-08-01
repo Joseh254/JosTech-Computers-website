@@ -1,12 +1,8 @@
 import React from "react";
 import "./AdminHome.css";
 
-
 function AdminHome() {
-  return (
-    <>
-    </>
-  );
+  return <></>;
 }
 
 export default AdminHome;

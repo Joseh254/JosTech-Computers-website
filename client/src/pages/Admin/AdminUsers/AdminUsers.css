@@ -9,16 +9,16 @@
   min-width: 50%;
   background-color: azure;
 }
-.userscontainer{
+.userscontainer {
   border: 1px solid blue;
   padding: 1rem;
   background-color: beige;
 }
-.messagesheadingg{
+.messagesheadingg {
   display: flex;
   justify-content: space-between;
   margin-left: 26rem;
   padding-left: 3rem;
-  background-color:#9ecbdd;
+  background-color: #9ecbdd;
   padding-right: 3rem;
 }
