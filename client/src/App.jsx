@@ -45,8 +45,9 @@ function App() {
       {isAdmin && <AdminHeader />}
       <Routes>
         {isAdmin ? (
-          <><Route path="/EditProduct/:productId" element={< EditProduct/>} />
-          <Route path="/AdminProfile" element={< AdminProfile/>} />
+          <>
+            <Route path="/EditProduct/:productId" element={<EditProduct />} />
+            <Route path="/AdminProfile" element={<AdminProfile />} />
             <Route path="/Page404" element={<Page404 />} />
             <Route path="/AdminOrders" element={<AdminOrders />} />
             <Route path="/AddProduct" element={<AddProduct />} />

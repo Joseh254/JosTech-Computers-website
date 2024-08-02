@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaShoppingCart } from "react-icons/fa";
 import "./FeaturedProductsDesktops.css";
-import offer from "../src/assets/OFFER.png";
-import { api_url } from "../utills/config";
+// import offer from "../src/assets/OFFER.png";
+import { api_url } from "../../../utills/config";
 
 function FeaturedProductsDesktops() {
   const [desktops, setDesktops] = useState([]);

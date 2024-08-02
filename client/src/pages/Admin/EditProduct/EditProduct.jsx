@@ -1,25 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { useFormik } from 'formik';
-import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import useUserStore from '../../../../store/userStore';
+import React, { useState, useEffect } from "react";
+import { useFormik } from "formik";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+import useUserStore from "../../../../store/userStore";
 import { api_url } from "../../../../utills/config";
+import toast from "react-simple-toasts";
 import "./EditProduct.css";
+
+const cloudname = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+const preset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
 function EditProduct() {
   const { productId } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [message, setMessage] = useState("");
+  const [image, setImage] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
   const user = useUserStore((state) => state.user);
 
   useEffect(() => {
     const fetchProduct = async () => {
-      if (user && user.role === 'admin') {
+      if (user && user.role === "admin") {
         try {
-          const response = await axios.get(`${api_url}/api/products/getOneProduct/${productId}`, { withCredentials: true });
-          console.log("Product data:", response.data);
+          const response = await axios.get(
+            `${api_url}/api/products/getOneProduct/${productId}`,
+            { withCredentials: true },
+          );
           if (response.data.success) {
             formik.setValues(response.data.data);
           } else {
@@ -37,6 +45,30 @@ function EditProduct() {
     fetchProduct();
   }, [user, productId, navigate]);
 
+  async function handleImageUpload() {
+    const payload = new FormData();
+    payload.append("file", image);
+    payload.append("upload_preset", preset);
+
+    try {
+      setImageLoading(true);
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/${cloudname}/upload`,
+        payload,
+      );
+      setImageUrl(response.data.secure_url);
+      formik.setFieldValue("productImage", response.data.secure_url);
+    } catch (error) {
+      toast("Failed to upload image. Please try again.", { theme: "failure" });
+    } finally {
+      setImageLoading(false);
+    }
+  }
+
+  function handleChange(e) {
+    setImage(e.target.files[0]);
+  }
+
   const formik = useFormik({
     initialValues: {
       productName: "",
@@ -52,12 +84,15 @@ function EditProduct() {
       try {
         setLoading(true);
         setError("");
-        const response = await axios.patch(`${api_url}/api/products/updateproduct/${productId}`, values, { withCredentials: true });
-        console.log("Update response:", response);
+        const response = await axios.patch(
+          `${api_url}/api/products/updateproduct/${productId}`,
+          values,
+          { withCredentials: true },
+        );
         if (response.data.success) {
-          setMessage("Product updated successfully");
+          toast("Product updated successfully", { theme: "success" });
           formik.resetForm();
-          navigate('/AdminProducts'); 
+          navigate("/AdminProducts");
         } else {
           setError("Failed to update product. Please try again.");
         }
@@ -72,8 +107,8 @@ function EditProduct() {
   }
 
   return (
-    <div className='EditProduct'>
-      <div className='addProductContainer'>
+    <div className="EditProduct">
+      <div className="addProductContainer">
         <h1>Update Product</h1>
         <form onSubmit={formik.handleSubmit}>
           <div className="AddProducts">
@@ -109,22 +144,27 @@ function EditProduct() {
             />
           </div>
 
-          <div className="AddProducts">
-            <label>Product Image URL</label>
-            <input
-              type="text"
-              placeholder="Enter Product Image URL"
-              name="productImage"
-              value={formik.values.productImage}
-              onChange={formik.handleChange}
-            />
+          <div className="uploadimagewrapper">
+            <input type="file" className="file" onChange={handleChange} />
+            <button
+              type="button"
+              onClick={handleImageUpload}
+              disabled={imageLoading || !image}
+              className="uploadbtn"
+            >
+              {imageLoading ? "Uploading..." : "Upload Image"}
+            </button>
+            {imageUrl && (
+              <div className="AddProducts">
+                <img src={imageUrl} alt="Uploaded" className="uploadedImage" />
+              </div>
+            )}
           </div>
 
           {error && <p className="error">{error}</p>}
           <button type="submit" className="AddProductbtn" disabled={loading}>
             {loading ? "Please wait..." : "Update Product"}
           </button>
-          <p className='addedToDbMessage'>{message}</p>
         </form>
       </div>
     </div>

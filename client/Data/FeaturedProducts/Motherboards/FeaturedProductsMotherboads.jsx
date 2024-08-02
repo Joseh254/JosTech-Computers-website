@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaShoppingCart } from "react-icons/fa";
 import "./FeaturedProductsMotherboads.css";
-import moth from "../src/assets/motth4.jpeg";
-import { api_url } from "../utills/config";
+
+import { api_url } from "../../../utills/config";
 
 function FeaturedProductsMotherboards() {
   const [motherboards, setMotherboards] = useState([]);

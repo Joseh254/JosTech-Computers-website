@@ -1,10 +1,10 @@
 import React from "react";
 import "./Aboutdata.css";
-import aboutus from "../src/assets/aboutus.jpg";
-import mission from "../src/assets/mission.png";
-import vission from "../src/assets/vision.png";
-import objective from "../src/assets/objective.png";
-import about from "../src/assets/aboutus.gif";
+import aboutus from "../../src/assets/aboutus.jpg";
+import mission from "../../src/assets/mission.png";
+import vission from "../../src/assets/vision.png";
+import objective from "../../src/assets/objective.png";
+import about from "../../src/assets/aboutus.gif";
 
 function Aboutdata() {
   return (

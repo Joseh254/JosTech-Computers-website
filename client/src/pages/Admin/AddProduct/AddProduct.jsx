@@ -87,7 +87,7 @@ function AddProduct() {
       productPrice: "",
       productDescription: "",
       productImage: "",
-      productsRemaining:"",
+      productsRemaining: "",
     },
     onSubmit: handleSubmit,
     validate: (values) => {
@@ -96,13 +96,11 @@ function AddProduct() {
       if (!values.productPrice)
         errors.productPrice = "Product price is required";
       if (!values.productDescription)
-
         if (!values.productsRemaining)
           errors.productsRemaining = " Total Products remaining is required";
-  
+
       if (!imageUrl) errors.productImage = "Product image is required";
       return errors;
-
     },
   });
 
@@ -160,7 +158,6 @@ function AddProduct() {
                   <p>{formik.errors.productDescription}</p>
                 )}
             </div>
-
 
             <div className="AddProducts">
               <label>Products In Store</label>

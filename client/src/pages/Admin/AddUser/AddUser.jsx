@@ -69,87 +69,87 @@ function AddUser() {
   });
   return (
     <>
-     <h1 className="messagesheading">Add A New Admin</h1>
+      <h1 className="messagesheading">Add A New Admin</h1>
       <div className="addusers">
+        <section className="">
+          <div className="">
+            {error && <h1 className="error">{error}</h1>}
 
-      <section className="">
-      <div className="">
+            <form onSubmit={formik.handleSubmit}>
+              <div className="addAdminInputs">
+                <label>First Name</label>
+                <input
+                  type="text"
+                  placeholder=" First Name"
+                  name="firstName"
+                  value={formik.values.firstName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  required
+                />
+                {formik.touched.firstName && formik.errors.firstName && (
+                  <p>{formik.errors.firstName}</p>
+                )}
+              </div>
 
-        {error && <h1 className="error">{error}</h1>}
+              <div className="addAdminInputs">
+                <label>Last Name</label>
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  name="lastName"
+                  value={formik.values.lastName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  required
+                />
+                {formik.touched.lastName && formik.errors.lastName && (
+                  <p>{formik.errors.lastName}</p>
+                )}
+              </div>
 
-        <form onSubmit={formik.handleSubmit}>
-          <div className="addAdminInputs">
-            <label>First Name</label>
-            <input
-              type="text"
-              placeholder=" First Name"
-              name="firstName"
-              value={formik.values.firstName}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              required
-            />
-            {formik.touched.firstName && formik.errors.firstName && (
-              <p>{formik.errors.firstName}</p>
-            )}
+              <div className="addAdminInputs">
+                <label>Email Address</label>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  required
+                />
+                {formik.touched.email && formik.errors.email && (
+                  <p>{formik.errors.email}</p>
+                )}
+              </div>
+
+              <div className="addAdminInputs">
+                <label>Password</label>
+                <input
+                  type="password"
+                  placeholder="Create a strong password"
+                  name="password"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  required
+                />
+                {formik.touched.password && formik.errors.password && (
+                  <p>{formik.errors.password}</p>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                className="createaccountbtn"
+                disabled={loading}
+              >
+                {loading ? "Please wait..." : "Submit"}
+              </button>
+            </form>
           </div>
-
-          <div className="addAdminInputs">
-            <label>Last Name</label>
-            <input
-              type="text"
-              placeholder="Last Name"
-              name="lastName"
-              value={formik.values.lastName}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              required
-            />
-            {formik.touched.lastName && formik.errors.lastName && (
-              <p>{formik.errors.lastName}</p>
-            )}
-          </div>
-
-          <div className="addAdminInputs">
-            <label>Email Address</label>
-            <input
-              type="email"
-              placeholder="Email"
-              name="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              required
-            />
-            {formik.touched.email && formik.errors.email && (
-              <p>{formik.errors.email}</p>
-            )}
-          </div>
-
-          <div className="addAdminInputs">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Create a strong password"
-              name="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              required
-            />
-            {formik.touched.password && formik.errors.password && (
-              <p>{formik.errors.password}</p>
-            )}
-          </div>
-
-          <button type="submit" className="createaccountbtn" disabled={loading}>
-            {loading ? "Please wait..." : "Submit"}
-          </button>
-        </form>
-      </div>
-
-    </section>
-
+        </section>
       </div>
     </>
   );

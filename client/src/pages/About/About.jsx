@@ -1,5 +1,5 @@
 import React from "react";
-import Aboutdata from "../../../Data/Aboutdata";
+import Aboutdata from "../../../Data/AboutData/Aboutdata";
 
 function About() {
   return <Aboutdata />;

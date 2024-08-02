@@ -1,11 +1,10 @@
 import React from "react";
 
-import manage from "../src/assets/manage.jpeg";
-import order from "../src/assets/orders.jpeg";
-import returns from "../src/assets/return.jpeg";
-import membership from "../src/assets/membership.jpeg";
+import manage from "../../src/assets/manage.jpeg";
+import order from "../../src/assets/orders.jpeg";
+import returns from "../../src/assets/return.jpeg";
+import membership from "../../src/assets/membership.jpeg";
 import { FaRegMessage } from "react-icons/fa6";
-import { PiPhoneCallFill } from "react-icons/pi";
 import "./Helpus.css";
 
 function Helpus() {

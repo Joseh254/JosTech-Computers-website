@@ -3,7 +3,7 @@ import axios from "axios";
 import { FaShoppingCart } from "react-icons/fa";
 import "./FeaturedproductsProducts.css";
 
-import { api_url } from "../utills/config";
+import { api_url } from "../../../utills/config";
 
 function FeaturedproductsProducts() {
   const [products, setProducts] = useState([]);
