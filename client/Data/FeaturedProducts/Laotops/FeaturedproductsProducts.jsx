@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaShoppingCart } from "react-icons/fa";
 import "./FeaturedproductsProducts.css";
-
+import { Link } from "react-router-dom";
 import { api_url } from "../../../utills/config";
 
 function FeaturedproductsProducts() {
@@ -48,7 +48,7 @@ function FeaturedproductsProducts() {
             <div className="laptopcontainer" key={product.productId}>
               <img src={product.productImage} alt={product.productName} />
               <h1>{product.productName}</h1>
-              <p className="description">{product.productDescription}</p>
+      
               <p>
                 <strike>was Ksh {product.productPrice + 300}</strike>
               </p>
@@ -56,6 +56,8 @@ function FeaturedproductsProducts() {
               <button>
                 <FaShoppingCart /> Add to Cart
               </button>
+
+            <div className="more"> <Link to={`/product/${product.id}`} > <h4 className="morebtnlink">More &rarr;</h4></Link></div>
             </div>
           ))}
         </section>

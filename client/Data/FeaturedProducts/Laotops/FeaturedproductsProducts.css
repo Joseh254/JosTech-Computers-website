@@ -69,3 +69,14 @@
 .laptopcontainer button:hover {
   background-color: blue;
 }
+.morebtnlink{
+  color: #0b448f;
+  margin-top: 2rem;
+}
+.more a{
+text-decoration: none;
+color: #0b448f;
+font-weight: 900;
+
+}
+
