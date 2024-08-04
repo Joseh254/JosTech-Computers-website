@@ -24,6 +24,7 @@ import Page404 from "./pages/Admin/Page404/Page404";
 import AddUser from "./pages/Admin/AddUser/AddUser";
 import AdminProfile from "./pages/Admin/AdminProfile/AdminProfile";
 import EditProduct from "./pages/Admin/EditProduct/EditProduct";
+import Cart from "./pages/Cart/Cart";
 function App() {
   const user = useUserStore((state) => state.user);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -61,6 +62,7 @@ function App() {
           </>
         ) : (
           <>
+          <Route path="Cart" element={<Cart />} />
             <Route path="/" element={<Home />} />
             <Route path="/About" element={<About />} />
             <Route path="/FeaturedProducts" element={<FeaturedProducts />} />
