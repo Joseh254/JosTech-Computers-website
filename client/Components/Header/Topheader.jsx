@@ -136,8 +136,8 @@ function Topheader() {
                 {searchResults.length > 0 ? (
                   <ul className="search-results">
                     {searchResults.map((product) => (
-                      <li key={product.productId}>
-                        <Link to={`/product/${product.productId}`} onClick={handleOverlayClose}>
+                      <li key={product.id}>
+                        <Link to={`/product/${product.id}`} onClick={handleOverlayClose}>
                           <img src={product.productImage} alt={product.productName} />
                           <p>{product.productName}</p>
                           <p>Ksh {product.productPrice}</p>

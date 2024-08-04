@@ -19,6 +19,7 @@ import useUserStore from "../store/userStore";
 import { useState, useEffect } from "react";
 import AddProduct from "./pages/Admin/AddProduct/AddProduct";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Page404 from "./pages/Admin/Page404/Page404";
 import AddUser from "./pages/Admin/AddUser/AddUser";
 import AdminProfile from "./pages/Admin/AdminProfile/AdminProfile";
@@ -70,6 +71,7 @@ function App() {
             <Route path="/Login" element={<Login />} />
             <Route path="/Account" element={<Account />} />
             <Route path="*" element={<Home />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
           </>
         )}
       </Routes>
