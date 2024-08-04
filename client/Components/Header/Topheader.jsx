@@ -137,10 +137,11 @@ function Topheader() {
                   <ul className="search-results">
                     {searchResults.map((product) => (
                       <li key={product.id}>
-                        <Link to={`/product/${product.id}`} onClick={handleOverlayClose}>
+                        <Link to={`/product/${product.id}`} onClick={handleOverlayClose} className="resultLink">
                           <img src={product.productImage} alt={product.productName} />
                           <p>{product.productName}</p>
                           <p>Ksh {product.productPrice}</p>
+                          <p className="seemorelink">see more &rarr;</p>
                         </Link>
                       </li>
                     ))}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { api_url } from "../../../utills/config";
+import { FaShoppingCart } from "react-icons/fa";
 import "./ProductDetails.css"; 
 
 function ProductDetails() {
@@ -14,7 +15,7 @@ function ProductDetails() {
     async function fetchProduct() {
       try {
         const response = await axios.get(`${api_url}/api/products/getOneProduct/${id}`);
-        console.log(response.data);
+
         
         setProduct(response.data.data);
         setLoading(false);
@@ -39,13 +40,18 @@ function ProductDetails() {
     <div className="product-details">
       {product ? (
         <>
-              <img src={product.productImage} alt={product.productName} />
+<div className="laptopcontainerr">
+<img src={product.productImage} alt={product.productName} />
               <h1>{product.productName}</h1>
               <p className="description">{product.productDescription}</p>
               <p>
                 <strike>was Ksh {product.productPrice + 300}</strike>
               </p>
               <h3>Now Ksh {product.productPrice}</h3>
+              <button>
+                <FaShoppingCart /> Add to Cart
+              </button>
+</div>
         </>
       ) : (
         <p>Product not found.</p>
