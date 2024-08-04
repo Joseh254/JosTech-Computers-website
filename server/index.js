@@ -1,6 +1,7 @@
 import express from "express";
 import producsRouter from "./Routes/Products.route.js";
 import users from "./Routes/usersroute.js";
+import cart from "./Routes/cartRoute.js";
 import cors from "cors";
 import messages from "./Routes/user_messagesRoute.js";
 import { config } from "dotenv";
@@ -27,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/products", producsRouter);
 app.use("/api/users", users);
 app.use("/api/users", messages);
+app.use("/api/cart" ,cart), 
 
 app.listen(3000, () => {
   console.log("server running");
