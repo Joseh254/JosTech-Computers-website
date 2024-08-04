@@ -14,11 +14,13 @@
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "formik": "^2.4.6",
+    "newsapi": "^2.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.24.0",
     "react-simple-toasts": "^5.10.1",
+    "react-spinners": "^0.14.1",
     "react-toastify": "^10.0.5",
     "zustand": "^4.5.4"
   },

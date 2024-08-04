@@ -185,3 +185,42 @@ input {
   font-size: 3rem;
   color: blue;
 }
+/* Topheader.css */
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.search-results {
+  margin-top: 20px;
+}
+
+.search-results h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.search-results ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.search-results li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.search-results img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.search-results p {
+  margin: 0;
+}
+

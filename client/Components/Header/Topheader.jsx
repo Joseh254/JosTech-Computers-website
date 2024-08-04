@@ -3,13 +3,21 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoSearchSharp } from "react-icons/io5";
 import useUserStore from "../../store/userStore";
+import axios from "axios";
+import { ClipLoader } from "react-spinners";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Topheader.css";
+import { api_url } from "../../utills/config";
 
 function Topheader() {
   const navigate = useNavigate();
   const location = useLocation();
   const [signedIn, setSignedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
   const user = useUserStore((state) => state.user);
   const changeUserInformation = useUserStore((state) => state.changeUserInformation);
 
@@ -44,6 +52,30 @@ function Topheader() {
 
   const isLoginPage = location.pathname === "/Login";
 
+  const handleSearchInputChange = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  const handleSearch = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(`${api_url}/api/products/get`);
+      const allProducts = response.data.data;
+      const filteredProducts = allProducts.filter((product) =>
+        product.productName.toLowerCase().includes(searchInput.toLowerCase())
+      );
+      setSearchResults(filteredProducts);
+      if (filteredProducts.length === 0) {
+        toast.error("Product not found");
+      }
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      toast.error("Error fetching products");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <header className="topheader">
       <div className="top_nav">
@@ -59,14 +91,14 @@ function Topheader() {
             className="searchinput"
             id="searchinput"
             placeholder="Search..."
+            value={searchInput}
+            onChange={handleSearchInputChange}
           />
-          <button className="btnright">Search</button>
+          <button className="btnright" onClick={handleSearch}>Search</button>
         </div>
         <section className="signcart">
           <div className="cart">
-            <h1 className="headericons">
-              
-            </h1>
+            <h1 className="headericons"></h1>
             <div>
               {signedIn && !isLoginPage && !isAdmin && (
                 <button className="">
@@ -89,6 +121,24 @@ function Topheader() {
           </div>
         </section>
       </div>
+      {loading && <div className="loading-spinner"><ClipLoader size={50} /></div>}
+      {!loading && searchResults.length > 0 && (
+        <div className="search-results">
+          <h2>Search Results:</h2>
+          <ul>
+            {searchResults.map((product) => (
+              <li key={product.productId}>
+                <Link to={`/product/${product.productId}`}>
+                  <img src={product.productImage} alt={product.productName} />
+                  <p>{product.productName}</p>
+                  <p>{product.productPrice}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <ToastContainer />
     </header>
   );
 }
