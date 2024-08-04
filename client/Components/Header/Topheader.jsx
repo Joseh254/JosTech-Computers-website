@@ -18,17 +18,14 @@ function Topheader() {
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
   const user = useUserStore((state) => state.user);
   const changeUserInformation = useUserStore((state) => state.changeUserInformation);
 
   useEffect(() => {
     if (user) {
       setSignedIn(true);
-      if (user.role === "admin") {
-        setIsAdmin(true);
-      } else {
-        setIsAdmin(false);
-      }
+      setIsAdmin(user.role === "admin");
     } else {
       setSignedIn(false);
       setIsAdmin(false);
@@ -65,6 +62,7 @@ function Topheader() {
         product.productName.toLowerCase().includes(searchInput.toLowerCase())
       );
       setSearchResults(filteredProducts);
+      setShowOverlay(true);
       if (filteredProducts.length === 0) {
         toast.error("Product not found");
       }
@@ -74,6 +72,12 @@ function Topheader() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleOverlayClose = () => {
+    setShowOverlay(false);
+    setSearchResults([]);
+    setSearchInput("");
   };
 
   return (
@@ -121,21 +125,32 @@ function Topheader() {
           </div>
         </section>
       </div>
-      {loading && <div className="loading-spinner"><ClipLoader size={50} /></div>}
-      {!loading && searchResults.length > 0 && (
-        <div className="search-results">
-          <h2>Search Results:</h2>
-          <ul>
-            {searchResults.map((product) => (
-              <li key={product.productId}>
-                <Link to={`/product/${product.productId}`}>
-                  <img src={product.productImage} alt={product.productName} />
-                  <p>{product.productName}</p>
-                  <p>{product.productPrice}</p>
-                </Link>
-              </li>
-            ))}
-          </ul>
+      {showOverlay && (
+        <div className="overlay" onClick={handleOverlayClose}>
+          <div className="overlay-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close-overlay" onClick={handleOverlayClose}>X</button>
+            {loading ? (
+              <div className="loading-spinner"><ClipLoader size={50} /></div>
+            ) : (
+              <>
+                {searchResults.length > 0 ? (
+                  <ul className="search-results">
+                    {searchResults.map((product) => (
+                      <li key={product.productId}>
+                        <Link to={`/product/${product.productId}`} onClick={handleOverlayClose}>
+                          <img src={product.productImage} alt={product.productName} />
+                          <p>{product.productName}</p>
+                          <p>Ksh {product.productPrice}</p>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>No products found.</p>
+                )}
+              </>
+            )}
+          </div>
         </div>
       )}
       <ToastContainer />
