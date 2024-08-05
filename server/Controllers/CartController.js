@@ -1,10 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
+// Function to add an item to the cart
 export async function AddCart(request, response) {
   const { userid, productid } = request.body;
 
   try {
+
     // Ensure the user exists
     const user = await prisma.jostech_users.findUnique({
       where: { id: userid },
@@ -26,8 +28,8 @@ export async function AddCart(request, response) {
     // Create a new cart item
     const cartItem = await prisma.cart.create({
       data: {
-        user: { connect: { id: userid } },
-        product: { connect: { id: productid } },
+        userid: userid,
+        productid: productid,
       },
     });
 
@@ -35,5 +37,31 @@ export async function AddCart(request, response) {
   } catch (error) {
     console.log(error.message);
     return response.status(500).json({ success: false, message: "There was an error adding the item to the cart" });
+  }
+}
+
+// Function to get cart items for a user
+export async function GetUserCart(request, response) {
+  const { id } = request.params;
+  try {
+    const user = await prisma.jostech_users.findUnique({
+      where: { id: id }
+    });
+
+    if (!user) {
+      return response.status(404).json({ success: false, message: "Unauthorized" });
+    }
+
+    const cartItems = await prisma.cart.findMany({
+      where: { userid: id },
+      include: {
+        product: true,
+      },
+    });
+
+    return response.status(200).json({ success: true, data: cartItems });
+  } catch (error) {
+    console.log(error.message);
+    return response.status(500).json({ success: false, message: "There was an error fetching the cart items" });
   }
 }
