@@ -50,11 +50,12 @@ function App() {
         {isAdmin ? (
           <>
             <Route path="/EditProduct/:productId" element={<EditProduct />} />
-            <Route path="/AdminProfile" element={<AdminProfile />} />
+            <Route path="/AdminProfile/:userId" element={<AdminProfile />} />
             <Route path="/Page404" element={<Page404 />} />
             <Route path="/AdminOrders" element={<AdminOrders />} />
             <Route path="/AddProduct" element={<AddProduct />} />
             <Route path="/Messages" element={<Messages />} />
+            <Route path="/Login" element={<Login />} />
             <Route path="/AdminProducts" element={<AdminProducts />} />
             <Route path="/AdminUsers" element={<AdminUsers />} />
             <Route path="/AdminHome" element={<AdminHome />} />

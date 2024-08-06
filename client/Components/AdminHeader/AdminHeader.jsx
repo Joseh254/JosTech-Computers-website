@@ -14,10 +14,10 @@ function AdminHeader() {
     setIsLoggedIn(!!user); 
   }, [user]);
 
-  const handleLogout = () => {
-    changeUserInformation(null); 
+  const handleLogout = () => { 
+    changeUserInformation(null);
     setIsLoggedIn(false); 
-    navigate('/Login'); 
+    navigate("/Login");
   };
 
   return (
@@ -87,10 +87,10 @@ function AdminHeader() {
 
             <li>
               <NavLink
-                to="/AdminProfile"
+                to={`/AdminProfile/${user.id}`}
                 className={({ isActive }) => (isActive ? "active" : "")}
               > 
-                Profile
+              Profile
               </NavLink>
             </li>
           </ul>
