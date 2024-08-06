@@ -94,6 +94,41 @@ return response.status(404).json({success:false, message:"Users Not Found"})
 }
 }
 
-export async function updateUserDetails(request, response){
-  response.send("uodating user informationinsom")
+
+
+export async function updateUserDetails(request, response) {
+  const { firstName, lastName, email, role, password, profilePicture } = request.body;
+  const { id } = request.params;
+
+  try {
+    const user = await prisma.jostech_users.findUnique({ where: { id: id } });
+    if (!user) {
+      return response.status(400).json({ success: false, message: "User not found" });
+    }
+
+    const updatedUser = await prisma.jostech_users.update({
+      where: { id: id },
+      data: {
+        firstName: firstName || user.firstName,
+        lastName: lastName || user.lastName,
+        email: email || user.email,
+        role: role || user.role,
+        password: password || user.password,
+        profilePicture: profilePicture || user.profilePicture,
+      },
+      select: {
+        firstName: true,
+        lastName: true,
+        email: true,
+        profilePicture: true,
+        role: true,
+      },
+    });
+
+    return response.status(200).json({ success: true, message: "User updated successfully", data: updatedUser });
+
+  } catch (error) {
+    console.log(error.message);
+    return response.status(500).json({ success: false, message: "Internal server error!" });
+  }
 }
