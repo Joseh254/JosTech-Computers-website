@@ -12,9 +12,8 @@ function AdminProducts() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        
         const response = await axios.get(`${api_url}/api/products/get`);
-        
+
         setProducts(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -22,8 +21,6 @@ function AdminProducts() {
         setLoading(false);
       }
     }
-
-
 
     fetchProducts();
   }, []);
@@ -60,11 +57,6 @@ function AdminProducts() {
     return <p>Error fetching products: {error.message}</p>;
   }
 
-
-
-
-
-  
   return (
     <>
       <div className="">

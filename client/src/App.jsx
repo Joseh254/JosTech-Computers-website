@@ -8,6 +8,7 @@ import Hotdeals from "./pages/Hotdeals/Hotdeals";
 import Contact from "./pages/Contact/Contact";
 import Signin from "./pages/Signin/Signin";
 import Login from "./pages/Login/Login";
+import Profile from "./pages/UserProfile/Profile";
 import Account from "./pages/Account/Account";
 import AdminHome from "./pages/Admin/Home/AdminHome";
 import AdminOrders from "./pages/Admin/AdminOrders/AdminOrders";
@@ -62,7 +63,8 @@ function App() {
           </>
         ) : (
           <>
-          <Route path="Cart" element={<Cart />} />
+            <Route path="Profile" element={<Profile />} />
+            <Route path="Cart" element={<Cart />} />
             <Route path="/" element={<Home />} />
             <Route path="/About" element={<About />} />
             <Route path="/FeaturedProducts" element={<FeaturedProducts />} />

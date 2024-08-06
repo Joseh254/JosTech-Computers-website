@@ -113,13 +113,34 @@ input {
   align-items: center;
   gap: 2rem;
 }
-
+.headeractionbuttons{
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
 .cart {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   margin-left: 4rem;
+
+}
+.userUpdateprofileBtn{
+  background-color: #259;
+  color: #fff;
+}
+.usercartBtn{
+  background-color: gold;
+}
+.userLogoutBtn{
+  background-color: #913;
+  color: #fff;
+}
+.logoutProfile{
+  display: flex;
+  gap: 1rem;
 }
 
 @media screen and (max-width: 56.25em) {

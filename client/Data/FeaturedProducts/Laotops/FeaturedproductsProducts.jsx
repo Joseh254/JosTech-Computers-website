@@ -48,7 +48,7 @@ function FeaturedproductsProducts() {
             <div className="laptopcontainer" key={product.productId}>
               <img src={product.productImage} alt={product.productName} />
               <h1>{product.productName}</h1>
-      
+
               <p>
                 <strike>was Ksh {product.productPrice + 300}</strike>
               </p>
@@ -57,7 +57,13 @@ function FeaturedproductsProducts() {
                 <FaShoppingCart /> Add to Cart
               </button>
 
-            <div className="more"> <Link to={`/product/${product.id}`} > <h4 className="morebtnlink">More &rarr;</h4></Link></div>
+              <div className="more">
+                {" "}
+                <Link to={`/product/${product.id}`}>
+                  {" "}
+                  <h4 className="morebtnlink">More &rarr;</h4>
+                </Link>
+              </div>
             </div>
           ))}
         </section>

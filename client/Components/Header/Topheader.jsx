@@ -80,6 +80,10 @@ function Topheader() {
     setSearchInput("");
   };
 
+  function handleNavigateToProfile(){
+    navigate("/Profile")
+  }
+
   return (
     <header className="topheader">
       <div className="top_nav">
@@ -103,22 +107,25 @@ function Topheader() {
         <section className="signcart">
           <div className="cart">
             <h1 className="headericons"></h1>
-            <div>
+            <div className="headeractionbuttons">
               {signedIn && !isLoginPage && !isAdmin && (
-                <button className="">
+                <button className="usercartBtn">
                   <Link to="/Cart" className='cartlink'><FiShoppingCart /> Cart</Link>
                 </button>
               )}
               {!signedIn && !isLoginPage && (
                 <>
-                  <button onClick={handleLoginToggle}>Log In</button>
-                  <button onClick={handleSignInToggle}>Sign Up</button>
+                  <button onClick={handleLoginToggle} className="userLogInBtn">Log In</button>
+                  <button onClick={handleSignInToggle} className="userSignupBtn">Sign Up</button>
                 </>
               )}
               {signedIn && (
                 <>
-                  <button onClick={handleLogout}>Log Out</button>
-                  <p>Welcome {user.firstName}</p>
+                    <div className="logoutProfile"> 
+                      <button onClick={handleLogout} className="userLogoutBtn">Log Out</button>
+                        <button className="userUpdateprofileBtn" onClick={handleNavigateToProfile}>Profile</button>
+                        {/* <button>Welcome {user.firstName}</button> */}
+                    </div>
                 </>
               )}
             </div>
