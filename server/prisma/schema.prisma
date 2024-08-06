@@ -20,6 +20,7 @@ model jostech_users {
   email     String   @unique
   password  String
   role      String?  @default("user")
+  profilePicture String? @default("https://images.app.goo.gl/yr3kamRya3xRAhFM6")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   cart      cart[]

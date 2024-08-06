@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 export async function createuser(request, response) {
   try {
-    const { firstName, lastName, email, password, role } = request.body;
+    const { firstName, lastName, email, password, role,profilePicture } = request.body;
 
     const hashedPassword = bcrypt.hashSync(password, 10);
 
@@ -17,6 +17,7 @@ export async function createuser(request, response) {
         email,
         password: hashedPassword,
         role,
+        profilePicture,
       },
     });
 
@@ -91,4 +92,8 @@ return response.status(404).json({success:false, message:"Users Not Found"})
   console.log(error.message);
   return response.status(404).json({success:false, message:"There was an error getting users"})
 }
+}
+
+export async function updateUserDetails(request, response){
+  response.send("uodating user informationinsom")
 }

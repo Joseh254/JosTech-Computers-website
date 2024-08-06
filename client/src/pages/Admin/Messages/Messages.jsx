@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Messages.css";
 import { api_url } from "../../../../utills/config";
 import axios from "axios";
+import {Link} from "react-router-dom"
 
 function Messages() {
   const [messages, setMessages] = useState([]);
@@ -61,7 +62,7 @@ function Messages() {
             <p>Message: {message.message}</p>
 
             <div className="messageactionbtns">
-              <button className="replycustomermessages">Reply</button>
+              <button className="replycustomermessages"><a href={message.email}>Reply</a></button>
               <button>Mark as read</button>
               <button
                 onClick={() => handleDeleteMessage(message.id)}
