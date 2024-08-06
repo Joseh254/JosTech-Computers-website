@@ -63,7 +63,7 @@ function App() {
           </>
         ) : (
           <>
-            <Route path="Profile" element={<Profile />} />
+            <Route path="Profile/:id" element={<Profile />} />
             <Route path="Cart" element={<Cart />} />
             <Route path="/" element={<Home />} />
             <Route path="/About" element={<About />} />

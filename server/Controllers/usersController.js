@@ -29,20 +29,24 @@ export async function createuser(request, response) {
       .json({ success: false, message: "An error occurred in the server" });
   }
 }
+
 export async function loginUser(request, response) {
   const { email, password } = request.body;
 
   try {
+    // Find the user by email
     const user = await prisma.jostech_users.findFirst({
       where: { email },
     });
 
+    // Check if the user exists
     if (!user) {
       return response
         .status(404)
         .json({ success: false, message: "User not found" });
     }
 
+    // Compare the provided password with the hashed password
     const passwordMatch = bcrypt.compareSync(password, user.password);
 
     if (!passwordMatch) {
@@ -51,6 +55,7 @@ export async function loginUser(request, response) {
         .json({ success: false, message: "Wrong email or password" });
     }
 
+    // Create JWT payload
     const payload = {
       id: user.id,
       role: user.role,
@@ -59,16 +64,22 @@ export async function loginUser(request, response) {
       email: user.email,
     };
 
+    // Sign the token
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "100h",
+      expiresIn: '100h',
     });
 
-    response.cookie("access_token", token, { httpOnly: true });
+    // Set the token in an HTTP-only cookie
+    response.cookie('access_token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === true, // Set to true in production
+      sameSite: 'Strict', // Adjust as needed
+    });
 
     response.status(200).json({ success: true, data: payload });
   } catch (error) {
-    console.log(error.message);
-    response.status(500).json({ success: false, message: "user not found" });
+    console.error(error.message);
+    response.status(500).json({ success: false, message: "Internal server error" });
   }
 }
 
@@ -130,5 +141,30 @@ export async function updateUserDetails(request, response) {
   } catch (error) {
     console.log(error.message);
     return response.status(500).json({ success: false, message: "Internal server error!" });
+  }
+}
+
+export async function getOneUser(request, response){
+  const {id} = request.params
+  try {
+    const user = await prisma.jostech_users.findUnique({
+      where:{id:id},
+      select: {
+        firstName: true,
+        lastName: true,
+        email: true,
+        profilePicture: true,
+        role: true,
+      },
+    })
+    if(!user){
+      return response.status(404).json({success:false, message:"User not found"})
+    }
+    return response.status(200).json({success:true, data:user})
+    
+  } catch (error) {
+    console.log(error.message);
+    return response.status(500).json({success:false, message:"Internal server error!"})
+    
   }
 }

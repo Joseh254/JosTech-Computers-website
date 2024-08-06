@@ -9,7 +9,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Topheader.css";
 import { api_url } from "../../utills/config";
-
 function Topheader() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -80,10 +79,6 @@ function Topheader() {
     setSearchInput("");
   };
 
-  function handleNavigateToProfile(){
-    navigate("/Profile")
-  }
-
   return (
     <header className="topheader">
       <div className="top_nav">
@@ -112,7 +107,7 @@ function Topheader() {
                 <button className="usercartBtn">
                   <Link to="/Cart" className='cartlink'><FiShoppingCart /> Cart</Link>
                 </button>
-              )}
+              )} 
               {!signedIn && !isLoginPage && (
                 <>
                   <button onClick={handleLoginToggle} className="userLogInBtn">Log In</button>
@@ -123,7 +118,10 @@ function Topheader() {
                 <>
                     <div className="logoutProfile"> 
                       <button onClick={handleLogout} className="userLogoutBtn">Log Out</button>
-                        <button className="userUpdateprofileBtn" onClick={handleNavigateToProfile}>Profile</button>
+                        
+                <Link to={`/Profile/${user.id}`}>
+                <button className="userUpdateprofileBtn">Profile</button>
+                </Link>
                         {/* <button>Welcome {user.firstName}</button> */}
                     </div>
                 </>

@@ -131,6 +131,14 @@ input {
   background-color: #259;
   color: #fff;
 }
+.userLogInBtn{
+  background-color: rgb(154, 202, 91);
+  
+}
+.userSignupBtn{
+  background-color: blue;
+  color: white;
+}
 .usercartBtn{
   background-color: gold;
 }

@@ -17,19 +17,20 @@ app.use(
       typeof value === "bigint" ? value.toString() : value,
   }),
 );
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  }),
+    origin: "http://localhost:5173", // Replace with your frontend URL
+    credentials: true, // Allow cookies to be sent
+  })
 );
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/products", producsRouter);
 app.use("/api/users", users);
 app.use("/api/users", messages);
-app.use("/api/cart" ,cart), 
+app.use("/api/cart", cart),
 
-app.listen(3000, () => {
-  console.log("server running");
-});
+  app.listen(3000, () => {
+    console.log("server running");
+  });

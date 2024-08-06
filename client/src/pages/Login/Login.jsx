@@ -10,9 +10,7 @@ function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const changeUserInformation = useUserStore(
-    (state) => state.changeUserInformation,
-  );
+  const changeUserInformation = useUserStore((state) => state.changeUserInformation);
 
   async function handleSubmit(formState) {
     try {
@@ -21,22 +19,26 @@ function Login() {
       const response = await axios.post(
         `${api_url}/api/users/login`,
         formState,
+        {withCredentials:true}
       );
       const data = response.data;
       console.log(data.data);
       if (data.success) {
+        // Store the JWT token in local storage
+        localStorage.setItem('jwt_token', data.token);
+        
         changeUserInformation(data.data);
         if (data.data.role === "admin") {
           navigate("/AdminHome");
         } else {
-          navigate("/");
+          navigate("/FeaturedProducts");
         }
       } else {
         setError("Login failed");
       }
     } catch (error) {
       console.log(error);
-      setError("user not found");
+      setError("User not found");
     } finally {
       setLoading(false);
     }

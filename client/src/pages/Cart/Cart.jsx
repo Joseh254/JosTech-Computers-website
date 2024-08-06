@@ -8,13 +8,16 @@ function Cart() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Function to fetch cart items
     const fetchCartItems = async () => {
       try {
-        // Replace `your_jwt_token` with the actual token
-        const token = localStorage.getItem(
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzd29yZCI6Impvc2VoIiwiaWF0IjoxNzIwMzUxODU4fQ.-kJW4UlDGnfOnh36dZ8g62KWD0VuQS5Hr6CnyyWc3nA",
-        );
+        const token = localStorage.getItem(jwt_token);
+        
+console.log('Token from local storage:', token);
+
+        if (!token) {
+          throw new Error("No token found");
+        }
+  
         const response = await fetch(`${api_url}/api/cart/GetUserCart/`, {
           method: "GET",
           headers: {
@@ -22,26 +25,26 @@ function Cart() {
             "Content-Type": "application/json",
           },
         });
-        console.log(response);
-
+  
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error("Failed to fetch cart items");
         }
-
+  
         const data = await response.json();
         setCartItems(data);
       } catch (error) {
-        setError(error);
+        setError(error.message);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchCartItems();
   }, []);
+  
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div>

@@ -46,7 +46,7 @@ function AdminProducts() {
 
     function handleGoToAddProduct() {
       navigate("/AddProduct");
-    }
+    } 
     handleGoToAddProduct();
   }
   if (loading) {

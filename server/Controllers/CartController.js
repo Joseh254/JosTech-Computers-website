@@ -7,7 +7,6 @@ export async function AddCart(request, response) {
   const { userid, productid } = request.body;
 
   try {
-
     // Ensure the user exists
     const user = await prisma.jostech_users.findUnique({
       where: { id: userid },
@@ -43,50 +42,49 @@ export async function AddCart(request, response) {
 
 // Function to get cart items for a user
 export async function GetUserCart(request, response) {
-  const { id } = request.params;
-  try {
-    const user = await prisma.jostech_users.findUnique({
-      where: { id: id }
-    });
+  const authHeader = request.headers.authorization;
 
-    if (!user) {
-      return response.status(404).json({ success: false, message: "Unauthorized" });
+  if (!authHeader) {
+    return response.status(401).json({ success: false, message: "Unauthorized. No token provided." });
+  }
+
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
+
+  try {
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    const userId = decodedToken.id;
+
+    if (!userId) {
+      return response.status(400).json({ success: false, message: "Invalid token." });
     }
 
     const cartItems = await prisma.cart.findMany({
-      where: { userid: id },
-      include: {
-        product: true,
-      },
+      where: { userid: userId },
+      include: { product: true },
     });
 
     return response.status(200).json({ success: true, data: cartItems });
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
     return response.status(500).json({ success: false, message: "There was an error fetching the cart items" });
   }
 }
 
-
-
+// Function to delete a cart item
 export async function deleteCartItem(request, response) {
   const { id } = request.params;
   const authHeader = request.headers.authorization;
 
-  // Check if the Authorization header is present
   if (!authHeader) {
     return response.status(401).json({ message: "Unauthorized. No token provided." });
   }
 
-  // Extract token from possible formats
   const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
 
   try {
-    // Verify the token using the secret key from environment variables
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET); // Ensure JWT_SECRET is set in .env
     const userId = decodedToken.id;
 
-    // Find the cart item and check ownership
     const cartItem = await prisma.cart.findUnique({
       where: { id: id }
     });
@@ -95,11 +93,10 @@ export async function deleteCartItem(request, response) {
       return response.status(404).json({ message: "Cart item not found." });
     }
 
-    if (cartItem.userId !== userId) {
+    if (cartItem.userid !== userId) { 
       return response.status(403).json({ message: "Forbidden. You do not own this cart item." });
     }
 
-    // Delete the cart item
     await prisma.cart.delete({
       where: { id: id }
     });

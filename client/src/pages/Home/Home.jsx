@@ -5,6 +5,11 @@ import Homedatatestimony from "../../../Data/Homedatatestimony";
 import { AiOutlineMenu } from "react-icons/ai";
 import Homeabout from "../../../Data/Homeabout";
 
+const textArray = ['Welcome', 'to', 'the', 'React', 'Typing', 'Animator'];
+
+
+
+
 function Home() {
   return (
     <>
@@ -38,6 +43,7 @@ function Home() {
             <h1>Welcome</h1>
 
             <h4>to </h4>
+
             <h2> JosTech Computers! </h2>
             <p>
               We provide top-notch tech solutions to meet all your computing
