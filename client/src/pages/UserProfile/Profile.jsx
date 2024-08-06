@@ -29,9 +29,6 @@ function Profile() {
             `${api_url}/api/users/getOneUser/${userId}`,
             { withCredentials: true },
           );
-          console.log(response);
-          
-          console.log(response);
           
           if (response.data.success) {
             formik.setValues(response.data.data);
@@ -101,7 +98,7 @@ function Profile() {
           { withCredentials: true },
         );
         if (response.data.success) {
-          toast("user updated successfully", { theme: "success" });
+          toast("profile updated successfully", { theme: "success" });
           formik.resetForm();
           navigate("/");
         } else {
@@ -121,7 +118,9 @@ function Profile() {
 <div className="EditProfile">
       <div className="editUserProfileContainer">
         <h1>Update Your Profile</h1>
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit} >
+
+          <img src={user.profileImage} alt={user.firstName} />
           <div className="editProfile">
             <label>First Name</label>
             <input
@@ -156,7 +155,7 @@ function Profile() {
             />
           </div>
 
-          <div className="uploadimagewrapper">
+          <div className="uploaduserimagewrapper">
             <input type="file" className="file" onChange={handleChange} />
             <button
               type="button"
@@ -174,7 +173,7 @@ function Profile() {
           </div>
 
           {error && <p className="error">{error}</p>}
-          <button type="submit" className="AddProfilebtn" disabled={loading}>
+          <button type="submit" className="updateProfilebtn" disabled={loading}>
             {loading ? "Please wait..." : "Update profile"}
           </button>
         </form>
