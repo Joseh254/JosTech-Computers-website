@@ -21,32 +21,31 @@ function AdminProfile() {
   const [imageUrl, setImageUrl] = useState("");
   const user = useUserStore((state) => state.user);
 
-  // Fetch user data
-  const fetchUser = async () => {
-    if (user && user.role === "admin") {
-      try {
-        const response = await axios.get(
-          `${api_url}/api/users/getOneUser/${userId}`,
-          { withCredentials: true }
-        );
-
-        if (response.data.success) {
-          formik.setValues(response.data.data);
-          setImageUrl(response.data.data.profileImage || "");
-          setImagePreview(response.data.data.profileImage || "");
-        } else {
-          setError("Failed to fetch user data.");
-        }
-      } catch (error) {
-        setError("Failed to fetch user data: " + error.message);
-      }
-    } else {
-      setError("Unauthorized");
-      navigate("/Page404");
-    }
-  };
-
   useEffect(() => {
+    const fetchUser = async () => {
+      if (user && user.role === "admin") {
+        try {
+          const response = await axios.get(
+            `${api_url}/api/users/getOneUser/${userId}`,
+            { withCredentials: true }
+          );
+
+          if (response.data.success) {
+            formik.setValues(response.data.data);
+            setImageUrl(response.data.data.profilePicture || "");
+            setImagePreview(response.data.data.profilePicture || "");
+          } else {
+            setError("Failed to fetch user data.");
+          }
+        } catch (error) {
+          setError(error.message);
+        }
+      } else {
+        setError("Unauthorized");
+        navigate("/Page404");
+      }
+    };
+
     fetchUser();
   }, [user, userId, navigate]);
 
@@ -69,7 +68,7 @@ function AdminProfile() {
 
       if (response.data.secure_url) {
         setImageUrl(response.data.secure_url);
-        formik.setFieldValue("profileImage", response.data.secure_url);
+        formik.setFieldValue("profilePicture", response.data.secure_url);
       } else {
         toast("Failed to upload image. Please try again.", { theme: "failure" });
       }
@@ -82,9 +81,10 @@ function AdminProfile() {
 
   function handleChange(e) {
     const file = e.target.files[0];
+    setImage(file);
+
     if (file) {
       const previewUrl = URL.createObjectURL(file);
-      setImage(file);
       setImagePreview(previewUrl);
     }
   }
@@ -94,7 +94,7 @@ function AdminProfile() {
       firstName: "",
       lastName: "",
       email: "",
-      profileImage: "",
+      profilePicture: "",
     },
     onSubmit: async (values) => {
       if (user) {
@@ -108,13 +108,14 @@ function AdminProfile() {
           );
           if (response.data.success) {
             toast("Profile updated successfully", { theme: "success" });
-            // Refetch user data to ensure the latest data is shown
-            fetchUser();
+            // Optionally navigate or reset form
+            // formik.resetForm();
+            // navigate("/Admin");
           } else {
             setError("Failed to update profile. Please try again.");
           }
         } catch (error) {
-          setError("Failed to update profile: " + error.message);
+          setError(error.message);
         } finally {
           setLoading(false);
         }
@@ -131,11 +132,7 @@ function AdminProfile() {
           <h1>Update Your Profile</h1>
           <form onSubmit={formik.handleSubmit}>
             <div className="profileImageWrapper">
-              <img
-                src={imagePreview || formik.values.profileImage || user.profileImage || ""}
-                alt="Profile"
-                className="profileImage"
-              />
+              <img src={imagePreview || user.profilePicture} alt="Profile" />
             </div>
             <div className="editProfile">
               <label>First Name</label>
