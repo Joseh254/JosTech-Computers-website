@@ -2,12 +2,14 @@ import express from "express";
 import producsRouter from "./Routes/Products.route.js";
 import users from "./Routes/usersroute.js";
 import cart from "./Routes/cartRoute.js";
+import cookieParser from 'cookie-parser';
 import cors from "cors";
 import messages from "./Routes/user_messagesRoute.js";
 import { config } from "dotenv";
 
 config();
 const app = express();
+app.use(cookieParser());
 app.use(
   express.json({
     reviver: (key, value) =>

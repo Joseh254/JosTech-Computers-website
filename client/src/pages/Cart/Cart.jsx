@@ -1,35 +1,24 @@
 import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 import "./Cart.css";
 import { api_url } from "../../../utills/config";
+import useUserStore from "../../../store/userStore";
+import axios from "axios"
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const user = useUserStore((state) => state.user);
 
   useEffect(() => {
     const fetchCartItems = async () => {
+      console.log(user);
+      
       try {
-        const token = localStorage.getItem(jwt_token);
+        const response = await axios.get(`${api_url}/api/cart/GetUserCart/${user.id}`,{withCredentials:true});
+        console.log(response);
         
-console.log('Token from local storage:', token);
-
-        if (!token) {
-          throw new Error("No token found");
-        }
-  
-        const response = await fetch(`${api_url}/api/cart/GetUserCart/`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
-  
-        if (!response.ok) {
-          throw new Error("Failed to fetch cart items");
-        }
-  
         const data = await response.json();
         setCartItems(data);
       } catch (error) {
@@ -38,10 +27,9 @@ console.log('Token from local storage:', token);
         setLoading(false);
       }
     };
-  
+
     fetchCartItems();
-  }, []);
-  
+  }, [user]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;

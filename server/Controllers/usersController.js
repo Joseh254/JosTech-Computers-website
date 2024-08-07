@@ -62,12 +62,14 @@ export async function loginUser(request, response) {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      profilePicture:user.profilePicture
     };
 
     // Sign the token
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: '100h',
-    });
+    const token = jwt.sign(payload, process.env.JWT_SECRET);
+    //   add this after jwt_secret {
+    //   expiresIn: '100h',
+    // }
 
     // Set the token in an HTTP-only cookie
     response.cookie('access_token', token, {
@@ -92,6 +94,7 @@ try {
       email:true,
       role:true,
       createdAt:true,
+      profilePicture,
       
     }
   })

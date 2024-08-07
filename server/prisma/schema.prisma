@@ -20,7 +20,7 @@ model jostech_users {
   email     String   @unique
   password  String
   role      String?  @default("user")
-  profilePicture String? @default("https://images.app.goo.gl/yr3kamRya3xRAhFM6")
+  profilePicture String? @default("https://res.cloudinary.com/dukptptve/image/upload/v1723039835/d4vsgv1jw07ihuavhilo.png")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   cart      cart[]
