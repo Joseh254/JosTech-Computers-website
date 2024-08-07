@@ -7,3 +7,18 @@
   text-transform: capitalize;
   background-color: #9ecbdd;
 }
+
+.adminHome {
+  padding: 20px;
+}
+
+.adminwelcomemessage {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.chartContainer {
+  max-width: 600px;
+  margin: auto;
+}
+
