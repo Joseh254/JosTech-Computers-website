@@ -94,7 +94,7 @@ try {
       email:true,
       role:true,
       createdAt:true,
-      profilePicture,
+      profilePicture:true,
       
     }
   })
