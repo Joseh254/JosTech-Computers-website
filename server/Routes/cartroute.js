@@ -3,6 +3,6 @@ import { AddCart, GetUserCart, deleteCartItem } from "../Controllers/CartControl
 import { verifyToken } from "../Middleware/VerifyToken.js";
 const router = Router();
 router .post("/AddCart", AddCart)
-router.get("/GetUserCart", GetUserCart)
-router.delete("/deleteCartItem/:id", verifyToken,deleteCartItem)
-export default router
+router.get("/GetUserCart/:userid/",verifyToken, GetUserCart)
+router.delete("/deleteCartItem/:id",verifyToken,deleteCartItem)
+export default router 

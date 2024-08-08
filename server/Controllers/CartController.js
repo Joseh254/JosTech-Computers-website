@@ -31,7 +31,7 @@ const prisma = new PrismaClient();
     try {
     
       const cartItems = await prisma.cart.findMany({
-        where: { userid: id },
+        where: { id: id },
         include: { product: true }
       });
   
@@ -46,7 +46,11 @@ const prisma = new PrismaClient();
 
   export async function deleteCartItem(request, response) {
     const { id } = request.params;
-  
+
+    const productExistInTheCart = await prisma.cart.findFirst({where:{id:id}})
+    if(!productExistInTheCart){
+      return response.status(404).json({success:false,message:"Product Not Found "})
+    }
     try {
       await prisma.cart.delete({
         where:{id: id}

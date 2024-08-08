@@ -57,7 +57,7 @@ function Contact() {
         `${api_url}/api/users/writeMessages`,
         values,
       );
-      console.log(response);
+      formik.resetForm()
       toast("message sent", { theme: "success" });
     } catch (error) {
       setError(toast(error.message, { theme: "failure" }));

@@ -10,9 +10,14 @@ export function verifyToken(request, response, next) {
   jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
     if (error) {
       console.log(error.message);
+      console.error(error); 
+      
       return response.status(500).json({ success: false, message: "Unauthorized" });
     }
     request.user = decoded;
+    console.log(decoded);
+     
     next();
   });
+ 
 }

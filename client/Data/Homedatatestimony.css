@@ -1,76 +1,11 @@
 .testimonies {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
   justify-content: center;
-
+  align-items: center;
   padding: 1rem;
-}
-
-@media screen and (max-width: 68.125em) {
-  .testimonies {
-    gap: 1rem;
-  }
-}
-
-@media screen and (max-width: 41.0625em) {
-  .testimonies {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  /* 
-  .jostechh{
-    width: 50rem;
-  } */
-}
-
-.thetestimony {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-@media screen and (max-width: 41.0625em) {
-  .thetestimony {
-    width: 40rem;
-    border: 1px solid grey;
-    padding: 1rem;
-  }
-}
-
-@media screen and (max-width: 26.875em) {
-  .thetestimony {
-    width: 34rem;
-  }
-}
-
-@media screen and (max-width: 23.75em) {
-  .thetestimony {
-    width: 30rem;
-  }
-}
-
-@media screen and (max-width: 20em) {
-  .thetestimony {
-    width: 25rem;
-  }
-}
-@media screen and (max-width: 18.3125em) {
-  .thetestimony {
-    width: 20rem;
-  }
-}
-.jostech {
-  display: flex;
-  flex-direction: column;
-  width: 25rem;
-  padding: 1rem;
-}
-
-.jostechh {
-  display: flex;
-  flex-direction: column;
-  width: 25rem;
+  min-width: 100%;
   padding: 1rem;
 }
 
@@ -79,6 +14,32 @@
   width: 6rem;
   height: 6rem;
 }
+
+
+.thetestimony {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+ 
+}
+
+.jostech {
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  padding: 1rem;
+  
+}
+
+.jostechh {
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  padding: 1rem;
+  border: black 1px solid;
+}
+
 .otherssaying {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -87,6 +48,7 @@
 
 .actualsay {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+   border: black 1px solid;
 }
 .p11 {
   color: #fb904a;
@@ -110,4 +72,4 @@
   width: 60%;
   padding: 0.6rem;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-}
+} 
