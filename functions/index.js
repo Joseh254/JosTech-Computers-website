@@ -1,19 +1,45 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+import functions from 'firebase-functions';
+import express from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import { Sequelize } from 'sequelize';
 
-const {onRequest} = require("firebase-functions/v2/https");
-const logger = require("firebase-functions/logger");
+// Initialize Express app
+const app = express();
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
+// Access environment variables
+const { name: dbName, user: dbUser, password: dbPassword, host: dbHost } = functions.config().database;
 
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+// Initialize Sequelize
+const sequelize = new Sequelize(`postgresql://${dbUser}:${dbPassword}@${dbHost}:5432/${dbName}`, {
+  dialect: 'postgres',
+  logging: false,
+});
+
+// Middleware
+app.use(cookieParser());
+app.use(express.json());
+app.use(cors({
+  origin: 'https://jostech-f26ad.web.app/', // Replace with your frontend URL
+  credentials: true,
+}));
+app.use(express.urlencoded({ extended: true }));
+
+// Routes
+import productsRouter from './Routes/Products.route.mjs';
+import usersRouter from './Routes/usersroute.mjs';
+import messagesRouter from './Routes/user_messagesRoute.mjs';
+import cartRouter from './Routes/cartRoute.mjs';
+
+app.use('/api/products', productsRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/users', messagesRouter);
+app.use('/api/cart', cartRouter);
+
+// Test database connection
+sequelize.authenticate()
+  .then(() => console.log('Database connection established successfully.'))
+  .catch(err => console.error('Unable to connect to the database:', err));
+
+// Export the Express app as a Cloud Function
+export const api = functions.https.onRequest(app);

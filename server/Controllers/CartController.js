@@ -2,49 +2,58 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function AddCart(request, response) {
-  try {
-    const { productId, quantity } = request.body;
-    const userId = request.user.userId; // Access userId from request.user
-
-    // Check if the user already has a cart
-    let cart = await prisma.cart.findUnique({
-      where: { userId },
-    });
-
-    if (!cart) {
-      // Create a new cart if one doesn't exist
-      cart = await prisma.cart.create({
-        data: { userId },
-      });
+  export async function AddCart (request, response) {
+    const {userid,productid}= request.body
+   try {
+    
+    const ExistingcartProduct = await prisma.cart.findFirst({
+  where:{userid,productid}
+    })
+    if (ExistingcartProduct){
+      return response.status(400).json({success:false, message:"Product already in cart"})
     }
-
-    // Add item to the cart
-    await prisma.cartItem.create({
-      data: {
-        cartId: cart.id,
-        productId,
-        quantity,
-      },
+    const cartProduct = await prisma.cart.create({
+      data:{
+        userid,
+        productid,
+      }
     });
-
-    return response.status(200).json({ success: true, message: "Item added to cart." });
-
-  } catch (error) {
+    response.status(201).json({success:true, data: cartProduct})
+   } catch (error) {
     console.log(error.message);
-    return response.status(500).json({ success: false, message: "Internal server error!" });
+    return response.status(400).json({success:false,message:"An error occured when adding item to cart"})
+   }
   }
-}
-
-
-
-
-
-export async function GetUserCart(request, response) {
-
-}
-
-
-export async function deleteCartItem(request, response) {
   
-}
+  export async function GetUserCart(req, res) {
+    const { id } = req.params; 
+  
+    try {
+    
+      const cartItems = await prisma.cart.findMany({
+        where: { userid: id },
+        include: { product: true }
+      });
+  
+      
+      res.status(200).json({ success: true, cartProduct: cartItems });
+    } catch (error) {
+      console.error("Error fetching cart items:", error.message);
+      res.status(500).json({ success: false, message: "An error occurred while fetching the cart" });
+    }
+  }
+
+
+  export async function deleteCartItem(request, response) {
+    const { id } = request.params;
+  
+    try {
+      await prisma.cart.delete({
+        where:{id: id}
+      })
+      response.status(204).json({success:true, message:"product removed from cart"})
+    } catch (error) {
+      console.log(error.message);
+      return response.status(404).json({success:false, message:" cart Product not found"})
+    }
+  }

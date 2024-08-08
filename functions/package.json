@@ -14,8 +14,12 @@
   },
   "main": "index.js",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
     "firebase-admin": "^12.1.0",
-    "firebase-functions": "^5.0.0"
+    "firebase-functions": "^5.0.1",
+    "sequelize": "^6.37.3"
   },
   "devDependencies": {
     "eslint": "^8.15.0",
