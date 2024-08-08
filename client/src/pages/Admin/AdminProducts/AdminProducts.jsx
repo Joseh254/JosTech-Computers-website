@@ -74,7 +74,7 @@ function AdminProducts() {
                 <Link to={`/EditProduct/${product.id}`}>
                   <button className="editbtn">Edit</button>
                 </Link>
-                <button
+                <button 
                   onClick={() => handleDeleteProduct(product.id)}
                   className="deleteproductsbtn"
                 >

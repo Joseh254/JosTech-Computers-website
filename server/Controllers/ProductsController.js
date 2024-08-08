@@ -47,7 +47,7 @@ export async function getall(request, response) {
     response.status(200).json({ success: true, data: products });
   } catch (error) {
     console.log(error.message);
-    response.status(500).json({ success: false, message: "An error occured" });
+    return response.status(500).json({ success: false, message: "An error occured" });
   }
 }
 

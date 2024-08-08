@@ -112,7 +112,7 @@ function Profile() {
       profilePicture: "",
     },
     onSubmit: async (values) => {
-      if (user) {
+      if (user) { 
         try {
           setLoading(true);
           setError("");

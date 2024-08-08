@@ -8,4 +8,7 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: "./test/setup.js",
   },
+  build: {
+    outDir: "build", // Change the output directory from "dist" to "build"
+  },
 });

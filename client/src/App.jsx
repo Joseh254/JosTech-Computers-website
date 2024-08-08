@@ -43,12 +43,12 @@ function App() {
   }, [user]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter> 
       {!isAdmin && <Header />}
       {isAdmin && <AdminHeader />}
       <Routes>
         {isAdmin ? (
-          <>
+          <> 
             <Route path="/EditProduct/:productId" element={<EditProduct />} />
             <Route path="/AdminProfile/:userId" element={<AdminProfile />} />
             <Route path="/Page404" element={<Page404 />} />

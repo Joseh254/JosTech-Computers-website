@@ -37,7 +37,7 @@ function Topheader() {
  
   const handleLoginToggle = () => {
     navigate("/Login");
-  };
+  }; 
 
   const handleLogout = () => {
     changeUserInformation(null);
