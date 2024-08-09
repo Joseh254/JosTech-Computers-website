@@ -109,7 +109,7 @@ function FeaturedproductsProducts() {
                 onClick={() => handleAddToCart(product.id)}
                 disabled={addingToCart[product.id]}
                 style={{
-                  backgroundColor: cartItems.includes(product.id) ? 'lightgrey' : 'initial',
+                  backgroundColor: cartItems.includes(product.id) ? 'blue' : 'black',
                   cursor: cartItems.includes(product.id) ? 'not-allowed' : 'pointer',
                 }}
               >
