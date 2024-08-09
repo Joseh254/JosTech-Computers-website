@@ -54,31 +54,26 @@ export async function loginUser(request, response) {
         .status(401)
         .json({ success: false, message: "Wrong email or password" });
     }
+else{
+  const payload = {
+    id: user.id,
+    role: user.role,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    profilePicture:user.profilePicture
+  };
 
-    // Create JWT payload
-    const payload = {
-      id: user.id,
-      role: user.role,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      profilePicture:user.profilePicture
-    };
+  // Sign the token
+  const token = jwt.sign(payload, process.env.JWT_SECRET);
+  //   add this after jwt_secret {
+  //   expiresIn: '100h',
+  // }
 
-    // Sign the token
-    const token = jwt.sign(payload, process.env.JWT_SECRET);
-    //   add this after jwt_secret {
-    //   expiresIn: '100h',
-    // }
-
-    // Set the token in an HTTP-only cookie
-    response.cookie('access_token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === true, // Set to true in production
-      sameSite: 'Strict', // Adjust as needed
-    });
-
-    response.status(200).json({ success: true, data: payload });
+  // Set the token in an HTTP-only cookie
+  response.cookie('access_token', token).json({ success: true, data: payload });
+}
+ 
   } catch (error) {
     console.error(error.message);
     response.status(500).json({ success: false, message: "Internal server error" });

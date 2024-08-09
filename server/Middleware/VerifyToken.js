@@ -5,7 +5,7 @@ export function verifyToken(request, response, next) {
 
   if (!token) {
     return response.status(401).json({ message: "Unauthorized. No token provided." });
-  }
+  } 
 
   jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
     if (error) {
@@ -14,10 +14,8 @@ export function verifyToken(request, response, next) {
       
       return response.status(500).json({ success: false, message: "Unauthorized" });
     }
-    request.user = decoded;
-    console.log(decoded);
-     
-    next();
+    request.user = decoded;     
+ next();
   });
  
 }

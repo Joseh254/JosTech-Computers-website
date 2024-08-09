@@ -73,5 +73,5 @@ model cart {
   user      jostech_users @relation(fields: [userid], references: [id])
   productid String
   product   products      @relation(fields: [productid], references: [id])
-  creaeAt   DateTime      @default(now())
+  createdAt DateTime      @default(now())
 }

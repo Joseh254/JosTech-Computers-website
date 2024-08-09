@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 import producsRouter from "./Routes/Products.route.js";
 import users from "./Routes/usersroute.js";
 import cart from "./Routes/cartRoute.js";
@@ -27,7 +27,7 @@ app.use(
   })
 );
 app.use(express.urlencoded({ extended: true }));
-
+app.get("/", (request,response)=>{response.send("<h1>Jostech computers..</h1>")})
 app.use("/api/products", producsRouter);
 app.use("/api/users", users);
 app.use("/api/users", messages);
