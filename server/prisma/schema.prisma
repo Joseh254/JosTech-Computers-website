@@ -66,12 +66,13 @@ model desktops {
   desktopImage       String @map("desktopImage")
   @@map("desktops")
 }
-
 model cart {
   id        String        @id @default(uuid())
   userid    String
   user      jostech_users @relation(fields: [userid], references: [id])
   productid String
   product   products      @relation(fields: [productid], references: [id])
+  quantity  Int           @default(1) // Default to 1 if not specified
   createdAt DateTime      @default(now())
 }
+

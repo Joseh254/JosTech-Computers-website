@@ -28,7 +28,7 @@ function Cart() {
         if (data.success) {
           setCartItems(data.cartProduct);
           const initialQuantities = data.cartProduct.reduce((acc, item) => {
-            acc[item.id] = item.quantity || 1; // Assuming you have quantity in your cart data
+            acc[item.id] = item.quantity || 1; // Default to 1 if quantity is not available
             return acc;
           }, {});
           setQuantities(initialQuantities);
@@ -46,14 +46,19 @@ function Cart() {
   }, [user]);
 
   const handleQuantityChange = async (itemId, newQuantity) => {
+    if (newQuantity <= 0) {
+      setError("Quantity must be greater than zero");
+      return;
+    }
+
     setQuantities((prevQuantities) => ({
       ...prevQuantities,
       [itemId]: newQuantity,
     }));
-
+  
     try {
-      await axios.put(
-        `${api_url}/api/cart/updateCartItem/${itemId}`,
+      await axios.patch(
+        `${api_url}/api/cart/updateCart/${itemId}`,
         { quantity: newQuantity },
         { withCredentials: true }
       );
@@ -100,26 +105,25 @@ function Cart() {
             <div key={item.id} className="cartItem">
               <h2>{item.product.productName}</h2>
               <p>Price: Ksh {item.product.productPrice}</p>
-            <div className="ProductsToPurchase">
-              <label>Items to Purchase</label>
-            <input
-                type="number"
-                min="1"
-                value={quantities[item.id] || 1}
-                onChange={(e) => handleQuantityChange(item.id, Number(e.target.value))}
-              />
-            </div>
+              <div className="ProductsToPurchase">
+                <label>Items to Purchase</label>
+                <input
+                  type="number"
+                  min="1"
+                  value={quantities[item.id] || 1}
+                  onChange={(e) => handleQuantityChange(item.id, Number(e.target.value))}
+                />
+              </div>
               <button onClick={() => handleDelete(item.id)} className="removeItemFromCartBtn">
                 {loading ? "Removing..." : "Remove item"}
               </button>
             </div>
           ))}
-
         </div>
       )}
-             <div className="cartTotal">
-            <h2>Total: Ksh {calculateTotal()}</h2>
-          </div>
+      <div className="cartTotal">
+        <h2>Total: Ksh {calculateTotal()}</h2>
+      </div>
     </div>
   );
 }

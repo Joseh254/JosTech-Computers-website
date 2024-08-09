@@ -11,13 +11,16 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: red solid 2px;
     padding: 1rem;
+    background: linear-gradient(100deg, #616898 2%, #ffffff 100%);
+    box-shadow: 5px 5px 10px 1px #000000;
 }
 .ProductsToPurchase{
     display: flex;
     flex-direction: column;
     font-size: 1.7rem;
+    color: gold;
+    font-weight: 700;
 }
 .cartItem input{
     width: 30%;

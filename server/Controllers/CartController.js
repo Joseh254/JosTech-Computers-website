@@ -99,3 +99,37 @@ export async function deleteCartItem(request, response) {
       });
   }
 }
+
+export async function updateCart(request, response) {
+  const { id } = request.params; // Get the cart item ID from the route parameters
+  const { quantity } = request.body; // Get the new quantity from the request body
+
+  // Validate input
+  if (typeof quantity !== 'number' || quantity <= 0) {
+    return response.status(400).json({ message: 'Invalid quantity' });
+  }
+
+  try {
+    // Check if the cart item exists
+    const existingCartItem = await prisma.cart.findUnique({
+      where: { id: id },
+    });
+
+    if (!existingCartItem) {
+      return response.status(404).json({ message: 'Cart item not found' });
+    }
+
+    // Update the cart item
+    const updatedCartItem = await prisma.cart.update({
+      where: { id: id },
+      data: { quantity: quantity }
+    });
+
+    // Return success response
+    response.status(200).json({ success: true, cartItem: updatedCartItem });
+  } catch (error) {
+    // Handle errors and return a failure response
+    console.error('Error updating cart item:', error);
+    response.status(500).json({ message: 'Failed to update cart item' });
+  }
+}
