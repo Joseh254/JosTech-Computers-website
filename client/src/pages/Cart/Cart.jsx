@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Cookies from "js-cookie";
+import axios from "axios";
 import "./Cart.css";
 import { api_url } from "../../../utills/config";
 import useUserStore from "../../../store/userStore";
-import axios from "axios"
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -13,16 +12,27 @@ function Cart() {
 
   useEffect(() => {
     const fetchCartItems = async () => {
-      console.log(user);
-      
+      if (!user) {
+        setError("User not logged in");
+        setLoading(false);
+        return;
+      }
+
       try {
-        const response = await axios.get(`${api_url}/api/cart/GetUserCart/${user.id}`,{withCredentials:true});
-        console.log(response);
-        
-        const data = await response.json();
-        setCartItems(data);
+        const response = await axios.get(`${api_url}/api/cart/GetUserCart`, {
+          withCredentials: true,
+        });
+
+        // No need to parse response, axios handles it automatically
+        const data = response.data;
+
+        if (data.success) {
+          setCartItems(data.cartProduct);
+        } else {
+          setError(data.message || "Failed to fetch cart items");
+        }
       } catch (error) {
-        setError(error.message);
+        setError(error.response?.data?.message || error.message);
       } finally {
         setLoading(false);
       }
@@ -41,11 +51,11 @@ function Cart() {
         <p>Your cart is empty.</p>
       ) : (
         <ul>
-          {cartItems.map((product) => (
-            <li key={product.id}>
-              <h2>{product.productName}</h2>
-              <p>{product.productDescription}</p>
-              <p>Price: Ksh{product.productPrice}</p>
+          {cartItems.map((item) => (
+            <li key={item.id}>
+              <h2>{item.product.productName}</h2>
+              <p>{item.product.productDescription}</p>
+              <p>Price: Ksh {item.product.productPrice}</p>
             </li>
           ))}
         </ul>
