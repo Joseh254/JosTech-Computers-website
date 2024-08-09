@@ -51,7 +51,7 @@ function FeaturedproductsProducts() {
     }
 
     if (cartItems.includes(productId)) {
-      toast("This item is already in your cart.", { theme: "failure" });
+      toast("This item is already in your cart.", { theme: "warning" });
       return;
     }
 
