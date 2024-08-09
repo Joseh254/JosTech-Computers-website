@@ -45,17 +45,28 @@ function Cart() {
     fetchCartItems();
   }, [user]);
 
-  const handleQuantityChange = (itemId, newQuantity) => {
+  const handleQuantityChange = async (itemId, newQuantity) => {
     setQuantities((prevQuantities) => ({
       ...prevQuantities,
-      [itemId]: newQuantity
+      [itemId]: newQuantity,
     }));
+
+    try {
+      await axios.put(
+        `${api_url}/api/cart/updateCartItem/${itemId}`,
+        { quantity: newQuantity },
+        { withCredentials: true }
+      );
+    } catch (error) {
+      setError(error.response?.data?.message || error.message);
+    }
   };
 
   const handleDelete = async (itemId) => {
+    setLoading(true);
     try {
       const response = await axios.delete(`${api_url}/api/cart/deleteCartItem/${itemId}`, {
-        withCredentials: true
+        withCredentials: true,
       });
       if (response.data.success) {
         setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
@@ -64,6 +75,8 @@ function Cart() {
       }
     } catch (error) {
       setError(error.response?.data?.message || error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -87,20 +100,26 @@ function Cart() {
             <div key={item.id} className="cartItem">
               <h2>{item.product.productName}</h2>
               <p>Price: Ksh {item.product.productPrice}</p>
-              <input
+            <div className="ProductsToPurchase">
+              <label>Items to Purchase</label>
+            <input
                 type="number"
                 min="1"
                 value={quantities[item.id] || 1}
                 onChange={(e) => handleQuantityChange(item.id, Number(e.target.value))}
               />
-              <button onClick={() => handleDelete(item.id)}>Delete</button>
+            </div>
+              <button onClick={() => handleDelete(item.id)} className="removeItemFromCartBtn">
+                {loading ? "Removing..." : "Remove item"}
+              </button>
             </div>
           ))}
-          <div className="cartTotal">
-            <h2>Total: Ksh {calculateTotal()}</h2>
-          </div>
+
         </div>
       )}
+             <div className="cartTotal">
+            <h2>Total: Ksh {calculateTotal()}</h2>
+          </div>
     </div>
   );
 }

@@ -7,3 +7,33 @@
     padding: 1rem;
     min-width: 100%;
 }
+.cartItem{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: red solid 2px;
+    padding: 1rem;
+}
+.ProductsToPurchase{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.7rem;
+}
+.cartItem input{
+    width: 30%;
+}
+.removeItemFromCartBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: maroon;
+    width: 40%;
+    color: #fff;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+.cartTotal{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 2rem;
+}
