@@ -10,5 +10,6 @@ const router = Router();
 router.post("/AddCart", verifyToken, AddCart);
 router.get("/GetUserCart", verifyToken, GetUserCart);
 router.delete("/deleteCartItem/:id", verifyToken, deleteCartItem);
-router.patch("/updateCart/:id",verifyToken,updateCart)
+router.put('/updateCart/:id', verifyToken, updateCart);
+
 export default router;

@@ -99,10 +99,16 @@ export async function deleteCartItem(request, response) {
       });
   }
 }
-
 export async function updateCart(request, response) {
   const { id } = request.params; // Get the cart item ID from the route parameters
   const { quantity } = request.body; // Get the new quantity from the request body
+  const cartItem = await prisma.cart.findUnique({
+    where: { id: 'ce5f33cc-cee2-4c66-903c-ce12251a942c' },
+  });
+  console.log(cartItem);
+  
+  // Log the ID and quantity for debugging
+  console.log(`Updating cart item with ID: ${id} and quantity: ${quantity}`);
 
   // Validate input
   if (typeof quantity !== 'number' || quantity <= 0) {
@@ -116,6 +122,7 @@ export async function updateCart(request, response) {
     });
 
     if (!existingCartItem) {
+      console.log(`Cart item with ID: ${id} not found.`);
       return response.status(404).json({ message: 'Cart item not found' });
     }
 

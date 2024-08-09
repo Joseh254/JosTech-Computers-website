@@ -47,7 +47,7 @@ function Cart() {
 
   const handleQuantityChange = async (itemId, newQuantity) => {
     if (newQuantity <= 0) {
-      setError("Quantity must be greater than zero");
+      toast("Quantity must be greater than zero");
       return;
     }
 
@@ -58,7 +58,7 @@ function Cart() {
   
     try {
       await axios.put(
-        `${api_url}/api/cart/updateCart${itemId}`,
+        `${api_url}/api/cart/updateCart/${itemId}`,
         { quantity: newQuantity },
         { withCredentials: true }
       );
