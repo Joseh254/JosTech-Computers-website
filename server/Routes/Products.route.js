@@ -15,8 +15,8 @@ import { createdesktop, getdesktop } from "../Controllers/DesktopController.js";
 const router = Router();
 
 router.post("/create", createProduct);
-router.patch("/UpdateProduct/:id",UpdateProduct)
-router.get("/getOneProduct/:id",getOneProduct)
+router.patch("/UpdateProduct/:id", UpdateProduct);
+router.get("/getOneProduct/:id", getOneProduct);
 router.delete("/delete/:id", deleteProduct);
 router.get("/get", getall);
 router.post("/motherboard", createMotherboard);

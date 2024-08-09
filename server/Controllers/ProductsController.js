@@ -47,7 +47,9 @@ export async function getall(request, response) {
     response.status(200).json({ success: true, data: products });
   } catch (error) {
     console.log(error.message);
-    return response.status(500).json({ success: false, message: "An error occured" });
+    return response
+      .status(500)
+      .json({ success: false, message: "An error occured" });
   }
 }
 
@@ -82,41 +84,54 @@ export async function deleteProduct(request, response) {
   }
 }
 
-export async function UpdateProduct(request, response){
+export async function UpdateProduct(request, response) {
   const { id } = request.params;
-  const {productName, productPrice,productDescription,productImage,productsRemaining}= request.body;
+  const {
+    productName,
+    productPrice,
+    productDescription,
+    productImage,
+    productsRemaining,
+  } = request.body;
   try {
     const data = {};
     if (productName !== undefined) data.productName = productName;
     if (productPrice !== undefined) data.productPrice = productPrice;
-    if (productDescription !== undefined) data.productDescription = productDescription;
+    if (productDescription !== undefined)
+      data.productDescription = productDescription;
     if (productImage !== undefined) data.productImage = productImage;
-    if (productsRemaining !== undefined) data.productsRemaining = productsRemaining;
+    if (productsRemaining !== undefined)
+      data.productsRemaining = productsRemaining;
 
     const updatedProduct = await prisma.products.update({
       where: { id },
-      data: data
+      data: data,
     });
 
     return response.status(200).json({ success: true, data: updatedProduct });
   } catch (error) {
     console.log(error.message);
-    return response.status(500).json({success:false, message:"There was an error updating product"})
+    return response
+      .status(500)
+      .json({ success: false, message: "There was an error updating product" });
   }
 }
-export async function getOneProduct(request,response){
-  const {id} = request.params
+export async function getOneProduct(request, response) {
+  const { id } = request.params;
   try {
     const product = await prisma.products.findFirst({
-      where:{id:id}
-    })
-    if(!product){
-      return response.status(404).json({success:false, message:"Product not found"})
+      where: { id: id },
+    });
+    if (!product) {
+      return response
+        .status(404)
+        .json({ success: false, message: "Product not found" });
     }
-    return response.status(200).json({success:true, data:product})
+    return response.status(200).json({ success: true, data: product });
   } catch (error) {
     console.log(error.message);
-    return response.status(500).json({success:false, message:"There was an error getting product"})
-    
+    return response
+      .status(500)
+      .json({ success: false, message: "There was an error getting product" });
   }
 }

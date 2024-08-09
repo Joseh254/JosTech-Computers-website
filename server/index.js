@@ -2,7 +2,7 @@ import express, { response } from "express";
 import producsRouter from "./Routes/Products.route.js";
 import users from "./Routes/usersroute.js";
 import cart from "./Routes/cartRoute.js";
-import cookieParser from 'cookie-parser';
+import cookieParser from "cookie-parser";
 import cors from "cors";
 import messages from "./Routes/user_messagesRoute.js";
 import { config } from "dotenv";
@@ -22,17 +22,18 @@ app.use(
 
 app.use(
   cors({
-    origin: ["http://localhost:5173","https://jostech-f26ad.web.app/" ],// Replace with your frontend URL
+    origin: ["http://localhost:5173", "https://jostech-f26ad.web.app/"], // Replace with your frontend URL
     credentials: true, // Allow cookies to be sent
-  })
+  }),
 );
 app.use(express.urlencoded({ extended: true }));
-app.get("/", (request,response)=>{response.send("<h1>Jostech computers..</h1>")})
+app.get("/", (request, response) => {
+  response.send("<h1>Jostech computers..</h1>");
+});
 app.use("/api/products", producsRouter);
 app.use("/api/users", users);
 app.use("/api/users", messages);
 app.use("/api/cart", cart),
-
   app.listen(3000, () => {
     console.log("server running");
   });

@@ -6,7 +6,8 @@ const prisma = new PrismaClient();
 
 export async function createuser(request, response) {
   try {
-    const { firstName, lastName, email, password, role,profilePicture } = request.body;
+    const { firstName, lastName, email, password, role, profilePicture } =
+      request.body;
 
     const hashedPassword = bcrypt.hashSync(password, 10);
 
@@ -53,66 +54,72 @@ export async function loginUser(request, response) {
       return response
         .status(401)
         .json({ success: false, message: "Wrong email or password" });
+    } else {
+      const payload = {
+        id: user.id,
+        role: user.role,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        profilePicture: user.profilePicture,
+      };
+
+      // Sign the token
+      const token = jwt.sign(payload, process.env.JWT_SECRET);
+      //   add this after jwt_secret {
+      //   expiresIn: '100h',
+      // }
+
+      // Set the token in an HTTP-only cookie
+      response
+        .cookie("access_token", token)
+        .json({ success: true, data: payload });
     }
-else{
-  const payload = {
-    id: user.id,
-    role: user.role,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    email: user.email,
-    profilePicture:user.profilePicture
-  };
-
-  // Sign the token
-  const token = jwt.sign(payload, process.env.JWT_SECRET);
-  //   add this after jwt_secret {
-  //   expiresIn: '100h',
-  // }
-
-  // Set the token in an HTTP-only cookie
-  response.cookie('access_token', token).json({ success: true, data: payload });
-}
- 
   } catch (error) {
     console.error(error.message);
-    response.status(500).json({ success: false, message: "Internal server error" });
+    response
+      .status(500)
+      .json({ success: false, message: "Internal server error" });
   }
 }
 
-export async function getusers(request, response){
-try {
-  const users= await prisma.jostech_users.findMany({
-    select:{
-      firstName:true,
-      lastName:true,
-      email:true,
-      role:true,
-      createdAt:true,
-      profilePicture:true,
-      
+export async function getusers(request, response) {
+  try {
+    const users = await prisma.jostech_users.findMany({
+      select: {
+        firstName: true,
+        lastName: true,
+        email: true,
+        role: true,
+        createdAt: true,
+        profilePicture: true,
+      },
+    });
+    if (!users) {
+      return response
+        .status(404)
+        .json({ success: false, message: "Users Not Found" });
     }
-  })
-  if(!users){
-return response.status(404).json({success:false, message:"Users Not Found"})
+    return response.status(200).json({ success: true, data: users });
+  } catch (error) {
+    console.log(error.message);
+    return response
+      .status(404)
+      .json({ success: false, message: "There was an error getting users" });
   }
-  return response.status(200).json({success:true, data:users})
-} catch (error) {
-  console.log(error.message);
-  return response.status(404).json({success:false, message:"There was an error getting users"})
 }
-}
-
-
 
 export async function updateUserDetails(request, response) {
-  const { firstName, lastName, email, role, password, profilePicture } = request.body;
+  const { firstName, lastName, email, role, password, profilePicture } =
+    request.body;
   const { id } = request.params;
 
   try {
     const user = await prisma.jostech_users.findUnique({ where: { id: id } });
     if (!user) {
-      return response.status(400).json({ success: false, message: "User not found" });
+      return response
+        .status(400)
+        .json({ success: false, message: "User not found" });
     }
 
     const updatedUser = await prisma.jostech_users.update({
@@ -134,19 +141,26 @@ export async function updateUserDetails(request, response) {
       },
     });
 
-    return response.status(200).json({ success: true, message: "User updated successfully", data: updatedUser });
-
+    return response
+      .status(200)
+      .json({
+        success: true,
+        message: "User updated successfully",
+        data: updatedUser,
+      });
   } catch (error) {
     console.log(error.message);
-    return response.status(500).json({ success: false, message: "Internal server error!" });
+    return response
+      .status(500)
+      .json({ success: false, message: "Internal server error!" });
   }
 }
 
-export async function getOneUser(request, response){
-  const {id} = request.params
+export async function getOneUser(request, response) {
+  const { id } = request.params;
   try {
     const user = await prisma.jostech_users.findUnique({
-      where:{id:id},
+      where: { id: id },
       select: {
         firstName: true,
         lastName: true,
@@ -154,15 +168,17 @@ export async function getOneUser(request, response){
         profilePicture: true,
         role: true,
       },
-    })
-    if(!user){
-      return response.status(404).json({success:false, message:"User not found"})
+    });
+    if (!user) {
+      return response
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
-    return response.status(200).json({success:true, data:user})
-    
+    return response.status(200).json({ success: true, data: user });
   } catch (error) {
     console.log(error.message);
-    return response.status(500).json({success:false, message:"Internal server error!"})
-    
+    return response
+      .status(500)
+      .json({ success: false, message: "Internal server error!" });
   }
 }
