@@ -57,7 +57,7 @@ function Cart() {
     }));
   
     try {
-      await axios.patch(
+      await axios.put(
         `${api_url}/api/cart/updateCart/${itemId}`,
         { quantity: newQuantity },
         { withCredentials: true }
@@ -85,6 +85,13 @@ function Cart() {
     }
   };
 
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-KE', {
+      style: 'currency',
+      currency: 'KES',
+    }).format(amount);
+  };
+
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => {
       return total + (item.product.productPrice * (quantities[item.id] || 1));
@@ -104,7 +111,7 @@ function Cart() {
           {cartItems.map((item) => (
             <div key={item.id} className="cartItem">
               <h2>{item.product.productName}</h2>
-              <p>Price: Ksh {item.product.productPrice}</p>
+              <p>Price: {formatCurrency(item.product.productPrice)}</p>
               <div className="ProductsToPurchase">
                 <label>Items to Purchase</label>
                 <input
@@ -122,7 +129,7 @@ function Cart() {
         </div>
       )}
       <div className="cartTotal">
-        <h2>Total: Ksh {calculateTotal()}</h2>
+        <h2>Total: {formatCurrency(calculateTotal())}</h2>
       </div>
     </div>
   );
