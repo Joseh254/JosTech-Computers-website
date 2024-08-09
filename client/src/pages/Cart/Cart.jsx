@@ -58,7 +58,7 @@ function Cart() {
   
     try {
       await axios.put(
-        `${api_url}/api/cart/updateCart/${itemId}`,
+        `${api_url}/api/cart/updateCart${itemId}`,
         { quantity: newQuantity },
         { withCredentials: true }
       );
