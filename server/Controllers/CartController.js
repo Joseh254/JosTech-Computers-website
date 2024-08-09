@@ -3,27 +3,29 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function AddCart(request, response) {
-  const user = request.user;
+  const user = request.user;  // Assuming user is already verified and available from middleware
   const userId = user.id;
+  const { productid } = request.body;
 
   try {
-    const { productid } = request.body;
+    if (!productid) {
+      return response.status(400).json({ success: false, message: "Product ID is required" });
+    }
 
-    const NewCartItem = await prisma.cart.create({
+    const cartItem = await prisma.cart.create({
       data: {
         productid: productid,
-        userid: userId,
+        userid: userId
       },
     });
 
-    response.status(201).json({ success: true, data: NewCartItem });
+    response.status(201).json({ success: true, message: "Product added to cart", cartItem });
   } catch (error) {
-    console.error(error.message);
-    response
-      .status(500)
-      .json({ success: false, message: "Internal server error!" });
+    console.log("Error adding product to cart:", error.message);
+    response.status(500).json({ success: false, message: "An error occurred while adding the product to the cart" });
   }
 }
+
 
 export async function GetUserCart(request, response) {
   const user = request.user;

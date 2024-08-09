@@ -4,11 +4,14 @@ import { FaShoppingCart } from "react-icons/fa";
 import "./FeaturedproductsProducts.css";
 import { Link } from "react-router-dom";
 import { api_url } from "../../../utills/config";
+import useUserStore from "../../../store/userStore";
 
 function FeaturedproductsProducts() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [addingToCart, setAddingToCart] = useState({});
+  const user = useUserStore((state) => state.user);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -24,6 +27,33 @@ function FeaturedproductsProducts() {
 
     fetchProducts();
   }, []);
+
+  const handleAddToCart = async (productId) => {
+    if (!user) {
+      alert("Please log in first to add items to your cart.");
+      return;
+    }
+
+    setAddingToCart((prevState) => ({ ...prevState, [productId]: true }));
+
+    try {
+      const response = await axios.post(
+        `${api_url}/api/cart/AddCart`,
+        { productid: productId },
+        { withCredentials: true }
+      );
+      
+      if (response.data.success) {
+        alert("Item added to cart successfully!");
+      } else {
+        alert("Failed to add item to cart.");
+      }
+    } catch (error) {
+      alert(`Error adding item to cart: ${error.message}`);
+    } finally {
+      setAddingToCart((prevState) => ({ ...prevState, [productId]: false }));
+    }
+  };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -45,7 +75,7 @@ function FeaturedproductsProducts() {
 
         <section className="laptops">
           {products.map((product) => (
-            <div className="laptopcontainer" key={product.productId}>
+            <div className="laptopcontainer" key={product.id}>
               <img src={product.productImage} alt={product.productName} />
               <h1>{product.productName}</h1>
 
@@ -53,14 +83,21 @@ function FeaturedproductsProducts() {
                 <strike>was Ksh {product.productPrice + 300}</strike>
               </p>
               <h3>Now Ksh {product.productPrice}</h3>
-              <button>
-                <FaShoppingCart /> Add to Cart
+              <button
+                onClick={() => handleAddToCart(product.id)}
+                disabled={addingToCart[product.id]}
+              >
+                {addingToCart[product.id] ? (
+                  "Adding..."
+                ) : (
+                  <>
+                    <FaShoppingCart /> Add to Cart
+                  </>
+                )}
               </button>
 
               <div className="more">
-                {" "}
                 <Link to={`/product/${product.id}`}>
-                  {" "}
                   <h4 className="morebtnlink">More &rarr;</h4>
                 </Link>
               </div>
