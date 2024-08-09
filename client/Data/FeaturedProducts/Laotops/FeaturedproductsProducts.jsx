@@ -5,12 +5,14 @@ import "./FeaturedproductsProducts.css";
 import { Link } from "react-router-dom";
 import { api_url } from "../../../utills/config";
 import useUserStore from "../../../store/userStore";
+import toast from "react-simple-toasts";
 
 function FeaturedproductsProducts() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [addingToCart, setAddingToCart] = useState({});
+  const [cartItems, setCartItems] = useState([]);
   const user = useUserStore((state) => state.user);
 
   useEffect(() => {
@@ -25,12 +27,31 @@ function FeaturedproductsProducts() {
       }
     }
 
+    async function fetchCartItems() {
+      if (user) {
+        try {
+          const response = await axios.get(`${api_url}/api/cart/GetUserCart`, {
+            withCredentials: true,
+          });
+          setCartItems(response.data.cartProduct.map(item => item.product.id));
+        } catch (error) {
+          console.error("Error fetching cart items:", error.message);
+        }
+      }
+    }
+
     fetchProducts();
-  }, []);
+    fetchCartItems();
+  }, [user]);
 
   const handleAddToCart = async (productId) => {
     if (!user) {
-      alert("Please log in first to add items to your cart.");
+      toast("Please log in first to add items to your cart.", { theme: "failure" });
+      return;
+    }
+
+    if (cartItems.includes(productId)) {
+      toast("This item is already in your cart.", { theme: "failure" });
       return;
     }
 
@@ -44,12 +65,13 @@ function FeaturedproductsProducts() {
       );
       
       if (response.data.success) {
-        alert("Item added to cart successfully!");
+        setCartItems((prevState) => [...prevState, productId]);
+        toast("Item added to cart successfully!", { theme: "success" });
       } else {
-        alert("Failed to add item to cart.");
+        toast("Failed to add item to cart.", { theme: "failure" });
       }
     } catch (error) {
-      alert(`Error adding item to cart: ${error.message}`);
+      toast(`Error adding item to cart: ${error.message}`, { theme: "failure" });
     } finally {
       setAddingToCart((prevState) => ({ ...prevState, [productId]: false }));
     }
@@ -86,6 +108,10 @@ function FeaturedproductsProducts() {
               <button
                 onClick={() => handleAddToCart(product.id)}
                 disabled={addingToCart[product.id]}
+                style={{
+                  backgroundColor: cartItems.includes(product.id) ? 'lightgrey' : 'initial',
+                  cursor: cartItems.includes(product.id) ? 'not-allowed' : 'pointer',
+                }}
               >
                 {addingToCart[product.id] ? (
                   "Adding..."
