@@ -4,7 +4,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import useUserStore from '../../../store/userStore';
 import { api_url } from '../../../utills/config';
-import toast from "react-simple-toasts";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Profile.css";
 
 const cloudname = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
@@ -16,14 +17,11 @@ function Profile() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState(""); // Preview URL for selected image
-  const [imageLoading, setImageLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState(""); // URL for uploaded image
+  const [imagePreview, setImagePreview] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const user = useUserStore((state) => state.user);
 
   // Fetch user data
-  
-  
   const fetchUser = async () => {
     try {
       const response = await axios.get(
@@ -47,10 +45,9 @@ function Profile() {
   useEffect(() => {
     if (user) {
       fetchUser();
-      console.log(user);
       
     } else {
-      setError("Unauthorized");
+      toast.error("Unauthorized");
       navigate("/Page404");
     }
   }, [user, userId, navigate]);
@@ -62,10 +59,10 @@ function Profile() {
     }
   }, [imageUrl]);
 
-  async function handleImageUpload() {
+  const handleImageUpload = async () => {
     if (!image) {
-      toast("Please select an image to upload.", { theme: "failure" });
-      return;
+      console.log("No image selected.");
+      return "";
     }
 
     const payload = new FormData();
@@ -73,7 +70,6 @@ function Profile() {
     payload.append("upload_preset", preset);
 
     try {
-      setImageLoading(true);
       const response = await axios.post(
         `https://api.cloudinary.com/v1_1/${cloudname}/upload`,
         payload
@@ -82,27 +78,18 @@ function Profile() {
       if (response.data.secure_url) {
         setImageUrl(response.data.secure_url);
         setImagePreview(response.data.secure_url);
+        console.log("Image uploaded successfully:", response.data.secure_url);
+        return response.data.secure_url;
       } else {
         toast("Failed to upload image. Please try again.", { theme: "failure" });
+        return "";
       }
     } catch (error) {
+      console.error("Image upload error:", error);
       toast("Failed to upload image. Please try again.", { theme: "failure" });
-    } finally {
-      setImageLoading(false);
+      return "";
     }
-  }
-
-  function handleChange(e) {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      if (file.type.startsWith("image/")) {
-        setImage(file);
-        setImagePreview(URL.createObjectURL(file));
-      } else {
-        toast("Please select a valid image file.", { theme: "failure" });
-      }
-    }
-  }
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -112,31 +99,39 @@ function Profile() {
       profilePicture: "",
     },
     onSubmit: async (values) => {
-      if (user) { 
-        try {
-          setLoading(true);
-          setError("");
-          const response = await axios.patch(
-            `${api_url}/api/users/updateUserDetails/${userId}`,
-            values,
-            { withCredentials: true }
-          );
-          if (response.data.success) {
-            toast("Profile updated successfully", { theme: "success" });
-            // Optionally navigate or reset form
-            // formik.resetForm();
-            // navigate("/");
-          } else {
-            setError("Failed to update profile. Please try again.");
+      try {
+        setLoading(true);
+        setError("");
+
+        // Handle image upload if a new image is selected
+        if (image) {
+          const uploadedImageUrl = await handleImageUpload();
+          if (!uploadedImageUrl) {
+            setLoading(false);
+            return toast.error("Failed to Upload image")
           }
-        } catch (error) {
-          console.error("Error updating profile:", error);
-          setError("Failed to update profile. Please try again.");
-        } finally {
-          setLoading(false);
+          values.profilePicture = uploadedImageUrl; // Update the profile picture URL
         }
-      } else {
-        setError("You do not have permission to edit this profile.");
+
+        // Submit profile update
+        const response = await axios.patch(
+          `${api_url}/api/users/updateUserDetails/${userId}`,
+          values,
+          { withCredentials: true }
+        );
+
+        if (response.data.success) {
+          toast.success("Profile updated successfully");
+
+        } else {
+          setError("Failed to update profile. Please try again.");
+        }
+      } catch (error) {
+        console.error("Profile update error:", error);
+        setError("Failed to update profile. Please try again.");
+      } finally {
+        setLoading(false);
+      
       }
     },
   });
@@ -185,15 +180,17 @@ function Profile() {
           </div>
 
           <div className="uploaduserimagewrapper">
-            <input type="file" className="file" onChange={handleChange} />
-            <button
-              type="button"
-              onClick={handleImageUpload}
-              disabled={imageLoading || !image}
-              className="uploadbtn"
-            >
-              {imageLoading ? "Uploading..." : "Upload Image"}
-            </button>
+            <input type="file" className="file" onChange={(e) => {
+              if (e.target.files && e.target.files[0]) {
+                const file = e.target.files[0];
+                if (file.type.startsWith("image/")) {
+                  setImage(file);
+                  setImagePreview(URL.createObjectURL(file));
+                } else {
+                  toast("Please select a valid image file.", { theme: "failure" });
+                }
+              }
+            }} />
           </div>
 
           {error && <p className="error">{error}</p>}
