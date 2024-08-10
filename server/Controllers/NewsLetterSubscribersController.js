@@ -18,7 +18,6 @@ export async function Subscribe(request, response) {
             });
         }
 
-        // Create a new subscriber
         const NewSubscriber = await prisma.NewsletterSubscribers.create({
             data: { email: email },
         });
@@ -26,6 +25,7 @@ export async function Subscribe(request, response) {
         return response.status(200).json({
             success: true,
             message: "You have successfully subscribed to our newsletter",
+            data:NewSubscriber
         });
 
     } catch (error) {
@@ -34,5 +34,22 @@ export async function Subscribe(request, response) {
             success: false,
             message: "Internal server error!",
         });
+    }
+}
+
+export async function GetAllSubscribers (request, response) {
+    try {
+        const Subscribers = await prisma.newsletterSubscribers.findMany({
+
+        })
+        if(!Subscribers){
+            return response.json({success:false, message:"There are no subscribers Yet"})
+        }else{
+            response.status(200).json({success:true, data: Subscribers})
+        }
+    } catch (error) {
+        console.log(error.message);
+        return response.status(500).json({success:false, message:"Internal server error!"})
+        
     }
 }
