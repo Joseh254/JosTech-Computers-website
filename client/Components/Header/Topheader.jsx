@@ -20,6 +20,7 @@ function Topheader() {
   const [showOverlay, setShowOverlay] = useState(false);
   const user = useUserStore((state) => state.user);
   const changeUserInformation = useUserStore((state) => state.changeUserInformation);
+  const clearUser = useUserStore((state)=>state.clearUserInformation)
   const cartCounter = useUserStore((state)=>state.cartCount)
 
   useEffect(() => {
@@ -39,9 +40,10 @@ function Topheader() {
   const handleLoginToggle = () => {
     navigate("/Login");
   }; 
-
+ 
   const handleLogout = () => {
     changeUserInformation(null);
+    clearUser()
     setSignedIn(false);
     setIsAdmin(false);
     navigate("/Login");

@@ -11,7 +11,7 @@ const userStore = (set) => ({
     }));
   },
 
-  clearUserInformation: () => {
+  clearUserInformation: () => { 
     set(() => ({
       user: null,
       cartCount: 0, // Reset cartCount when user logs out
