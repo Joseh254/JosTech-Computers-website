@@ -60,8 +60,6 @@ export async function deleteCartItem(request, response) {
   const { id: cartItemId } = request.params;
 
   try {
-    console.log("User ID:", userId);
-    console.log("Cart Item ID:", cartItemId);
 
     if (!cartItemId) {
       return response
@@ -105,10 +103,10 @@ export async function updateCart(request, response) {
   const cartItem = await prisma.cart.findUnique({
     where: { id: 'ce5f33cc-cee2-4c66-903c-ce12251a942c' },
   });
-  console.log(cartItem);
+ 
   
-  // Log the ID and quantity for debugging
-  console.log(`Updating cart item with ID: ${id} and quantity: ${quantity}`);
+  
+
 
   // Validate input
   if (typeof quantity !== 'number' || quantity <= 0) {
@@ -122,7 +120,6 @@ export async function updateCart(request, response) {
     });
 
     if (!existingCartItem) {
-      console.log(`Cart item with ID: ${id} not found.`);
       return response.status(404).json({ message: 'Cart item not found' });
     }
 
@@ -136,7 +133,7 @@ export async function updateCart(request, response) {
     response.status(200).json({ success: true, cartItem: updatedCartItem });
   } catch (error) {
     // Handle errors and return a failure response
-    console.error('Error updating cart item:', error);
+    console.log('Error updating cart item:', error);
     response.status(500).json({ message: 'Failed to update cart item' });
   }
 }

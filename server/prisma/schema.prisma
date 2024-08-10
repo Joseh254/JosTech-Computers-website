@@ -76,3 +76,8 @@ model cart {
   createdAt DateTime      @default(now())
 }
 
+model NewsletterSubscribers{
+  id String @id @default(uuid())
+  email String @unique
+}
+
