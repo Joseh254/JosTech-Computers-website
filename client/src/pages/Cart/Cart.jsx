@@ -3,6 +3,8 @@ import axios from "axios";
 import "./Cart.css";
 import { api_url } from "../../../utills/config";
 import useUserStore from "../../../store/userStore";
+import { toast } from "react-toastify"; // Make sure to install react-toastify
+import "react-toastify/dist/ReactToastify.css"; // Include the CSS for toast
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -47,7 +49,7 @@ function Cart() {
 
   const handleQuantityChange = async (itemId, newQuantity) => {
     if (newQuantity <= 0) {
-      toast("Quantity must be greater than zero");
+      toast.warning("Quantity can no be zero");
       return;
     }
 
@@ -75,8 +77,9 @@ function Cart() {
       });
       if (response.data.success) {
         setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
+        toast.success("Product removed from your cart")
       } else {
-        setError(response.data.message || "Failed to delete item");
+        toast.error(response.data.message || "Failed to delete item");
       }
     } catch (error) {
       setError(error.response?.data?.message || error.message);

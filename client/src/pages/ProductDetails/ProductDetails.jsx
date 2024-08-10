@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { api_url } from "../../../utills/config";
 import { FaShoppingCart } from "react-icons/fa";
 import { toast } from "react-toastify"; // Make sure to install react-toastify
 import "react-toastify/dist/ReactToastify.css"; // Include the CSS for toast
 import "./ProductDetails.css";
-
+import useUserStore from "../../../store/userStore";
 // Initialize toast notifications
 
 
 function ProductDetails() {
+  const user = useUserStore((state)=>state.user)
+  const navigate = useNavigate()
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,15 +20,20 @@ function ProductDetails() {
   const [isInCart, setIsInCart] = useState(false);
 
   useEffect(() => {
-    async function fetchProduct() {
-      try {
-        const response = await axios.get(`${api_url}/api/products/getOneProduct/${id}`);
-        setProduct(response.data.data);
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-        setLoading(false);
-      }
+async function fetchProduct() {
+if (!user){
+  toast.warning("Please log in to view more  product details")
+  navigate("/Login")
+}else{
+  try {
+    const response = await axios.get(`${api_url}/api/products/getOneProduct/${id}`);
+    setProduct(response.data.data);
+    setLoading(false);
+  } catch (error) {
+    setError(error);
+    setLoading(false);
+  }
+}
     }
 
     async function checkIfInCart() {
@@ -47,7 +54,7 @@ function ProductDetails() {
   const handleAddToCart = async () => {
     try {
       if (isInCart) {
-        toast("Product is already in your cart!");
+        toast.warning("Product is already in your cart!");
         return;
       }
       

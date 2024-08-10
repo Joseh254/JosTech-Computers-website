@@ -5,7 +5,8 @@ import "./FeaturedproductsProducts.css";
 import { Link } from "react-router-dom";
 import { api_url } from "../../../utills/config";
 import useUserStore from "../../../store/userStore";
-import toast from "react-simple-toasts";
+import { toast } from "react-toastify"; // Make sure to install react-toastify
+import "react-toastify/dist/ReactToastify.css"; // Include the CSS for toast
 
 function FeaturedproductsProducts() {
   const [products, setProducts] = useState([]);
@@ -18,7 +19,7 @@ function FeaturedproductsProducts() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await axios.get(`${api_url}/api/products/get`);
+        const response = await axios.get(`${api_url}/api/products/get`);        
         setProducts(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -35,7 +36,7 @@ function FeaturedproductsProducts() {
           });
           setCartItems(response.data.cartProduct.map(item => item.product.id));
         } catch (error) {
-          console.error("Error fetching cart items:", error.message);
+          
         }
       }
     }
@@ -46,12 +47,13 @@ function FeaturedproductsProducts() {
 
   const handleAddToCart = async (productId) => {
     if (!user) {
-      toast("Please log in first to add items to your cart.", { theme: "failure" });
+      toast.warning("Please log in first to add items to your cart.");
+      
       return;
     }
 
     if (cartItems.includes(productId)) {
-      toast("This item is already in your cart.", { theme: "warning" });
+      toast.warning("Product is already in your cart!");
       return;
     }
 
@@ -66,12 +68,12 @@ function FeaturedproductsProducts() {
       
       if (response.data.success) {
         setCartItems((prevState) => [...prevState, productId]);
-        toast("Item added to cart successfully!", { theme: "success" });
+        toast.success("Item added to cart successfully!", { theme: "success" });
       } else {
         toast("Failed to add item to cart.", { theme: "failure" });
       }
     } catch (error) {
-      toast(`Error adding item to cart: ${error.message}`, { theme: "failure" });
+      toast.error(`Error adding item to cart: ${error.message}`, { theme: "failure" });
     } finally {
       setAddingToCart((prevState) => ({ ...prevState, [productId]: false }));
     }
@@ -109,7 +111,7 @@ function FeaturedproductsProducts() {
                 onClick={() => handleAddToCart(product.id)}
                 disabled={addingToCart[product.id]}
                 style={{
-                  backgroundColor: cartItems.includes(product.id) ? 'blue' : 'black',
+                  backgroundColor: cartItems.includes(product.id) ? 'black' : 'blue',
                   cursor: cartItems.includes(product.id) ? 'not-allowed' : 'pointer',
                 }}
               >

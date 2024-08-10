@@ -12,4 +12,4 @@ router.get("/GetUserCart", verifyToken, GetUserCart);
 router.delete("/deleteCartItem/:id", verifyToken, deleteCartItem);
 router.put('/updateCart/:id', verifyToken, updateCart);
 
-export default router;
+export default router; 
