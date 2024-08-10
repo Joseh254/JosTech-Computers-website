@@ -1,11 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Footer.css";
 import { IoLocationOutline } from "react-icons/io5";
-import { SiMinutemailer } from "react-icons/si";
+import { SiMinutemailer, SiWhatsapp } from "react-icons/si";
 import { Link } from "react-router-dom";
-import { SiWhatsapp } from "react-icons/si";
+import { api_url } from "../../utills/config";
+import { toast } from "react-toastify"; // Make sure to install react-toastify
+import "react-toastify/dist/ReactToastify.css";
 
 function Footer() {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const subscribeToNewsletter = async () => {
+    if (!email) {
+      toast.warning("Please enter an email address.");
+      return;
+    }
+
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const response = await fetch(`${api_url}/api/Newsletter/subscribe`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        toast.success("You Have Subscribed successfully!");
+      } else {
+        setMessage(data.message || "Failed to subscribe. Please try again.");
+      }
+    } catch (error) {
+      toast("An error occurred. Please try again later.");
+    }
+
+    setLoading(false);
+    setEmail(""); 
+  };
+
   return (
     <section className="footer">
       {/* ************************************************************************************* */}
@@ -21,9 +60,19 @@ function Footer() {
         </div>
 
         <div className="newsletteremail">
-          <input type="text" placeholder="Your Email Address" />
-          <button>Sign Up</button>
+          <input
+            type="email"
+            placeholder="Your Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={loading}
+          />
+          <button onClick={subscribeToNewsletter} disabled={loading}>
+            {loading ? "Signing Up..." : "Sign Up"}
+          </button>
         </div>
+
+        {message && <p className="newsletter-message">{message}</p>}
       </div>
 
       {/* ************************************************************************************** */}
@@ -34,7 +83,7 @@ function Footer() {
             <h1>About JosTech</h1>
             <div className="info">
               <p>{<IoLocationOutline />} </p>{" "}
-              <p>Nairobi,Moi Avenue,Festive Mall,SE</p>
+              <p>Nairobi, Moi Avenue, Festive Mall, SE</p>
             </div>
 
             <div className="info">
@@ -53,7 +102,7 @@ function Footer() {
               <Link to="/">Home</Link>
               <Link to="/About">About</Link>
               <Link to="/FeaturedProducts">Featured Products</Link>
-              <Link to="/Contact">Get In Tourch</Link>
+              <Link to="/Contact">Get In Touch</Link>
             </div>
           </div>
 
@@ -75,18 +124,18 @@ function Footer() {
               <p>Printers</p>
               <p>Hardisk</p>
               <p>SSD</p>
-              <p>SCreens</p>
+              <p>Screens</p>
               <p>Casing</p>
               <p>Wifi-cards</p>
               <p>Charger</p>
-              <p>HDD conectors</p>
+              <p>HDD connectors</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="marquee">
-        <h2> &copy;JosTech Computers All Rights Reserved</h2>
+      <div className="marquee">
+        <h2> &copy; JosTech Computers All Rights Reserved</h2>
       </div>
     </section>
   );
