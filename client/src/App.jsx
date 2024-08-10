@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Header from "../Components/Header/Header";
 import About from "./pages/About/About";
@@ -19,36 +20,33 @@ import AdminHeader from "../Components/AdminHeader/AdminHeader";
 import useUserStore from "../store/userStore";
 import { useState, useEffect } from "react";
 import AddProduct from "./pages/Admin/AddProduct/AddProduct";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Page404 from "./pages/Admin/Page404/Page404";
 import AddUser from "./pages/Admin/AddUser/AddUser";
 import AdminProfile from "./pages/Admin/AdminProfile/AdminProfile";
 import EditProduct from "./pages/Admin/EditProduct/EditProduct";
 import Cart from "./pages/Cart/Cart";
+
 function App() {
   const user = useUserStore((state) => state.user);
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
+    console.log("User:", user);
     if (user) {
-      if (user.role === "admin") {
-        setIsAdmin(true);
-      } else {
-        setIsAdmin(false);
-      }
+      setIsAdmin(user.role === "admin");
     } else {
       setIsAdmin(false);
     }
   }, [user]);
 
   return (
-    <BrowserRouter> 
+    <BrowserRouter>
       {!isAdmin && <Header />}
       {isAdmin && <AdminHeader />}
       <Routes>
         {isAdmin ? (
-          <> 
+          <>
             <Route path="/EditProduct/:productId" element={<EditProduct />} />
             <Route path="/AdminProfile/:userId" element={<AdminProfile />} />
             <Route path="/Page404" element={<Page404 />} />
@@ -64,8 +62,8 @@ function App() {
           </>
         ) : (
           <>
-            <Route path="Profile/:userId" element={<Profile />} />
-            <Route path="Cart" element={<Cart />} />
+            <Route path="/Profile/:userId" element={<Profile />} />
+            <Route path="/Cart" element={<Cart />} />
             <Route path="/" element={<Home />} />
             <Route path="/About" element={<About />} />
             <Route path="/FeaturedProducts" element={<FeaturedProducts />} />

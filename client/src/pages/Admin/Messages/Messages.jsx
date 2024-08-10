@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./Messages.css";
 import { api_url } from "../../../../utills/config";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 function Messages() {
   const [messages, setMessages] = useState([]);
@@ -30,7 +29,6 @@ function Messages() {
     setDeletingMessageId(id);
     try {
       await axios.delete(`${api_url}/api/users/deleteMessage/${id}`);
-
       setMessages(messages.filter((message) => message.id !== id));
     } catch (error) {
       setError("There was an error deleting the message");
@@ -49,7 +47,7 @@ function Messages() {
 
   return (
     <section>
-      <h1 className="messagesheading">Welcome to customer Messages</h1>
+      <h1 className="messagesheading">Welcome to Customer Messages</h1>
       <div className="messages">
         {messages.map((message) => (
           <div className="messagesContainers" key={message.id}>
@@ -63,8 +61,14 @@ function Messages() {
 
             <div className="messageactionbtns">
               <button className="replycustomermessages">
-                <a href={message.email}>Reply</a>
+                <a
+                  href={`mailto:${message.email}?subject=Regarding%20Your%20Message&body=Hello%20${encodeURIComponent(message.first_name)},%0A%0AI%20received%20your%20message%20and%20will%20get%20back%20to%20you%20shortly.%0A%0AThank%20you,%0AJostech-Computers`}
+                  className="reply-link"
+                >
+                  Reply
+                </a>
               </button>
+
               <button>Mark as read</button>
               <button
                 onClick={() => handleDeleteMessage(message.id)}

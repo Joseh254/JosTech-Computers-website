@@ -17,8 +17,11 @@ function AdminHeader() {
   const handleLogout = () => { 
     changeUserInformation(null);
     setIsLoggedIn(false); 
-    navigate("/Login");
+    setTimeout(() => {
+      navigate("/Login");
+    }, 100); // Slight delay to ensure state update
   };
+  
 
   return (
     <>
