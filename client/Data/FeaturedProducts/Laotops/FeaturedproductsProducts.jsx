@@ -35,18 +35,20 @@ function FeaturedproductsProducts() {
           const response = await axios.get(`${api_url}/api/cart/GetUserCart`, {
             withCredentials: true,
           });
-
-          changeCartCounter(response.data.data.length); // Fix typo here
-          setCartItems(response.data.cartProduct.map(item => item.product.id));
+          
+          const itemsInCart = response.data.cartProduct.map(item => item.product.id);
+          setCartItems(itemsInCart); // Update cartItems state with product IDs
+          changeCartCounter(itemsInCart.length); // Update cart counter
         } catch (error) {
           // Handle error if needed
+          console.error(error);
         }
       }
     }
 
     fetchProducts();
     fetchCartItems();
-  }, [user]);
+  }, [user, changeCartCounter]);
 
   const handleAddToCart = async (productId) => {
     if (!user) {
