@@ -26,7 +26,7 @@ function Cart() {
         const response = await axios.get(`${api_url}/api/cart/GetUserCart`, {
           withCredentials: true,
         });
-        console.log(response.data.cartProduct.length);
+ 
         
         const data = response.data;
 

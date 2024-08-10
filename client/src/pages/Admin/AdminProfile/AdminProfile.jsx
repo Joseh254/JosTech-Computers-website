@@ -4,7 +4,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import useUserStore from "../../../../store/userStore";
 import { api_url } from "../../../../utills/config";
-import toast from "react-simple-toasts";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./AdminProfile.css";
 
 const cloudname = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
@@ -51,8 +52,7 @@ function AdminProfile() {
 
   async function handleImageUpload() {
     if (!image) {
-      toast("Please select an image to upload.", { theme: "failure" });
-      return;
+      return ""; // No image to upload
     }
 
     const payload = new FormData();
@@ -69,11 +69,14 @@ function AdminProfile() {
       if (response.data.secure_url) {
         setImageUrl(response.data.secure_url);
         formik.setFieldValue("profilePicture", response.data.secure_url);
+        return response.data.secure_url;
       } else {
-        toast("Failed to upload image. Please try again.", { theme: "failure" });
+        toast.error("Failed to upload image. Please try again.");
+        return "";
       }
     } catch (error) {
-      toast("Failed to upload image. Please try again.", { theme: "failure" });
+      toast.error("Failed to upload image. Please try again.");
+      return "";
     } finally {
       setImageLoading(false);
     }
@@ -101,16 +104,27 @@ function AdminProfile() {
         try {
           setLoading(true);
           setError("");
+
+          // Handle image upload if a new image is selected
+          if (image) {
+            const uploadedImageUrl = await handleImageUpload();
+            if (!uploadedImageUrl) {
+              setLoading(false);
+              return toast.error("Faile to upload image")
+            }
+            values.profilePicture = uploadedImageUrl; // Update the profile picture URL
+          }
+
+          // Submit profile update
           const response = await axios.patch(
             `${api_url}/api/users/updateUserDetails/${userId}`,
             values,
             { withCredentials: true }
           );
+
           if (response.data.success) {
-            toast("Profile updated successfully", { theme: "success" });
-            // Optionally navigate or reset form
-            // formik.resetForm();
-            // navigate("/Admin");
+            toast.success("Profile updated successfully");
+
           } else {
             setError("Failed to update profile. Please try again.");
           }
@@ -169,14 +183,6 @@ function AdminProfile() {
 
             <div className="uploaduserimagewrapper">
               <input type="file" className="file" onChange={handleChange} />
-              <button
-                type="button"
-                onClick={handleImageUpload}
-                disabled={imageLoading || !image}
-                className="uploadbtn"
-              >
-                {imageLoading ? "Uploading..." : "Upload Image"}
-              </button>
             </div>
 
             {error && <p className="error">{error}</p>}
