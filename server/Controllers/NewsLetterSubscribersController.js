@@ -6,8 +6,7 @@ export async function Subscribe(request, response) {
     const { email } = request.body; // Extract email from the request body
 
     try {
-        // Check if the email already exists in the newsletter subscribers
-        const userWithEmailExist = await prisma.NewsletterSubscribers.findUnique({
+        const userWithEmailExist = await prisma.newslettersubscribers.findUnique({
             where: { email: email },
         });
 
@@ -18,7 +17,7 @@ export async function Subscribe(request, response) {
             });
         }
 
-        const NewSubscriber = await prisma.NewsletterSubscribers.create({
+        const NewSubscriber = await prisma.newslettersubscribers.create({
             data: { email: email },
         });
 
@@ -39,7 +38,7 @@ export async function Subscribe(request, response) {
 
 export async function GetAllSubscribers (request, response) {
     try {
-        const Subscribers = await prisma.newsletterSubscribers.findMany({
+        const Subscribers = await prisma.newslettersubscribers.findMany({
 
         })
         if(!Subscribers){

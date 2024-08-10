@@ -3,8 +3,8 @@ import axios from "axios";
 import "./Cart.css";
 import { api_url } from "../../../utills/config";
 import useUserStore from "../../../store/userStore";
-import { toast } from "react-toastify"; // Make sure to install react-toastify
-import "react-toastify/dist/ReactToastify.css"; // Include the CSS for toast
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -12,6 +12,7 @@ function Cart() {
   const [error, setError] = useState(null);
   const [quantities, setQuantities] = useState({});
   const user = useUserStore((state) => state.user);
+  const changeCartCounter = useUserStore((state) => state.updateCartCount);
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -25,31 +26,47 @@ function Cart() {
         const response = await axios.get(`${api_url}/api/cart/GetUserCart`, {
           withCredentials: true,
         });
+        console.log(response.data.cartProduct.length);
+        
         const data = response.data;
 
-        if (data.success) {
-          setCartItems(data.cartProduct);
-          const initialQuantities = data.cartProduct.reduce((acc, item) => {
-            acc[item.id] = item.quantity || 1; // Default to 1 if quantity is not available
-            return acc;
-          }, {});
-          setQuantities(initialQuantities);
+        if (data && data.success) {
+          if (Array.isArray(data.cartProduct)) {
+            setCartItems(data.cartProduct);
+
+            const initialQuantities = data.cartProduct.reduce((acc, item) => {
+              acc[item.id] = item.quantity || 1;
+              return acc;
+            }, {});
+            setQuantities(initialQuantities);
+            changeCartCounter(data.cartProduct.length);
+          } else {
+            setError("Unexpected response format");
+          }
         } else {
           setError(data.message || "Failed to fetch cart items");
         }
       } catch (error) {
-        setError(error.response?.data?.message || error.message);
+        console.error(error);
+        
+        handleError(error);
       } finally {
         setLoading(false);
       }
     };
 
     fetchCartItems();
-  }, [user]);
+  }, [user, changeCartCounter]);
+
+  const handleError = (error) => {
+    const message = error.response?.data?.message || error.message;
+    setError(message);
+    toast.error(message);
+  };
 
   const handleQuantityChange = async (itemId, newQuantity) => {
     if (newQuantity <= 0) {
-      toast.warning("Quantity can no be zero");
+      toast.warning("Quantity cannot be zero");
       return;
     }
 
@@ -57,7 +74,7 @@ function Cart() {
       ...prevQuantities,
       [itemId]: newQuantity,
     }));
-  
+
     try {
       await axios.put(
         `${api_url}/api/cart/updateCart/${itemId}`,
@@ -65,7 +82,7 @@ function Cart() {
         { withCredentials: true }
       );
     } catch (error) {
-      setError(error.response?.data?.message || error.message);
+      handleError(error);
     }
   };
 
@@ -75,14 +92,18 @@ function Cart() {
       const response = await axios.delete(`${api_url}/api/cart/deleteCartItem/${itemId}`, {
         withCredentials: true,
       });
+      console.log(response.data.data.length);
+      
+
       if (response.data.success) {
         setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
-        toast.success("Product removed from your cart")
+        toast.success("Product removed from your cart");
+        changeCartCounter(response.data.data.length);
       } else {
         toast.error(response.data.message || "Failed to delete item");
       }
     } catch (error) {
-      setError(error.response?.data?.message || error.message);
+      handleError(error);
     } finally {
       setLoading(false);
     }
@@ -116,15 +137,20 @@ function Cart() {
               <h2>{item.product.productName}</h2>
               <p>Price: {formatCurrency(item.product.productPrice)}</p>
               <div className="ProductsToPurchase">
-                <label>Items to Purchase</label>
+                <label htmlFor={`quantity-${item.id}`}>Items to Purchase</label>
                 <input
+                  id={`quantity-${item.id}`}
                   type="number"
                   min="1"
                   value={quantities[item.id] || 1}
                   onChange={(e) => handleQuantityChange(item.id, Number(e.target.value))}
                 />
               </div>
-              <button onClick={() => handleDelete(item.id)} className="removeItemFromCartBtn">
+              <button
+                onClick={() => handleDelete(item.id)}
+                className="removeItemFromCartBtn"
+                disabled={loading}
+              >
                 {loading ? "Removing..." : "Remove item"}
               </button>
             </div>

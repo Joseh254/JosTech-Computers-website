@@ -5,8 +5,8 @@ import "./FeaturedproductsProducts.css";
 import { Link } from "react-router-dom";
 import { api_url } from "../../../utills/config";
 import useUserStore from "../../../store/userStore";
-import { toast } from "react-toastify"; // Make sure to install react-toastify
-import "react-toastify/dist/ReactToastify.css"; // Include the CSS for toast
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function FeaturedproductsProducts() {
   const [products, setProducts] = useState([]);
@@ -15,11 +15,12 @@ function FeaturedproductsProducts() {
   const [addingToCart, setAddingToCart] = useState({});
   const [cartItems, setCartItems] = useState([]);
   const user = useUserStore((state) => state.user);
+  const changeCartCounter = useUserStore((state) => state.updateCartCount);
 
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await axios.get(`${api_url}/api/products/get`);        
+        const response = await axios.get(`${api_url}/api/products/get`);
         setProducts(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -34,9 +35,11 @@ function FeaturedproductsProducts() {
           const response = await axios.get(`${api_url}/api/cart/GetUserCart`, {
             withCredentials: true,
           });
+
+          changeCartCounter(response.data.data.length); // Fix typo here
           setCartItems(response.data.cartProduct.map(item => item.product.id));
         } catch (error) {
-          
+          // Handle error if needed
         }
       }
     }
@@ -48,7 +51,6 @@ function FeaturedproductsProducts() {
   const handleAddToCart = async (productId) => {
     if (!user) {
       toast.warning("Please log in first to add items to your cart.");
-      
       return;
     }
 
@@ -65,12 +67,13 @@ function FeaturedproductsProducts() {
         { productid: productId },
         { withCredentials: true }
       );
-      
+
       if (response.data.success) {
         setCartItems((prevState) => [...prevState, productId]);
+        changeCartCounter(cartItems.length + 1); // Update cart count
         toast.success("Item added to cart successfully!", { theme: "success" });
       } else {
-        toast("Failed to add item to cart.", { theme: "failure" });
+        toast.error("Failed to add item to cart.", { theme: "failure" });
       }
     } catch (error) {
       toast.error(`Error adding item to cart: ${error.message}`, { theme: "failure" });

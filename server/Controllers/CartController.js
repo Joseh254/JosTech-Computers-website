@@ -53,14 +53,12 @@ export async function GetUserCart(request, response) {
       });
   }
 }
-
 export async function deleteCartItem(request, response) {
   const user = request.user;
   const userId = user.id;
   const { id: cartItemId } = request.params;
 
   try {
-
     if (!cartItemId) {
       return response
         .status(400)
@@ -80,13 +78,25 @@ export async function deleteCartItem(request, response) {
         });
     }
 
+    // Delete the cart item
     await prisma.cart.delete({
       where: { id: cartItemId },
     });
 
+    // Fetch the updated list of cart items
+    const cartItems = await prisma.cart.findMany({
+      where: { userid: userId },
+      include: { product: true },
+    });
+
+    // Send the updated cart items in the response
     response
       .status(200)
-      .json({ success: true, message: "Cart item deleted successfully" });
+      .json({
+        success: true,
+        message: "Cart item deleted successfully",
+        data: cartItems, // Include updated cart items
+      });
   } catch (error) {
     console.error("Error deleting cart item:", error.message);
     response
@@ -97,6 +107,7 @@ export async function deleteCartItem(request, response) {
       });
   }
 }
+
 export async function updateCart(request, response) {
   const { id } = request.params; // Get the cart item ID from the route parameters
   const { quantity } = request.body; // Get the new quantity from the request body

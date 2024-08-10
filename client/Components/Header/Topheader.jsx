@@ -20,6 +20,7 @@ function Topheader() {
   const [showOverlay, setShowOverlay] = useState(false);
   const user = useUserStore((state) => state.user);
   const changeUserInformation = useUserStore((state) => state.changeUserInformation);
+  const cartCounter = useUserStore((state)=>state.cartCount)
 
   useEffect(() => {
     if (user) {
@@ -105,7 +106,7 @@ function Topheader() {
             <div className="headeractionbuttons">
               {signedIn && !isLoginPage && !isAdmin && (
                 <button className="usercartBtn">
-                  <Link to="/Cart" className='cartlink'><FiShoppingCart /> Cart</Link>
+                  <Link to="/Cart" className='cartlink'><FiShoppingCart /> Cart {cartCounter}</Link>
                 </button>
               )} 
               {!signedIn && !isLoginPage && (

@@ -35,10 +35,10 @@ function Footer() {
       if (response.ok) {
         toast.success("You Have Subscribed successfully!");
       } else {
-        setMessage(data.message || "Failed to subscribe. Please try again.");
+        toast.error(data.message || "Failed to subscribe. Please try again.");
       }
     } catch (error) {
-      toast("An error occurred. Please try again later.");
+      toast.error("An error occurred. Please try again later.");
     }
 
     setLoading(false);
