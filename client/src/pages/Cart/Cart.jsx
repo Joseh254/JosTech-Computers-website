@@ -86,7 +86,7 @@ function Cart() {
     }
   };
 
-  const handleDelete = async (itemId) => {
+  async function  handleDelete  (itemId) {
     setLoading(true);
     try {
       const response = await axios.delete(`${api_url}/api/cart/deleteCartItem/${itemId}`, {

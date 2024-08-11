@@ -9,14 +9,15 @@ function AdminHeader() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const changeUserInformation = useUserStore((state) => state.changeUserInformation);
-
+  const clearUser = useUserStore((state)=>state.clearUserInformation)
   useEffect(() => {
     setIsLoggedIn(!!user); 
   }, [user]);
 
   const handleLogout = () => { 
     changeUserInformation(null);
-    setIsLoggedIn(false); 
+    clearUser()
+    navigate("/Login"); 
     setTimeout(() => {
       navigate("/Login");
     }, 100); // Slight delay to ensure state update

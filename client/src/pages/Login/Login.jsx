@@ -4,6 +4,8 @@ import { useFormik } from "formik";
 import axios from "axios";
 import useUserStore from "../../../store/userStore";
 import { api_url } from "../../../utills/config";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
 
 function Login() {
@@ -21,24 +23,24 @@ function Login() {
         formState,
         {withCredentials:true}
       );
-      const data = response.data;
-      console.log(data.data);
+      const data = response.data; 
       if (data.success) {
         // Store the JWT token in local storage
         localStorage.setItem('jwt_token', data.token);
-        
+        toast.success(`Logged in as ${data.data.firstName} ${data.data.lastName}`)
         changeUserInformation(data.data);
         if (data.data.role === "admin") {
           navigate("/AdminHome");
+          toast.success(`Logged in as ${data.data.firstName} ${data.data.lastName}`)
         } else {
           navigate("/FeaturedProducts");
         }
       } else {
-        setError("Login failed");
+        setError(data.message);
       }
     } catch (error) {
-      console.log(error);
-      setError("User not found");
+      
+      setError("Wrong Email or Password");
     } finally {
       setLoading(false);
     }
