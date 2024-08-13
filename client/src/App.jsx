@@ -10,7 +10,6 @@ import Contact from "./pages/Contact/Contact";
 import Signin from "./pages/Signin/Signin";
 import Login from "./pages/Login/Login";
 import Profile from "./pages/UserProfile/Profile";
-import Account from "./pages/Account/Account";
 import AdminHome from "./pages/Admin/Home/AdminHome";
 import AdminOrders from "./pages/Admin/AdminOrders/AdminOrders";
 import AdminProducts from "./pages/Admin/AdminProducts/AdminProducts";
@@ -72,7 +71,6 @@ function App() {
             <Route path="/Contact" element={<Contact />} />
             <Route path="/Signin" element={<Signin />} />
             <Route path="/Login" element={<Login />} />
-            <Route path="/Account" element={<Account />} />
             <Route path="*" element={<Home />} />
             <Route path="/product/:id" element={<ProductDetails />} />
           </>

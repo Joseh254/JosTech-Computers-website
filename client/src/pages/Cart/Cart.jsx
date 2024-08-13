@@ -6,11 +6,31 @@ import useUserStore from "../../../store/userStore";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
+function CheckoutOverlay({ onClose }) {
+  return (
+    <div className="overlay">
+      
+      <div className="overlayContent">
+<div className="CheckoutHeader">
+<h2>Lipa Na <span>Mpesa</span></h2>
+<button onClick={onClose} className="closeOverlayBtn">X</button>
+
+</div>
+        <label htmlFor="email">Enter your email:</label>
+        <input type="email" id="email" name="email" placeholder="Your email" />
+        
+      </div>
+    </div>
+  );
+}
+
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [quantities, setQuantities] = useState({});
+  const [isOverlayVisible, setOverlayVisible] = useState(false); // Overlay state
   const user = useUserStore((state) => state.user);
   const changeCartCounter = useUserStore((state) => state.updateCartCount);
 
@@ -26,7 +46,6 @@ function Cart() {
         const response = await axios.get(`${api_url}/api/cart/GetUserCart`, {
           withCredentials: true,
         });
- 
         
         const data = response.data;
 
@@ -48,7 +67,6 @@ function Cart() {
         }
       } catch (error) {
         console.error(error);
-        
         handleError(error);
       } finally {
         setLoading(false);
@@ -86,14 +104,12 @@ function Cart() {
     }
   };
 
-  async function  handleDelete  (itemId) {
+  const handleDelete = async (itemId) => {
     setLoading(true);
     try {
       const response = await axios.delete(`${api_url}/api/cart/deleteCartItem/${itemId}`, {
         withCredentials: true,
       });
-      console.log(response.data.data.length);
-      
 
       if (response.data.success) {
         setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
@@ -120,6 +136,11 @@ function Cart() {
     return cartItems.reduce((total, item) => {
       return total + (item.product.productPrice * (quantities[item.id] || 1));
     }, 0);
+  };
+
+  // Toggle overlay visibility
+  const toggleOverlay = () => {
+    setOverlayVisible(!isOverlayVisible);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -160,6 +181,11 @@ function Cart() {
       <div className="cartTotal">
         <h2>Total: {formatCurrency(calculateTotal())}</h2>
       </div>
+      <div>
+        <button onClick={toggleOverlay}>Checkout</button>
+      </div>
+
+      {isOverlayVisible && <CheckoutOverlay onClose={toggleOverlay} />}
     </div>
   );
 }

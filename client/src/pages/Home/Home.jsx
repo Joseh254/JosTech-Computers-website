@@ -64,7 +64,7 @@ function Home() {
       <Homedatatestimony />
       <Homeabout />
     </>
-  );
+  ); 
 }
 
 export default Home;

@@ -1,4 +1,4 @@
-import express, { response } from "express";
+import express from "express";
 import producsRouter from "./Routes/Products.route.js";
 import users from "./Routes/usersroute.js";
 import cart from "./Routes/cartRoute.js";
@@ -6,6 +6,7 @@ import Subscribe from "./Routes/NewsLetterSubScribersRouter.js"
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import messages from "./Routes/user_messagesRoute.js";
+
 import { config } from "dotenv";
 
 config();
@@ -36,6 +37,6 @@ app.use("/api/users", users);
 app.use("/api/users", messages);
 app.use("/api/cart", cart),
 app.use("/api/Newsletter",Subscribe)
-  app.listen(3000, () => {
+  app.listen(process.env.PORT, () => {
     console.log("server running");
   });
