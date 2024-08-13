@@ -10,8 +10,6 @@ import "react-toastify/dist/ReactToastify.css";
 function CheckoutOverlay({ onClose }) {
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
       email: "",
       address: "",
       town: "",
@@ -35,30 +33,10 @@ function CheckoutOverlay({ onClose }) {
           </button>
         </div>
         <form onSubmit={formik.handleSubmit}>
-          <div className="checkoutformvalues">
-            <label htmlFor="firstName">First Name:</label>
-            <input 
-            type="text" 
-            name="firstName"
-            placeholder="Your first name"
-            onChange={formik.handleChange}
-            value={formik.firstName}
-             />
-          </div>
-
-          <div className="checkoutformvalues">
-            <label htmlFor="lastName">Last Name:</label>
-            <input
-             type="text" 
-            name="lastName"
-             placeholder="Your Last  name" 
-             onChange={formik.handleChange}
-             value={formik.lastName}
-            />
-          </div>
-
-          <div className="checkoutformvalues">
-            <label htmlFor="email">Email:</label>
+<div className="containerForm"> 
+  
+<div className="checkoutformvalues">
+            {/* <label htmlFor="email">Email:</label> */}
             <input
               type="email"
               id="email"
@@ -68,9 +46,10 @@ function CheckoutOverlay({ onClose }) {
               value={formik.email}
             />
           </div>
+</div>
 
           <div className="checkoutformvalues">
-            <label htmlFor="address">Address:</label>
+            {/* <label htmlFor="address">Address:</label> */}
             <input 
             type="text"
              name="address" 
@@ -81,7 +60,7 @@ function CheckoutOverlay({ onClose }) {
           </div>
 
           <div className="checkoutformvalues">
-            <label htmlFor="email">City:</label>
+            {/* <label htmlFor="email">City:</label> */}
             <input 
             type="text"
              name="town"
@@ -90,7 +69,7 @@ function CheckoutOverlay({ onClose }) {
              value={formik.town}
              />
           </div>
-          <button>Pay Now</button>
+          <button className="paynow">Pay Now</button>
         </form>
       </div>
     </div>
@@ -215,7 +194,6 @@ function Cart() {
     }, 0);
   };
 
-  // Toggle overlay visibility
   const toggleOverlay = () => {
     setOverlayVisible(!isOverlayVisible);
   };
@@ -261,7 +239,7 @@ function Cart() {
         <h2>Total: {formatCurrency(calculateTotal())}</h2>
       </div>
       <div>
-        <button onClick={toggleOverlay}>Checkout</button>
+        <button onClick={toggleOverlay} className="checkoutbutton">Checkout</button>
       </div>
 
       {isOverlayVisible && <CheckoutOverlay onClose={toggleOverlay} />}

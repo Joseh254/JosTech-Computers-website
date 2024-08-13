@@ -40,6 +40,17 @@
   justify-content: flex-start;
   margin-left: 2rem;
 }
+.checkoutbutton{
+  background-color: #4bb939;
+  display: flex;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  margin-left: 2%;
+  color: #fff;
+  padding: 1rem;
+  font-weight: 900;
+  font-size: 1.6rem;
+}
 
 .overlay {
   position: fixed;
@@ -62,13 +73,37 @@
 }
 
 .closeOverlayBtn {
-  margin-top: 10px;
+background-color: #fff;
+font-weight: 900;
+font-size: 1.5rem;
+border: none;
+}
+.closeOverlayBtn:hover{
+  color: red;
 }
 .CheckoutHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 2rem;
 }
 .CheckoutHeader span {
   color: green;
+}
+.overlay form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: #4bb939;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+.paynow{
+  background-color: #4bb939;
+  color: #fff;
+  font-weight: 900;
+  margin-top: 2rem;
+  width: 40%;
 }
