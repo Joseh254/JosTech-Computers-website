@@ -9,10 +9,9 @@ import "./ProductDetails.css";
 import useUserStore from "../../../store/userStore";
 // Initialize toast notifications
 
-
 function ProductDetails() {
-  const user = useUserStore((state)=>state.user)
-  const navigate = useNavigate()
+  const user = useUserStore((state) => state.user);
+  const navigate = useNavigate();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -20,27 +19,31 @@ function ProductDetails() {
   const [isInCart, setIsInCart] = useState(false);
 
   useEffect(() => {
-async function fetchProduct() {
-if (!user){
-  toast.warning("Please log in to view more  product details")
-  navigate("/Login")
-}else{
-  try {
-    const response = await axios.get(`${api_url}/api/products/getOneProduct/${id}`);
-    setProduct(response.data.data);
-    setLoading(false);
-  } catch (error) {
-    setError(error);
-    setLoading(false);
-  }
-}
+    async function fetchProduct() {
+      if (!user) {
+        toast.warning("Please log in to view more  product details");
+        navigate("/Login");
+      } else {
+        try {
+          const response = await axios.get(
+            `${api_url}/api/products/getOneProduct/${id}`,
+          );
+          setProduct(response.data.data);
+          setLoading(false);
+        } catch (error) {
+          setError(error);
+          setLoading(false);
+        }
+      }
     }
 
     async function checkIfInCart() {
       try {
-        const response = await axios.get(`${api_url}/api/cart/GetUserCart`, { withCredentials: true });
+        const response = await axios.get(`${api_url}/api/cart/GetUserCart`, {
+          withCredentials: true,
+        });
         const cartItems = response.data.cartProduct;
-        const isProductInCart = cartItems.some(item => item.productid === id);
+        const isProductInCart = cartItems.some((item) => item.productid === id);
         setIsInCart(isProductInCart);
       } catch (error) {
         setError(error);
@@ -57,11 +60,11 @@ if (!user){
         toast.warning("Product is already in your cart!");
         return;
       }
-      
+
       await axios.post(
         `${api_url}/api/cart/AddCart`,
         { productid: id, quantity: 1 },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       toast.success("Product added to cart!");
       setIsInCart(true);

@@ -1,75 +1,74 @@
-.cartSection{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    min-width: 100%;
+.cartSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  min-width: 100%;
 }
-.cartItem{ 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1rem;
-    background: linear-gradient(100deg, #616898 2%, #ffffff 100%);
-    box-shadow: 5px 5px 10px 1px #000000;
+.cartItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  background: linear-gradient(100deg, #616898 2%, #ffffff 100%);
+  box-shadow: 5px 5px 10px 1px #000000;
 }
-.ProductsToPurchase{
-    display: flex;
-    flex-direction: column;
-    font-size: 1.7rem;
-    color: gold;
-    font-weight: 700;
+.ProductsToPurchase {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.7rem;
+  color: gold;
+  font-weight: 700;
 }
-.cartItem input{
-    width: 30%;
+.cartItem input {
+  width: 30%;
 }
-.removeItemFromCartBtn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: maroon;
-    width: 40%;
-    color: #fff;
-    font-weight: 700;
-    margin-top: 1rem;
+.removeItemFromCartBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: maroon;
+  width: 40%;
+  color: #fff;
+  font-weight: 700;
+  margin-top: 1rem;
 }
-.cartTotal{
-    display: flex;
-    justify-content: flex-start;
-    margin-left: 2rem;
+.cartTotal {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 2rem;
 }
 
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex; 
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-  
-  .overlayContent {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-  }
-  
-  .closeOverlayBtn {
-    margin-top: 10px;
-  }
-  .CheckoutHeader{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .CheckoutHeader span{
-    color: green;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.overlayContent {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.closeOverlayBtn {
+  margin-top: 10px;
+}
+.CheckoutHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.CheckoutHeader span {
+  color: green;
+}

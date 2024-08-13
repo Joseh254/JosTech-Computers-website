@@ -4,22 +4,94 @@ import "./Cart.css";
 import { api_url } from "../../../utills/config";
 import useUserStore from "../../../store/userStore";
 import { toast } from "react-toastify";
+import { useFormik } from "formik";
 import "react-toastify/dist/ReactToastify.css";
 
-
 function CheckoutOverlay({ onClose }) {
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      address: "",
+      town: "",
+    },
+    onSubmit: function handleSubmit(values) {
+      console.log(values);
+    },
+    validate: function validate() {
+      let error = {};
+    },
+  });
   return (
     <div className="overlay">
-      
       <div className="overlayContent">
-<div className="CheckoutHeader">
-<h2>Lipa Na <span>Mpesa</span></h2>
-<button onClick={onClose} className="closeOverlayBtn">X</button>
+        <div className="CheckoutHeader">
+          <h2>
+            Lipa Na <span>Mpesa</span>
+          </h2>
+          <button onClick={onClose} className="closeOverlayBtn">
+            X
+          </button>
+        </div>
+        <form onSubmit={formik.handleSubmit}>
+          <div className="checkoutformvalues">
+            <label htmlFor="firstName">First Name:</label>
+            <input 
+            type="text" 
+            name="firstName"
+            placeholder="Your first name"
+            onChange={formik.handleChange}
+            value={formik.firstName}
+             />
+          </div>
 
-</div>
-        <label htmlFor="email">Enter your email:</label>
-        <input type="email" id="email" name="email" placeholder="Your email" />
-        
+          <div className="checkoutformvalues">
+            <label htmlFor="lastName">Last Name:</label>
+            <input
+             type="text" 
+            name="lastName"
+             placeholder="Your Last  name" 
+             onChange={formik.handleChange}
+             value={formik.lastName}
+            />
+          </div>
+
+          <div className="checkoutformvalues">
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your email"
+              onChange={formik.handleChange}
+              value={formik.email}
+            />
+          </div>
+
+          <div className="checkoutformvalues">
+            <label htmlFor="address">Address:</label>
+            <input 
+            type="text"
+             name="address" 
+            placeholder="Your home address"
+            onChange={formik.handleChange}
+            value={formik.address}
+             />
+          </div>
+
+          <div className="checkoutformvalues">
+            <label htmlFor="email">City:</label>
+            <input 
+            type="text"
+             name="town"
+             placeholder="City"
+             onChange={formik.handleChange}
+             value={formik.town}
+             />
+          </div>
+          <button>Pay Now</button>
+        </form>
       </div>
     </div>
   );
@@ -46,7 +118,7 @@ function Cart() {
         const response = await axios.get(`${api_url}/api/cart/GetUserCart`, {
           withCredentials: true,
         });
-        
+
         const data = response.data;
 
         if (data && data.success) {
@@ -97,7 +169,7 @@ function Cart() {
       await axios.put(
         `${api_url}/api/cart/updateCart/${itemId}`,
         { quantity: newQuantity },
-        { withCredentials: true }
+        { withCredentials: true },
       );
     } catch (error) {
       handleError(error);
@@ -107,12 +179,17 @@ function Cart() {
   const handleDelete = async (itemId) => {
     setLoading(true);
     try {
-      const response = await axios.delete(`${api_url}/api/cart/deleteCartItem/${itemId}`, {
-        withCredentials: true,
-      });
+      const response = await axios.delete(
+        `${api_url}/api/cart/deleteCartItem/${itemId}`,
+        {
+          withCredentials: true,
+        },
+      );
 
       if (response.data.success) {
-        setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
+        setCartItems((prevItems) =>
+          prevItems.filter((item) => item.id !== itemId),
+        );
         toast.success("Product removed from your cart");
         changeCartCounter(response.data.data.length);
       } else {
@@ -126,15 +203,15 @@ function Cart() {
   };
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-KE', {
-      style: 'currency',
-      currency: 'KES',
+    return new Intl.NumberFormat("en-KE", {
+      style: "currency",
+      currency: "KES",
     }).format(amount);
   };
 
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => {
-      return total + (item.product.productPrice * (quantities[item.id] || 1));
+      return total + item.product.productPrice * (quantities[item.id] || 1);
     }, 0);
   };
 
@@ -164,7 +241,9 @@ function Cart() {
                   type="number"
                   min="1"
                   value={quantities[item.id] || 1}
-                  onChange={(e) => handleQuantityChange(item.id, Number(e.target.value))}
+                  onChange={(e) =>
+                    handleQuantityChange(item.id, Number(e.target.value))
+                  }
                 />
               </div>
               <button

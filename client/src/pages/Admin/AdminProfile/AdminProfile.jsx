@@ -28,7 +28,7 @@ function AdminProfile() {
         try {
           const response = await axios.get(
             `${api_url}/api/users/getOneUser/${userId}`,
-            { withCredentials: true }
+            { withCredentials: true },
           );
 
           if (response.data.success) {
@@ -63,7 +63,7 @@ function AdminProfile() {
       setImageLoading(true);
       const response = await axios.post(
         `https://api.cloudinary.com/v1_1/${cloudname}/upload`,
-        payload
+        payload,
       );
 
       if (response.data.secure_url) {
@@ -110,7 +110,7 @@ function AdminProfile() {
             const uploadedImageUrl = await handleImageUpload();
             if (!uploadedImageUrl) {
               setLoading(false);
-              return toast.error("Faile to upload image")
+              return toast.error("Faile to upload image");
             }
             values.profilePicture = uploadedImageUrl; // Update the profile picture URL
           }
@@ -119,12 +119,11 @@ function AdminProfile() {
           const response = await axios.patch(
             `${api_url}/api/users/updateUserDetails/${userId}`,
             values,
-            { withCredentials: true }
+            { withCredentials: true },
           );
 
           if (response.data.success) {
             toast.success("Profile updated successfully");
-
           } else {
             setError("Failed to update profile. Please try again.");
           }
@@ -186,7 +185,11 @@ function AdminProfile() {
             </div>
 
             {error && <p className="error">{error}</p>}
-            <button type="submit" className="updateProfilebtn" disabled={loading}>
+            <button
+              type="submit"
+              className="updateProfilebtn"
+              disabled={loading}
+            >
               {loading ? "Please wait..." : "Update profile"}
             </button>
           </form>

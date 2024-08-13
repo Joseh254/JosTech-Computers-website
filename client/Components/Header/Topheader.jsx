@@ -19,9 +19,11 @@ function Topheader() {
   const [loading, setLoading] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const user = useUserStore((state) => state.user);
-  const changeUserInformation = useUserStore((state) => state.changeUserInformation);
-  const clearUser = useUserStore((state)=>state.clearUserInformation)
-  const cartCounter = useUserStore((state)=>state.cartCount)
+  const changeUserInformation = useUserStore(
+    (state) => state.changeUserInformation,
+  );
+  const clearUser = useUserStore((state) => state.clearUserInformation);
+  const cartCounter = useUserStore((state) => state.cartCount);
 
   useEffect(() => {
     if (user) {
@@ -36,14 +38,14 @@ function Topheader() {
   const handleSignInToggle = () => {
     navigate("/Signin");
   };
- 
+
   const handleLoginToggle = () => {
     navigate("/Login");
-  }; 
- 
+  };
+
   const handleLogout = () => {
     changeUserInformation(null);
-    clearUser()
+    clearUser();
     setSignedIn(false);
     setIsAdmin(false);
     navigate("/Login");
@@ -61,7 +63,7 @@ function Topheader() {
       const response = await axios.get(`${api_url}/api/products/get`);
       const allProducts = response.data.data;
       const filteredProducts = allProducts.filter((product) =>
-        product.productName.toLowerCase().includes(searchInput.toLowerCase())
+        product.productName.toLowerCase().includes(searchInput.toLowerCase()),
       );
       setSearchResults(filteredProducts);
       setShowOverlay(true);
@@ -100,7 +102,9 @@ function Topheader() {
             value={searchInput}
             onChange={handleSearchInputChange}
           />
-          <button className="btnright" onClick={handleSearch}>Search</button>
+          <button className="btnright" onClick={handleSearch}>
+            Search
+          </button>
         </div>
         <section className="signcart">
           <div className="cart">
@@ -108,25 +112,36 @@ function Topheader() {
             <div className="headeractionbuttons">
               {signedIn && !isLoginPage && !isAdmin && (
                 <button className="usercartBtn">
-                  <Link to="/Cart" className='cartlink'><FiShoppingCart /> Cart {cartCounter}</Link>
+                  <Link to="/Cart" className="cartlink">
+                    <FiShoppingCart /> Cart {cartCounter}
+                  </Link>
                 </button>
-              )} 
+              )}
               {!signedIn && !isLoginPage && (
                 <>
-                  <button onClick={handleLoginToggle} className="userLogInBtn">Log In</button>
-                  <button onClick={handleSignInToggle} className="userSignupBtn">Sign Up</button>
+                  <button onClick={handleLoginToggle} className="userLogInBtn">
+                    Log In
+                  </button>
+                  <button
+                    onClick={handleSignInToggle}
+                    className="userSignupBtn"
+                  >
+                    Sign Up
+                  </button>
                 </>
               )}
               {signedIn && (
                 <>
-                    <div className="logoutProfile"> 
-                      <button onClick={handleLogout} className="userLogoutBtn">Log Out</button>
-                        
-                <Link to={`/Profile/${user.id}`}>
-                <button className="userUpdateprofileBtn">Profile</button>
-                </Link>
-                        {/* <button>Welcome {user.firstName}</button> */}
-                    </div>
+                  <div className="logoutProfile">
+                    <button onClick={handleLogout} className="userLogoutBtn">
+                      Log Out
+                    </button>
+
+                    <Link to={`/Profile/${user.id}`}>
+                      <button className="userUpdateprofileBtn">Profile</button>
+                    </Link>
+                    {/* <button>Welcome {user.firstName}</button> */}
+                  </div>
                 </>
               )}
             </div>
@@ -136,17 +151,28 @@ function Topheader() {
       {showOverlay && (
         <div className="overlay" onClick={handleOverlayClose}>
           <div className="overlay-content" onClick={(e) => e.stopPropagation()}>
-            <button className="close-overlay" onClick={handleOverlayClose}>X</button>
+            <button className="close-overlay" onClick={handleOverlayClose}>
+              X
+            </button>
             {loading ? (
-              <div className="loading-spinner"><ClipLoader size={50} /></div>
+              <div className="loading-spinner">
+                <ClipLoader size={50} />
+              </div>
             ) : (
               <>
                 {searchResults.length > 0 ? (
                   <ul className="search-results">
                     {searchResults.map((product) => (
                       <li key={product.id}>
-                        <Link to={`/product/${product.id}`} onClick={handleOverlayClose} className="resultLink">
-                          <img src={product.productImage} alt={product.productName} />
+                        <Link
+                          to={`/product/${product.id}`}
+                          onClick={handleOverlayClose}
+                          className="resultLink"
+                        >
+                          <img
+                            src={product.productImage}
+                            alt={product.productName}
+                          />
                           <p>{product.productName}</p>
                           <p>Ksh {product.productPrice}</p>
                           <p className="seemorelink">see more &rarr;</p>

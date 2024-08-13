@@ -5,24 +5,25 @@ import "./AdminHeader.css";
 
 function AdminHeader() {
   const user = useUserStore((state) => state.user);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const changeUserInformation = useUserStore((state) => state.changeUserInformation);
-  const clearUser = useUserStore((state)=>state.clearUserInformation)
+  const changeUserInformation = useUserStore(
+    (state) => state.changeUserInformation,
+  );
+  const clearUser = useUserStore((state) => state.clearUserInformation);
   useEffect(() => {
-    setIsLoggedIn(!!user); 
+    setIsLoggedIn(!!user);
   }, [user]);
 
-  const handleLogout = () => { 
+  const handleLogout = () => {
     changeUserInformation(null);
-    clearUser()
-    navigate("/Login"); 
+    clearUser();
+    navigate("/Login");
     setTimeout(() => {
       navigate("/Login");
     }, 100); // Slight delay to ensure state update
   };
-  
 
   return (
     <>
@@ -52,7 +53,7 @@ function AdminHeader() {
               <NavLink
                 to="/AddProduct"
                 className={({ isActive }) => (isActive ? "active" : "")}
-              > 
+              >
                 Add A Product
               </NavLink>
             </li>
@@ -76,7 +77,7 @@ function AdminHeader() {
               <NavLink
                 to="/AddUser"
                 className={({ isActive }) => (isActive ? "active" : "")}
-              > 
+              >
                 Add An Admin
               </NavLink>
             </li>
@@ -84,7 +85,7 @@ function AdminHeader() {
               <NavLink
                 to="/Messages"
                 className={({ isActive }) => (isActive ? "active" : "")}
-              > 
+              >
                 View Messages
               </NavLink>
             </li>
@@ -93,12 +94,16 @@ function AdminHeader() {
               <NavLink
                 to={`/AdminProfile/${user.id}`}
                 className={({ isActive }) => (isActive ? "active" : "")}
-              > 
-              Profile
+              >
+                Profile
               </NavLink>
             </li>
           </ul>
-          {isLoggedIn && <button onClick={handleLogout} className="adminlogout">Log Out</button>}
+          {isLoggedIn && (
+            <button onClick={handleLogout} className="adminlogout">
+              Log Out
+            </button>
+          )}
         </nav>
       </div>
     </>

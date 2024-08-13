@@ -6,9 +6,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-::selection{
+::selection {
   background-color: rgb(166, 255, 0);
-  color:black ;
+  color: black;
 }
 html {
   font-size: 62.5%;

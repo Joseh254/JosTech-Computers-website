@@ -16,9 +16,11 @@ function AdminHome() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/users/getusers"); // API endpoint
+        const response = await fetch(
+          "http://localhost:3000/api/users/getusers",
+        ); // API endpoint
         console.log(response);
-        
+
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -26,8 +28,10 @@ function AdminHome() {
 
         if (result.success) {
           // Prepare data for the chart
-          const labels = result.data.map(user => user.firstName); // User names as labels
-          const values = result.data.map(user => new Date(user.createdAt).getTime()); // Convert dates to timestamps
+          const labels = result.data.map((user) => user.firstName); // User names as labels
+          const values = result.data.map((user) =>
+            new Date(user.createdAt).getTime(),
+          ); // Convert dates to timestamps
 
           const formattedData = {
             labels: labels,
@@ -64,15 +68,15 @@ function AdminHome() {
         beginAtZero: true,
         title: {
           display: true,
-          text: "Users"
-        }
+          text: "Users",
+        },
       },
       y: {
         beginAtZero: true,
         title: {
           display: true,
-          text: "Registration Dates"
-        }
+          text: "Registration Dates",
+        },
       },
     },
   };

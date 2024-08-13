@@ -12,7 +12,9 @@ function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const changeUserInformation = useUserStore((state) => state.changeUserInformation);
+  const changeUserInformation = useUserStore(
+    (state) => state.changeUserInformation,
+  );
 
   async function handleSubmit(formState) {
     try {
@@ -21,17 +23,21 @@ function Login() {
       const response = await axios.post(
         `${api_url}/api/users/login`,
         formState,
-        {withCredentials:true}
+        { withCredentials: true },
       );
-      const data = response.data; 
+      const data = response.data;
       if (data.success) {
         // Store the JWT token in local storage
-        localStorage.setItem('jwt_token', data.token);
-        toast.success(`Logged in as ${data.data.firstName} ${data.data.lastName}`)
+        localStorage.setItem("jwt_token", data.token);
+        toast.success(
+          `Logged in as ${data.data.firstName} ${data.data.lastName}`,
+        );
         changeUserInformation(data.data);
         if (data.data.role === "admin") {
           navigate("/AdminHome");
-          toast.success(`Logged in as ${data.data.firstName} ${data.data.lastName}`)
+          toast.success(
+            `Logged in as ${data.data.firstName} ${data.data.lastName}`,
+          );
         } else {
           navigate("/FeaturedProducts");
         }
@@ -39,7 +45,6 @@ function Login() {
         setError(data.message);
       }
     } catch (error) {
-      
       setError("Wrong Email or Password");
     } finally {
       setLoading(false);

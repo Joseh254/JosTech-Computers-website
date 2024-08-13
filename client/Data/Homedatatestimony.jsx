@@ -46,10 +46,10 @@ function Homedatatestimony() {
           <div className="thetestimony">
             <h2>Phyllis Wambui</h2>
             <p className="p11">5.0 &#9733; &#9733; &#9733; &#9733; &#9733;</p>
-            <p>Best laptop shop in Nairobi CBD
-            I bought my Laptop from them 3months ago and its serving me
-              well..They are reliable dealers and their customer service is the
-              best.
+            <p>
+              Best laptop shop in Nairobi CBD I bought my Laptop from them
+              3months ago and its serving me well..They are reliable dealers and
+              their customer service is the best.
             </p>
           </div>
         </div>

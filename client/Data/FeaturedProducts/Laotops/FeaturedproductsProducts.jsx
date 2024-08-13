@@ -35,8 +35,10 @@ function FeaturedproductsProducts() {
           const response = await axios.get(`${api_url}/api/cart/GetUserCart`, {
             withCredentials: true,
           });
-          
-          const itemsInCart = response.data.cartProduct.map(item => item.product.id);
+
+          const itemsInCart = response.data.cartProduct.map(
+            (item) => item.product.id,
+          );
           setCartItems(itemsInCart); // Update cartItems state with product IDs
           changeCartCounter(itemsInCart.length); // Update cart counter
         } catch (error) {
@@ -67,7 +69,7 @@ function FeaturedproductsProducts() {
       const response = await axios.post(
         `${api_url}/api/cart/AddCart`,
         { productid: productId },
-        { withCredentials: true }
+        { withCredentials: true },
       );
 
       if (response.data.success) {
@@ -78,7 +80,9 @@ function FeaturedproductsProducts() {
         toast.error("Failed to add item to cart.", { theme: "failure" });
       }
     } catch (error) {
-      toast.error(`Error adding item to cart: ${error.message}`, { theme: "failure" });
+      toast.error(`Error adding item to cart: ${error.message}`, {
+        theme: "failure",
+      });
     } finally {
       setAddingToCart((prevState) => ({ ...prevState, [productId]: false }));
     }
@@ -116,8 +120,12 @@ function FeaturedproductsProducts() {
                 onClick={() => handleAddToCart(product.id)}
                 disabled={addingToCart[product.id]}
                 style={{
-                  backgroundColor: cartItems.includes(product.id) ? 'black' : 'blue',
-                  cursor: cartItems.includes(product.id) ? 'not-allowed' : 'pointer',
+                  backgroundColor: cartItems.includes(product.id)
+                    ? "black"
+                    : "blue",
+                  cursor: cartItems.includes(product.id)
+                    ? "not-allowed"
+                    : "pointer",
                 }}
               >
                 {addingToCart[product.id] ? (

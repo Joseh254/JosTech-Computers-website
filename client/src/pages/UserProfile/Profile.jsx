@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import useUserStore from '../../../store/userStore';
-import { api_url } from '../../../utills/config';
+import useUserStore from "../../../store/userStore";
+import { api_url } from "../../../utills/config";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Profile.css";
@@ -26,7 +26,7 @@ function Profile() {
     try {
       const response = await axios.get(
         `${api_url}/api/users/getOneUser/${userId}`,
-        { withCredentials: true }
+        { withCredentials: true },
       );
 
       if (response.data.success) {
@@ -45,7 +45,6 @@ function Profile() {
   useEffect(() => {
     if (user) {
       fetchUser();
-      
     } else {
       toast.error("Unauthorized");
       navigate("/Page404");
@@ -72,7 +71,7 @@ function Profile() {
     try {
       const response = await axios.post(
         `https://api.cloudinary.com/v1_1/${cloudname}/upload`,
-        payload
+        payload,
       );
 
       if (response.data.secure_url) {
@@ -81,7 +80,9 @@ function Profile() {
         console.log("Image uploaded successfully:", response.data.secure_url);
         return response.data.secure_url;
       } else {
-        toast("Failed to upload image. Please try again.", { theme: "failure" });
+        toast("Failed to upload image. Please try again.", {
+          theme: "failure",
+        });
         return "";
       }
     } catch (error) {
@@ -108,7 +109,7 @@ function Profile() {
           const uploadedImageUrl = await handleImageUpload();
           if (!uploadedImageUrl) {
             setLoading(false);
-            return toast.error("Failed to Upload image")
+            return toast.error("Failed to Upload image");
           }
           values.profilePicture = uploadedImageUrl; // Update the profile picture URL
         }
@@ -117,12 +118,11 @@ function Profile() {
         const response = await axios.patch(
           `${api_url}/api/users/updateUserDetails/${userId}`,
           values,
-          { withCredentials: true }
+          { withCredentials: true },
         );
 
         if (response.data.success) {
           toast.success("Profile updated successfully");
-
         } else {
           setError("Failed to update profile. Please try again.");
         }
@@ -131,7 +131,6 @@ function Profile() {
         setError("Failed to update profile. Please try again.");
       } finally {
         setLoading(false);
-      
       }
     },
   });
@@ -180,24 +179,29 @@ function Profile() {
           </div>
 
           <div className="uploaduserimagewrapper">
-            <input type="file" className="file" onChange={(e) => {
-              if (e.target.files && e.target.files[0]) {
-                const file = e.target.files[0];
-                if (file.type.startsWith("image/")) {
-                  setImage(file);
-                  setImagePreview(URL.createObjectURL(file));
-                } else {
-                  toast("Please select a valid image file.", { theme: "failure" });
+            <input
+              type="file"
+              className="file"
+              onChange={(e) => {
+                if (e.target.files && e.target.files[0]) {
+                  const file = e.target.files[0];
+                  if (file.type.startsWith("image/")) {
+                    setImage(file);
+                    setImagePreview(URL.createObjectURL(file));
+                  } else {
+                    toast("Please select a valid image file.", {
+                      theme: "failure",
+                    });
+                  }
                 }
-              }
-            }} />
+              }}
+            />
           </div>
 
           {error && <p className="error">{error}</p>}
           <button type="submit" className="updateProfilebtn" disabled={loading}>
             {loading ? "Please wait..." : "Update profile"}
           </button>
-        
         </form>
       </div>
     </div>

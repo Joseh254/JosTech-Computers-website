@@ -5,10 +5,7 @@ import Homedatatestimony from "../../../Data/Homedatatestimony";
 import { AiOutlineMenu } from "react-icons/ai";
 import Homeabout from "../../../Data/Homeabout";
 
-const textArray = ['Welcome', 'to', 'the', 'React', 'Typing', 'Animator'];
-
-
-
+const textArray = ["Welcome", "to", "the", "React", "Typing", "Animator"];
 
 function Home() {
   return (
@@ -64,7 +61,7 @@ function Home() {
       <Homedatatestimony />
       <Homeabout />
     </>
-  ); 
+  );
 }
 
 export default Home;

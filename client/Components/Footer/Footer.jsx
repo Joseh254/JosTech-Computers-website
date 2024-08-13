@@ -31,7 +31,7 @@ function Footer() {
       });
 
       const data = await response.json();
-      
+
       if (response.ok) {
         toast.success("You Have Subscribed successfully!");
       } else {
@@ -42,7 +42,7 @@ function Footer() {
     }
 
     setLoading(false);
-    setEmail(""); 
+    setEmail("");
   };
 
   return (
