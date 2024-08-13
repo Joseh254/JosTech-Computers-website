@@ -7,75 +7,6 @@ import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import "react-toastify/dist/ReactToastify.css";
 
-function CheckoutOverlay({ onClose }) {
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      address: "",
-      town: "",
-    },
-    onSubmit: function handleSubmit(values) {
-      console.log(values);
-    },
-    validate: function validate() {
-      let error = {};
-    },
-  });
-  return (
-    <div className="overlay">
-      <div className="overlayContent">
-        <div className="CheckoutHeader">
-          <h2>
-            Lipa Na <span>Mpesa</span>
-          </h2>
-          <button onClick={onClose} className="closeOverlayBtn">
-            X
-          </button>
-        </div>
-        <form onSubmit={formik.handleSubmit}>
-<div className="containerForm"> 
-  
-<div className="checkoutformvalues">
-            {/* <label htmlFor="email">Email:</label> */}
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Your email"
-              onChange={formik.handleChange}
-              value={formik.email}
-            />
-          </div>
-</div>
-
-          <div className="checkoutformvalues">
-            {/* <label htmlFor="address">Address:</label> */}
-            <input 
-            type="text"
-             name="address" 
-            placeholder="Your home address"
-            onChange={formik.handleChange}
-            value={formik.address}
-             />
-          </div>
-
-          <div className="checkoutformvalues">
-            {/* <label htmlFor="email">City:</label> */}
-            <input 
-            type="text"
-             name="town"
-             placeholder="City"
-             onChange={formik.handleChange}
-             value={formik.town}
-             />
-          </div>
-          <button className="paynow">Pay Now</button>
-        </form>
-      </div>
-    </div>
-  );
-}
-
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -197,6 +128,82 @@ function Cart() {
   const toggleOverlay = () => {
     setOverlayVisible(!isOverlayVisible);
   };
+
+
+
+
+  function CheckoutOverlay({ onClose }) {
+    const formik = useFormik({
+      initialValues: {
+        email: "",
+        address: "",
+        town: "",
+      },
+      onSubmit: function handleSubmit(values) {
+        console.log(values);
+      },
+      validate: function validate() {
+        let error = {};
+      },
+    });
+    return (
+      <div className="overlay">
+        <div className="overlayContent">
+          <div className="CheckoutHeader">
+            <h2>
+              Lipa Na <span>Mpesa</span>
+            </h2>
+            <button onClick={onClose} className="closeOverlayBtn">
+              X
+            </button>
+          </div>
+          <h2>Total: {formatCurrency(calculateTotal())}</h2>
+          <form onSubmit={formik.handleSubmit}>
+  <div className="containerForm"> 
+    
+  <div className="checkoutformvalues">
+              {/* <label htmlFor="email">Email:</label> */}
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Your email"
+                onChange={formik.handleChange}
+                value={formik.email}
+              />
+            </div>
+  </div>
+  
+            <div className="checkoutformvalues">
+              {/* <label htmlFor="address">Address:</label> */}
+              <input 
+              type="text"
+               name="address" 
+              placeholder="Your home address"
+              onChange={formik.handleChange}
+              value={formik.address}
+               />
+            </div>
+  
+            <div className="checkoutformvalues">
+              {/* <label htmlFor="email">City:</label> */}
+              <input 
+              type="text"
+               name="town"
+               placeholder="City"
+               onChange={formik.handleChange}
+               value={formik.town}
+               />
+            </div>
+            <button className="paynow">Pay Now</button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+  
+
+
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
