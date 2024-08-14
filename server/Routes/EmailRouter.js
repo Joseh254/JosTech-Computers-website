@@ -10,15 +10,15 @@ router.post('/sendOrderConfirmation', async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.user, // your email address
-      pass: process.env.pass,          // your email password or app-specific password
+      user: process.env.user, // your email address stored in environment variables
+      pass: process.env.pass, // your email password or app-specific password stored in environment variables
     },
   });
 
   // Set up email data
   const mailOptions = {
-    from: 'josephkarimambugua@gmail.com',
-    to: 'njerivictory52@gmail.com', // recipient email
+    from: 'josephkarimambugua@gmail.com', // sender email address
+    to: email, // recipient email, dynamically set to the user's input
     subject: 'Order Confirmation',
     text: `Your order has been placed successfully. 
     Details:
