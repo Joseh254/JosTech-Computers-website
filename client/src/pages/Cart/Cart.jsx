@@ -154,7 +154,7 @@ function Cart() {
   function CheckoutOverlay({ onClose }) {
     const formik = useFormik({
       initialValues: {
-        email: "",
+        email: user.email,
         address: "",
         town: "",
       },
@@ -163,7 +163,7 @@ function Cart() {
       },
       validate: (values) => {
         const errors = {};
-        if (!values.email) errors.email = "Email is required";
+        // if (!values.email) errors.email = "Email is required";
         if (!values.address) errors.address = "Address is required";
         if (!values.town) errors.town = "Town is required";
         return errors;
@@ -184,7 +184,7 @@ function Cart() {
           <h2>Total: {formatCurrency(calculateTotal())}</h2>
           <form onSubmit={formik.handleSubmit}>
             <div className="containerForm">
-              <div className="checkoutformvalues">
+              {/* <div className="checkoutformvalues">
                 <input
                   type="email"
                   id="email"
@@ -194,7 +194,7 @@ function Cart() {
                   value={formik.values.email}
                 />
                 {formik.errors.email ? <div>{formik.errors.email}</div> : null}
-              </div>
+              </div> */}
               <div className="checkoutformvalues">
                 <input
                   type="text"
