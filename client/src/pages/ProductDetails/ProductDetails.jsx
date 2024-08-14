@@ -46,7 +46,7 @@ function ProductDetails() {
         const isProductInCart = cartItems.some((item) => item.productid === id);
         setIsInCart(isProductInCart);
       } catch (error) {
-        setError(error);
+        // 
       }
     }
 

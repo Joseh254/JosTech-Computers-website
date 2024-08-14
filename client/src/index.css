@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 ::selection {
   background-color: rgb(166, 255, 0);
@@ -33,4 +34,5 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
-} /* avoids words going out of their parent containers*/
+}
+

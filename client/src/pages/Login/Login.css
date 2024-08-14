@@ -4,13 +4,13 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  background-color: #bfbfbf;
+  background-color: #eee;
 }
 .loginpage {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-image: url(../assets/bg.jpg);
+  background-image: url(../../assets/bg.jpg);
   background-size: cover;
   margin: 2rem;
   color: white;
@@ -23,10 +23,9 @@
 .login {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
   justify-content: center;
   align-items: center;
-  width: 80rem;
+  width: 80%;
 }
 
 .logininputs {
@@ -34,7 +33,7 @@
   flex-direction: column;
   justify-content: center;
   width: 70rem;
-  gap: 2rem;
+margin-bottom: 3%;
   /* align-items: center; */
 }
 @media screen and (max-width: 46.625em) {

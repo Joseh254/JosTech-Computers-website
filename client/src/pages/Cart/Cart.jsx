@@ -12,7 +12,7 @@ function Cart() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [quantities, setQuantities] = useState({});
-  const [isOverlayVisible, setOverlayVisible] = useState(false); // Overlay state
+  const [isOverlayVisible, setOverlayVisible] = useState(false);
   const user = useUserStore((state) => state.user);
   const changeCartCounter = useUserStore((state) => state.updateCartCount);
 
@@ -79,7 +79,7 @@ function Cart() {
       await axios.put(
         `${api_url}/api/cart/updateCart/${itemId}`,
         { quantity: newQuantity },
-        { withCredentials: true },
+        { withCredentials: true }
       );
     } catch (error) {
       handleError(error);
@@ -93,12 +93,12 @@ function Cart() {
         `${api_url}/api/cart/deleteCartItem/${itemId}`,
         {
           withCredentials: true,
-        },
+        }
       );
 
       if (response.data.success) {
         setCartItems((prevItems) =>
-          prevItems.filter((item) => item.id !== itemId),
+          prevItems.filter((item) => item.id !== itemId)
         );
         toast.success("Product removed from your cart");
         changeCartCounter(response.data.data.length);
@@ -129,8 +129,29 @@ function Cart() {
     setOverlayVisible(!isOverlayVisible);
   };
 
+  const handleOrderPlacement = async (values) => {
+    const total = formatCurrency(calculateTotal());
+    try {
+      const response = await axios.post(`${api_url}/api/sendOrderConfirmation`, {
+        email: values.email,
+        address: values.address,
+        town: values.town,
+        total,
+      });
+      console.log(response);
+      
 
-
+      if (response.data.success) {
+        toast.success('Order has been placed, and a confirmation email has been sent!');
+        setOverlayVisible(false);
+      } else {
+        toast.error('Failed to place order. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error placing order:', error);
+      toast.error('An error occurred while placing your order.');
+    }
+  };
 
   function CheckoutOverlay({ onClose }) {
     const formik = useFormik({
@@ -139,13 +160,18 @@ function Cart() {
         address: "",
         town: "",
       },
-      onSubmit: function handleSubmit(values) {
-        console.log(values);
+      onSubmit: (values) => {
+        handleOrderPlacement(values);
       },
-      validate: function validate() {
+      validate: function validate(values) {
         let error = {};
+        if (!values.email) error.email = "Email is required";
+        if (!values.address) error.address = "Address is required";
+        if (!values.town) error.town = "Town is required";
+        return error;
       },
     });
+
     return (
       <div className="overlay">
         <div className="overlayContent">
@@ -159,51 +185,47 @@ function Cart() {
           </div>
           <h2>Total: {formatCurrency(calculateTotal())}</h2>
           <form onSubmit={formik.handleSubmit}>
-  <div className="containerForm"> 
-    
-  <div className="checkoutformvalues">
-              {/* <label htmlFor="email">Email:</label> */}
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Your email"
-                onChange={formik.handleChange}
-                value={formik.email}
-              />
+            <div className="containerForm">
+              <div className="checkoutformvalues">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Your email"
+                  onChange={formik.handleChange}
+                  value={formik.values.email}
+                />
+                {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+              </div>
+
+              <div className="checkoutformvalues">
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Your home address"
+                  onChange={formik.handleChange}
+                  value={formik.values.address}
+                />
+                {formik.errors.address ? <div>{formik.errors.address}</div> : null}
+              </div>
+
+              <div className="checkoutformvalues">
+                <input
+                  type="text"
+                  name="town"
+                  placeholder="City"
+                  onChange={formik.handleChange}
+                  value={formik.values.town}
+                />
+                {formik.errors.town ? <div>{formik.errors.town}</div> : null}
+              </div>
+              <button type="submit" className="paynow">Pay Now</button>
             </div>
-  </div>
-  
-            <div className="checkoutformvalues">
-              {/* <label htmlFor="address">Address:</label> */}
-              <input 
-              type="text"
-               name="address" 
-              placeholder="Your home address"
-              onChange={formik.handleChange}
-              value={formik.address}
-               />
-            </div>
-  
-            <div className="checkoutformvalues">
-              {/* <label htmlFor="email">City:</label> */}
-              <input 
-              type="text"
-               name="town"
-               placeholder="City"
-               onChange={formik.handleChange}
-               value={formik.town}
-               />
-            </div>
-            <button className="paynow">Pay Now</button>
           </form>
         </div>
       </div>
     );
   }
-  
-
-
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -217,38 +239,29 @@ function Cart() {
         <div className="cartSection">
           {cartItems.map((item) => (
             <div key={item.id} className="cartItem">
-              <h2>{item.product.productName}</h2>
+              <img src={item.product.productImage} alt={item.product.productName} />
+              <h3>{item.product.productName}</h3>
               <p>Price: {formatCurrency(item.product.productPrice)}</p>
-              <div className="ProductsToPurchase">
-                <label htmlFor={`quantity-${item.id}`}>Items to Purchase</label>
-                <input
-                  id={`quantity-${item.id}`}
-                  type="number"
-                  min="1"
-                  value={quantities[item.id] || 1}
-                  onChange={(e) =>
-                    handleQuantityChange(item.id, Number(e.target.value))
-                  }
-                />
-              </div>
-              <button
-                onClick={() => handleDelete(item.id)}
-                className="removeItemFromCartBtn"
-                disabled={loading}
-              >
-                {loading ? "Removing..." : "Remove item"}
-              </button>
+              <p>Quantity:</p>
+              <input
+                type="number"
+                value={quantities[item.id] || 1}
+                onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
+              />
+              <p>
+                Total: {formatCurrency(item.product.productPrice * (quantities[item.id] || 1))}
+              </p>
+              <button onClick={() => handleDelete(item.id)}>Remove</button>
             </div>
           ))}
+          <div className="checkoutSection">
+            <h2>Total: {formatCurrency(calculateTotal())}</h2>
+            <button onClick={toggleOverlay} className="checkoutButton">
+              Proceed to Checkout
+            </button>
+          </div>
         </div>
       )}
-      <div className="cartTotal">
-        <h2>Total: {formatCurrency(calculateTotal())}</h2>
-      </div>
-      <div>
-        <button onClick={toggleOverlay} className="checkoutbutton">Checkout</button>
-      </div>
-
       {isOverlayVisible && <CheckoutOverlay onClose={toggleOverlay} />}
     </div>
   );

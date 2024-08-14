@@ -6,7 +6,7 @@ import Subscribe from "./Routes/NewsLetterSubScribersRouter.js"
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import messages from "./Routes/user_messagesRoute.js";
-
+import sendEmail from "./Routes/EmailRouter.js"
 import { config } from "dotenv";
 
 config();
@@ -37,6 +37,7 @@ app.use("/api/users", users);
 app.use("/api/users", messages);
 app.use("/api/cart", cart),
 app.use("/api/Newsletter",Subscribe)
+app.use("/api",sendEmail)
   app.listen(process.env.PORT, () => {
     console.log("server running");
   });
