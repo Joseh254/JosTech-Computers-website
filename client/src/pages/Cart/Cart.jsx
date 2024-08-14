@@ -138,8 +138,6 @@ function Cart() {
         town: values.town,
         total,
       });
-      console.log(response);
-      
 
       if (response.data.success) {
         toast.success('Order has been placed, and a confirmation email has been sent!');
@@ -163,12 +161,12 @@ function Cart() {
       onSubmit: (values) => {
         handleOrderPlacement(values);
       },
-      validate: function validate(values) {
-        let error = {};
-        if (!values.email) error.email = "Email is required";
-        if (!values.address) error.address = "Address is required";
-        if (!values.town) error.town = "Town is required";
-        return error;
+      validate: (values) => {
+        const errors = {};
+        if (!values.email) errors.email = "Email is required";
+        if (!values.address) errors.address = "Address is required";
+        if (!values.town) errors.town = "Town is required";
+        return errors;
       },
     });
 
@@ -197,7 +195,6 @@ function Cart() {
                 />
                 {formik.errors.email ? <div>{formik.errors.email}</div> : null}
               </div>
-
               <div className="checkoutformvalues">
                 <input
                   type="text"
@@ -208,7 +205,6 @@ function Cart() {
                 />
                 {formik.errors.address ? <div>{formik.errors.address}</div> : null}
               </div>
-
               <div className="checkoutformvalues">
                 <input
                   type="text"
@@ -239,29 +235,37 @@ function Cart() {
         <div className="cartSection">
           {cartItems.map((item) => (
             <div key={item.id} className="cartItem">
-              <img src={item.product.productImage} alt={item.product.productName} />
-              <h3>{item.product.productName}</h3>
+              <h2>{item.product.productName}</h2>
               <p>Price: {formatCurrency(item.product.productPrice)}</p>
-              <p>Quantity:</p>
-              <input
-                type="number"
-                value={quantities[item.id] || 1}
-                onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
-              />
-              <p>
-                Total: {formatCurrency(item.product.productPrice * (quantities[item.id] || 1))}
-              </p>
-              <button onClick={() => handleDelete(item.id)}>Remove</button>
+              <div className="ProductsToPurchase">
+                <label htmlFor={`quantity-${item.id}`}>Items to Purchase</label>
+                <input
+                  id={`quantity-${item.id}`}
+                  type="number"
+                  min="1"
+                  value={quantities[item.id] || 1}
+                  onChange={(e) =>
+                    handleQuantityChange(item.id, Number(e.target.value))
+                  }
+                />
+              </div>
+              <button
+                onClick={() => handleDelete(item.id)}
+                className="removeItemFromCartBtn"
+                disabled={loading}
+              >
+                {loading ? "Removing..." : "Remove item"}
+              </button>
             </div>
           ))}
-          <div className="checkoutSection">
-            <h2>Total: {formatCurrency(calculateTotal())}</h2>
-            <button onClick={toggleOverlay} className="checkoutButton">
-              Proceed to Checkout
-            </button>
-          </div>
         </div>
       )}
+      <div className="cartTotal">
+        <h2>Total: {formatCurrency(calculateTotal())}</h2>
+      </div>
+      <div>
+        <button onClick={toggleOverlay} className="checkoutbutton">Checkout</button>
+      </div>
       {isOverlayVisible && <CheckoutOverlay onClose={toggleOverlay} />}
     </div>
   );
