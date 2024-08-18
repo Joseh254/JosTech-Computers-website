@@ -17,13 +17,13 @@ function AdminHeader() {
   }, [user]);
 
   const handleLogout = () => {
-    changeUserInformation(null);
-    clearUser();
-    navigate("/Login");
+    clearUser(); // Clear the user information from the state
     setTimeout(() => {
-      navigate("/Login");
-    }, 100); // Slight delay to ensure state update
+      navigate("/Login"); // Navigate to the login page after state is cleared
+    }, 100); // Slight delay to ensure state update before navigation
   };
+  
+  
 
   return (
     <>
@@ -36,7 +36,7 @@ function AdminHeader() {
                 end
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
-                Home
+                Performance and Analytics
               </NavLink>
             </li>
             <li>

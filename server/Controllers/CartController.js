@@ -148,3 +148,19 @@ export async function updateCart(request, response) {
     response.status(500).json({ message: 'Failed to update cart item' });
   }
 }
+
+
+
+export async function deleteAll(req, res){
+  try {
+    // Clear the user's cart
+    await prisma.cartItem.deleteMany({
+      where: { userId: req.user.id }
+    });
+
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
