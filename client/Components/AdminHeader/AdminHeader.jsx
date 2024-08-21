@@ -9,21 +9,28 @@ function AdminHeader() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const changeUserInformation = useUserStore(
-    (state) => state.changeUserInformation,
+    (state) => state.changeUserInformation
   );
   const clearUser = useUserStore((state) => state.clearUserInformation);
+
   useEffect(() => {
     setIsLoggedIn(!!user);
   }, [user]);
 
+  useEffect(() => {
+    if (!user) {
+      navigate("/Login");
+    }
+  }, [user, navigate]);
+
   const handleLogout = () => {
-    clearUser(); // Clear the user information from the state
+    navigate("/Login");
+    changeUserInformation(null);
+    clearUser();
     setTimeout(() => {
-      navigate("/Login"); // Navigate to the login page after state is cleared
+      
     }, 100); // Slight delay to ensure state update before navigation
   };
-  
-  
 
   return (
     <>
